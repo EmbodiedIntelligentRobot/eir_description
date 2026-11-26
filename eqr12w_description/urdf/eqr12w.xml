@@ -1,0 +1,350 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="eqr12w">
+  <compiler angle="radian" meshdir="../meshes/" inertiafromgeom="false" fusestatic="false" />
+  <option timestep="0.0005" iterations="50" solver="PGS" gravity="0 0 -9.81">
+    <flag frictionloss="enable" />
+  </option>
+  <size njmax="500" nconmax="100" />
+  <visual>
+    <quality shadowsize="4096" />
+    <map znear="0.001" />
+  </visual>
+  <default>
+    <joint limited="true" damping="0.5" frictionloss="0.15" armature="0.1" />
+    <motor ctrllimited="true" />
+    <geom condim="3" contype="1" conaffinity="15" solref="0.001 2" friction="0.9 0.2 0.2" density="0" />
+    <equality solref="0.0005 2" />
+    <default class="visualgeom">
+      <geom material="visualgeom" condim="3" contype="0" conaffinity="0" />
+    </default>
+    <default class="obstacle">
+      <geom material="obstacle" condim="3" contype="1" conaffinity="15" />
+    </default>
+    <!-- Leg rotor/direct parts: 109.12 kg*mm^2, total ratio 32; armature = 0.00010912 * 32^2. -->
+    <!-- Joint-side damping/frictionloss remain uncalibrated simulation references. -->
+    <default class="HY-N8513-X32-IP67-A">
+      <joint damping="0.23" frictionloss="0.45" armature="0.11173888" />
+    </default>
+    <default class="HY-N8513-X32-IP67-H">
+      <joint damping="0.14" frictionloss="0.42" armature="0.11173888" />
+    </default>
+    <default class="HY-N8513-X32-IP67-K">
+      <joint damping="0.5" frictionloss="0.7" armature="0.11173888" />
+    </default>
+    <!-- Wheel rotor: 101.72 kg*mm^2, ratio 5.3; output armature = 0.00010172 * 5.3^2. -->
+    <default class="wheel_motor">
+      <joint damping="0.25" frictionloss="0.38" armature="0.0028573148" />
+    </default>
+  </default>
+  <!-- Base geometry/inertial updated from 新腔体base更新.txt and base_link.STL on 2026-11-10. -->
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="512" />
+    <texture name="texplane" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2" width="512" height="512" mark="cross" markrgb=".8 .8 .8" />
+    <texture name="texplane2" type="2d" builtin="checker" rgb1="1 0.3137 0.1843" rgb2="0.0 0.30196 0.38039" width="512" height="512" mark="cross" markrgb=".8 .8 .8" />
+    <material name="matplane" reflectance="0." texture="texplane" texrepeat="1 1" texuniform="true" />
+    <material name="matplane2" reflectance="0.1" texture="texplane2" texrepeat="1 1" texuniform="true" />
+    <material name="link_body" rgba="0.36 0.91 0.66 0.95" />
+    <material name="link_body2" rgba="0.517 0.53 0.90 0.95" />
+    <material name="obstacle" rgba="0.9 0.6 0.2 1" />
+    <material name="visualgeom" rgba="0.5 0.9 0.2 0.9" />
+    <mesh name="base_link" file="base_link_simplified.STL" />
+    <mesh name="fl_leg_l1" file="fl_leg_l1_simplified.STL" />
+    <mesh name="fl_leg_l2" file="fl_leg_l2_simplified.STL" />
+    <mesh name="fl_leg_l3" file="fl_leg_l3_simplified.STL" />
+    <mesh name="fl_leg_l4" file="fl_leg_l4_simplified.STL" />
+    <mesh name="fl_leg_lee" file="fl_leg_lee_simplified.STL" />
+    <mesh name="fr_leg_l1" file="fr_leg_l1_simplified.STL" />
+    <mesh name="fr_leg_l2" file="fr_leg_l2_simplified.STL" />
+    <mesh name="fr_leg_l3" file="fr_leg_l3_simplified.STL" />
+    <mesh name="fr_leg_l4" file="fr_leg_l4_simplified.STL" />
+    <mesh name="fr_leg_lee" file="fr_leg_lee_simplified.STL" />
+    <mesh name="hl_leg_l1" file="hl_leg_l1_simplified.STL" />
+    <mesh name="hl_leg_l2" file="hl_leg_l2_simplified.STL" />
+    <mesh name="hl_leg_l3" file="hl_leg_l3_simplified.STL" />
+    <mesh name="hl_leg_l4" file="hl_leg_l4_simplified.STL" />
+    <mesh name="hl_leg_lee" file="hl_leg_lee_simplified.STL" />
+    <mesh name="hr_leg_l1" file="hr_leg_l1_simplified.STL" />
+    <mesh name="hr_leg_l2" file="hr_leg_l2_simplified.STL" />
+    <mesh name="hr_leg_l3" file="hr_leg_l3_simplified.STL" />
+    <mesh name="hr_leg_l4" file="hr_leg_l4_simplified.STL" />
+    <mesh name="hr_leg_lee" file="hr_leg_lee_simplified.STL" />
+    <mesh name="base_link_front_left_support" file="base_link_front_left_support.STL" />
+    <mesh name="base_link_front_right_support" file="base_link_front_right_support.STL" />
+    <mesh name="base_link_rear_left_support" file="base_link_rear_left_support.STL" />
+    <mesh name="base_link_rear_right_support" file="base_link_rear_right_support.STL" />
+  </asset>
+  <worldbody>
+    <light directional="true" diffuse=".4 .4 .4" specular="0.1 0.1 0.1" pos="0 0 5.0" dir="0 0 -1" castshadow="false" />
+    <light directional="true" diffuse=".6 .6 .6" specular="0.2 0.2 0.2" pos="0 0 4" dir="0 0 -1" />
+    <geom name="ground" type="plane" size="0 0 1" pos="0 0 -0.001" quat="1 0 0 0" material="matplane" condim="1" conaffinity="15" group="2" />
+    <geom name="center1" type="box" pos="20 0 1" size="1 2 1" condim="1" conaffinity="15" group="2" />
+    <geom name="slope_up" type="box" pos="14.17 0 0.71" size="5 2 0.3" euler="0 -0.2 0" condim="1" conaffinity="15" group="2" />
+    <geom name="slope_down" type="box" pos="25.84 0 0.71" size="5 2 0.3" euler="0 0.2 0" condim="1" conaffinity="15" group="2" />
+    <geom name="stair1" type="box" pos="10 10 0.10" size="0.2 2 0.10" euler="0 0 0" condim="1" conaffinity="15" group="2" />
+    <geom name="stair2" type="box" pos="10.4 10 0.20" size="0.2 2 0.20" euler="0 0 0" condim="1" conaffinity="15" group="2" />
+    <geom name="stair3" type="box" pos="10.8 10 0.30" size="0.2 2 0.30" euler="0 0 0" condim="1" conaffinity="15" group="2" />
+    <geom name="stair4" type="box" pos="11.2 10 0.40" size="0.2 2 0.40" euler="0 0 0" condim="1" conaffinity="15" group="2" />
+    <geom name="stair5" type="box" pos="11.6 10 0.50" size="0.2 2 0.50" euler="0 0 0" condim="1" conaffinity="15" group="2" />
+    <geom name="center2" type="box" pos="13.8 10 0.50" size="2 2 0.50" euler="0 0 0" condim="1" conaffinity="15" group="2" />
+    <geom name="stair6" type="box" pos="16 10 0.50" size="0.2 2 0.50" euler="0 0 0" condim="1" conaffinity="15" group="2" />
+    <geom name="stair7" type="box" pos="16.4 10 0.40" size="0.2 2 0.40" euler="0 0 0" condim="1" conaffinity="15" group="2" />
+    <geom name="stair8" type="box" pos="16.8 10 0.30" size="0.2 2 0.30" euler="0 0 0" condim="1" conaffinity="15" group="2" />
+    <geom name="stair9" type="box" pos="17.2 10 0.20" size="0.2 2 0.20" euler="0 0 0" condim="1" conaffinity="15" group="2" />
+    <geom name="stair10" type="box" pos="17.6 10 0.10" size="0.2 2 0.10" euler="0 0 0" condim="1" conaffinity="15" group="2" />
+    <body name="base_link" pos="8 0 0.465">
+      <joint type="slide" axis="1 0 0" limited="false" damping="0.0" frictionloss="0.0" armature="0.0" name="root_x" />
+      <joint type="slide" axis="0 1 0" limited="false" damping="0.0" frictionloss="0.0" armature="0.0" name="root_y" />
+      <joint type="slide" axis="0 0 1" limited="false" damping="0.0" frictionloss="0.0" armature="0.0" name="root_z" />
+      <joint type="ball" limited="false" damping="0.0" frictionloss="0.0" armature="0.0" name="root_orientation" />
+      <site name="imu" size="0.01" pos="0.0 0 0.0" />
+      <camera name="track" mode="trackcom" pos="1 -1 0.6" xyaxes="0.707107 0.707107 0 -0.301511 0.301511 0.904534" />
+      <inertial pos="0.00316241 0.00419948 -0.04981856" mass="20.64631829" fullinertia="0.16008971 0.47665242 0.55795957 0.00031818 -0.00152430 0.00233940" />
+      <geom name="base_link_visual" type="mesh" mesh="base_link" density="0" contype="0" conaffinity="0" group="1" rgba="0.75294 0.75294 0.75294 1" />
+      <geom name="base_link_body_collision" pos="0 0 -0.036198207" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="box" size="0.16 0.127 0.091" />
+      <geom name="base_link_front_mount_collision" pos="0.19875 0 -0.040198207" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="box" size="0.04575 0.125 0.061" />
+      <geom name="base_link_front_top_collision" pos="0.199 0 0.028801793" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="box" size="0.038 0.035 0.0145" />
+      <geom name="base_link_front_shoulder_collision" pos="0.1675 0 0.031301793" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="box" size="0.0095 0.092 0.0105" />
+      <geom name="base_link_front_left_cooler_collision" pos="0.201 0.13825 -0.040198207" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="box" size="0.034 0.01325 0.04" />
+      <geom name="base_link_front_right_cooler_collision" pos="0.201 -0.13825 -0.040198207" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="box" size="0.034 0.01325 0.04" />
+      <geom name="base_link_rear_mount_collision" pos="-0.19875 0 -0.040198207" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="box" size="0.04575 0.125 0.061" />
+      <geom name="base_link_rear_top_collision" pos="-0.199 0 0.028801793" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="box" size="0.038 0.035 0.0145" />
+      <geom name="base_link_rear_shoulder_collision" pos="-0.1675 0 0.031301793" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="box" size="0.0095 0.092 0.0105" />
+      <geom name="base_link_rear_left_cooler_collision" pos="-0.201 0.13825 -0.040198207" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="box" size="0.034 0.01325 0.04" />
+      <geom name="base_link_rear_right_cooler_collision" pos="-0.201 -0.13825 -0.040198207" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="box" size="0.034 0.01325 0.04" />
+      <geom name="base_link_left_bottom_rail_collision" pos="0 0.12175 -0.126198207" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="box" size="0.162 0.00975 0.005" />
+      <geom name="base_link_front_left_support_collision" pos="0.1305 0.10575 -0.132198207" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="mesh" mesh="base_link_front_left_support" />
+      <geom name="base_link_rear_left_support_collision" pos="-0.1305 0.10575 -0.132198207" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="mesh" mesh="base_link_rear_left_support" />
+      <geom name="base_link_right_bottom_rail_collision" pos="0 -0.12175 -0.126198207" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="box" size="0.162 0.00975 0.005" />
+      <geom name="base_link_front_right_support_collision" pos="0.1305 -0.10575 -0.132198207" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="mesh" mesh="base_link_front_right_support" />
+      <geom name="base_link_rear_right_support_collision" pos="-0.1305 -0.10575 -0.132198207" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="mesh" mesh="base_link_rear_right_support" />
+      <body name="fl_leg_l1" pos="0.2445 0.075 -0.040198">
+        <joint name="fl_leg_1" type="hinge" axis="1 0 0" limited="true" range="-0.785 0.785" class="HY-N8513-X32-IP67-A" actuatorfrcrange="-180 180" />
+        <inertial pos="0.06090047 -0.01520050 -0.00010891" mass="1.71956840" fullinertia="0.00229065 0.00292263 0.00266862 0.00005565 0.00000160 -0.00000671" />
+        <geom name="fl_leg_l1_visual" type="mesh" mesh="fl_leg_l1" density="0" contype="0" conaffinity="0" group="1" rgba="0.86667 0.9098 1 1" />
+        <geom name="fl_leg_l1_motor_collision" pos="0.066 -0.0035 0" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.707106781188279 0.707106781184816 0 0" type="cylinder" size="0.054 0.0195" />
+        <geom name="fl_leg_l1_inner_collision" pos="0.066 -0.0425 0" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.707106781188279 0.707106781184816 0 0" type="cylinder" size="0.036 0.0195" />
+        <body name="fl_leg_l2" pos="0.066 0.021 0">
+          <joint name="fl_leg_2" type="hinge" axis="0 1 0" limited="true" range="-3.935 1.475" class="HY-N8513-X32-IP67-H" actuatorfrcrange="-180 180" />
+          <inertial pos="-0.04295518 0.07386917 0.00658000" mass="3.13315253" fullinertia="0.00699635 0.02913181 0.03139960 0.00488357 0.00181584 -0.00081091" />
+          <geom name="fl_leg_l2_visual" type="mesh" mesh="fl_leg_l2" density="0" contype="0" conaffinity="0" group="1" rgba="0.75294 0.75294 0.75294 1" />
+          <geom name="fl_leg_l2_motor_collision" pos="0 0.065 0" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.707106781188279 0.707106781184816 0 0" type="cylinder" size="0.059 0.068" />
+          <geom name="fl_leg_l2_beam_collision" pos="-0.175 0.1095 0.023" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.998750260394966 0 -0.0499791692706783 0" type="box" size="0.15 0.0235 0.035" />
+          <body name="fl_leg_l3" pos="-0.3 0.1105 0">
+            <joint name="fl_leg_3" type="hinge" axis="0 1 0" limited="true" range="-0.035 1.736" class="HY-N8513-X32-IP67-K" actuatorfrcrange="-180 180" />
+            <inertial pos="0.13893332 0.00001456 -0.04108848" mass="0.54156056" fullinertia="0.00102110 0.00797382 0.00703679 -0.00001575 0.00233311 0.00000473" />
+            <geom name="fl_leg_l3_visual" type="mesh" mesh="fl_leg_l3" density="0" contype="0" conaffinity="0" group="1" rgba="0.86667 0.9098 1 1" />
+            <geom name="fl_leg_l3_knee_collision" pos="-0.02 0 0.02" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="box" size="0.021 0.015 0.017" />
+            <geom name="fl_leg_l3_upper_collision" pos="0.025 0 -0.01" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.991561893714788 0 0.129634142619695 0" type="box" size="0.035 0.015 0.014" />
+            <geom name="fl_leg_l3_middle_collision" pos="0.11 0 -0.02" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="box" size="0.05 0.0185 0.016" />
+            <geom name="fl_leg_l3_lower_collision" pos="0.215 0 -0.066" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.955336489125606 0 0.29552020666134 0" type="box" size="0.075 0.018 0.016" />
+            <body name="fl_leg_l4" pos="0.27875 0 -0.11092">
+              <inertial pos="-0.00031022 0.05013069 -0.00018119" mass="0.97743156" fullinertia="0.00092163 0.00107251 0.00091904 -0.00000929 0.00000007 -0.00000302" />
+              <geom name="fl_leg_l4_visual" type="mesh" mesh="fl_leg_l4" density="0" contype="0" conaffinity="0" group="1" rgba="0.75294 0.75294 0.75294 1" />
+              <geom name="fl_leg_l4_motor_collision" pos="0 0.04379568 0" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.707106781186546 0.707106781186549 0 0" type="cylinder" size="0.047 0.0388" />
+              <body name="fl_leg_lee" pos="0 0.070096 0">
+                <joint name="fl_leg_ee" type="hinge" axis="0 1 0" limited="false" class="wheel_motor" damping="0.01" frictionloss="0.01" actuatorfrcrange="-15 15" />
+                <inertial pos="0.00000000 0.00124169 0.00000225" mass="0.89639814" fullinertia="0.00336306 0.00644633 0.00336310 0.00000000 -0.00000003 -0.00000002" />
+                <geom name="fl_leg_lee_visual" type="mesh" mesh="fl_leg_lee" density="0" contype="0" conaffinity="0" group="1" rgba="0.86667 0.9098 1 1" />
+                <geom name="fl_leg_lee_wheel_collision" pos="0 0 0" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.707106781186546 0.707106781186549 0 0" type="cylinder" size="0.1025 0.0220005" />
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+      <body name="fr_leg_l1" pos="0.2445 -0.075 -0.040198">
+        <joint name="fr_leg_1" type="hinge" axis="1 0 0" limited="true" range="-0.785 0.785" class="HY-N8513-X32-IP67-A" actuatorfrcrange="-180 180" />
+        <inertial pos="0.06090047 0.01520050 0.00010891" mass="1.71956840" fullinertia="0.00229065 0.00292263 0.00266862 -0.00005565 -0.00000160 -0.00000671" />
+        <geom name="fr_leg_l1_visual" type="mesh" mesh="fr_leg_l1" density="0" contype="0" conaffinity="0" group="1" rgba="0.86667 0.9098 1 1" />
+        <geom name="fr_leg_l1_motor_collision" pos="0.066 0.0035 0" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.707106781188279 0.707106781184816 0 0" type="cylinder" size="0.054 0.0195" />
+        <geom name="fr_leg_l1_inner_collision" pos="0.066 0.0425 0" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.707106781188279 0.707106781184816 0 0" type="cylinder" size="0.036 0.0195" />
+        <body name="fr_leg_l2" pos="0.066 -0.021 0">
+          <joint name="fr_leg_2" type="hinge" axis="0 1 0" limited="true" range="-3.935 1.475" class="HY-N8513-X32-IP67-H" actuatorfrcrange="-180 180" />
+          <inertial pos="-0.04294258 -0.07386879 0.00669838" mass="3.13313230" fullinertia="0.00699105 0.02912956 0.03140256 -0.00488535 0.00179866 0.00079209" />
+          <geom name="fr_leg_l2_visual" type="mesh" mesh="fr_leg_l2" density="0" contype="0" conaffinity="0" group="1" rgba="0.75294 0.75294 0.75294 1" />
+          <geom name="fr_leg_l2_motor_collision" pos="0 -0.065 0" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.707106781188279 0.707106781184816 0 0" type="cylinder" size="0.059 0.068" />
+          <geom name="fr_leg_l2_beam_collision" pos="-0.175 -0.1095 0.023" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.998750260394966 0 -0.0499791692706783 0" type="box" size="0.15 0.0235 0.035" />
+          <body name="fr_leg_l3" pos="-0.3 -0.1105 0">
+            <joint name="fr_leg_3" type="hinge" axis="0 1 0" limited="true" range="-0.035 1.736" class="HY-N8513-X32-IP67-K" actuatorfrcrange="-180 180" />
+            <inertial pos="0.13892921 -0.00001486 -0.04108657" mass="0.54159152" fullinertia="0.00102111 0.00797416 0.00703712 0.00001571 0.00233327 -0.00000472" />
+            <geom name="fr_leg_l3_visual" type="mesh" mesh="fr_leg_l3" density="0" contype="0" conaffinity="0" group="1" rgba="0.86667 0.9098 1 1" />
+            <geom name="fr_leg_l3_knee_collision" pos="-0.02 0 0.02" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="box" size="0.021 0.015 0.017" />
+            <geom name="fr_leg_l3_upper_collision" pos="0.025 0 -0.01" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.991561893714788 0 0.129634142619695 0" type="box" size="0.035 0.015 0.014" />
+            <geom name="fr_leg_l3_middle_collision" pos="0.11 0 -0.02" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="box" size="0.05 0.0185 0.016" />
+            <geom name="fr_leg_l3_lower_collision" pos="0.215 0 -0.066" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.955336489125606 0 0.29552020666134 0" type="box" size="0.075 0.018 0.016" />
+            <body name="fr_leg_l4" pos="0.27875 0 -0.11092">
+              <inertial pos="-0.00034095 -0.05013069 -0.00011777" mass="0.97743162" fullinertia="0.00092015 0.00107251 0.00092052 0.00000853 0.00000124 0.00000461" />
+              <geom name="fr_leg_l4_visual" type="mesh" mesh="fr_leg_l4" density="0" contype="0" conaffinity="0" group="1" rgba="0.75294 0.75294 0.75294 1" />
+              <geom name="fr_leg_l4_motor_collision" pos="0 -0.04379568 0" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.707106781186546 0.707106781186549 0 0" type="cylinder" size="0.047 0.0388" />
+              <body name="fr_leg_lee" pos="0 -0.070096 0">
+                <joint name="fr_leg_ee" type="hinge" axis="0 1 0" limited="false" class="wheel_motor" damping="0.01" frictionloss="0.01" actuatorfrcrange="-15 15" />
+                <inertial pos="0.00000197 -0.00124169 -0.00000113" mass="0.89639814" fullinertia="0.00336306 0.00644633 0.00336310 0.00000002 -0.00000002 0.00000000" />
+                <geom name="fr_leg_lee_visual" type="mesh" mesh="fr_leg_lee" density="0" contype="0" conaffinity="0" group="1" rgba="0.86667 0.9098 1 1" />
+                <geom name="fr_leg_lee_wheel_collision" pos="0 0 0" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.707106781186546 0.707106781186549 0 0" type="cylinder" size="0.1025 0.0220005" />
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+      <body name="hl_leg_l1" pos="-0.2445 0.075 -0.040198">
+        <joint name="hl_leg_1" type="hinge" axis="1 0 0" limited="true" range="-0.785 0.785" class="HY-N8513-X32-IP67-A" actuatorfrcrange="-180 180" />
+        <inertial pos="-0.06090047 -0.01520050 0.00010891" mass="1.71956840" fullinertia="0.00229065 0.00292263 0.00266862 -0.00005565 0.00000160 0.00000671" />
+        <geom name="hl_leg_l1_visual" type="mesh" mesh="hl_leg_l1" density="0" contype="0" conaffinity="0" group="1" rgba="0.86667 0.9098 1 1" />
+        <geom name="hl_leg_l1_motor_collision" pos="-0.066 -0.0035 0" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.707106781188279 0.707106781184816 0 0" type="cylinder" size="0.054 0.0195" />
+        <geom name="hl_leg_l1_inner_collision" pos="-0.066 -0.0425 0" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.707106781188279 0.707106781184816 0 0" type="cylinder" size="0.036 0.0195" />
+        <body name="hl_leg_l2" pos="-0.066 0.021 0">
+          <joint name="hl_leg_2" type="hinge" axis="0 1 0" limited="true" range="-3.935 1.475" class="HY-N8513-X32-IP67-H" actuatorfrcrange="-180 180" />
+          <inertial pos="-0.04305344 0.07386917 0.00686121" mass="3.13315253" fullinertia="0.00698451 0.02909349 0.03137312 0.00486375 0.00177588 -0.00075420" />
+          <geom name="hl_leg_l2_visual" type="mesh" mesh="hl_leg_l2" density="0" contype="0" conaffinity="0" group="1" rgba="0.75294 0.75294 0.75294 1" />
+          <geom name="hl_leg_l2_motor_collision" pos="0 0.065 0" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.707106781188279 0.707106781184816 0 0" type="cylinder" size="0.059 0.068" />
+          <geom name="hl_leg_l2_beam_collision" pos="-0.175 0.1095 0.023" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.998750260394966 0 -0.0499791692706783 0" type="box" size="0.15 0.0235 0.035" />
+          <body name="hl_leg_l3" pos="-0.3 0.1105 0">
+            <joint name="hl_leg_3" type="hinge" axis="0 1 0" limited="true" range="-0.035 1.736" class="HY-N8513-X32-IP67-K" actuatorfrcrange="-180 180" />
+            <inertial pos="0.13893332 0.00001456 -0.04108848" mass="0.54156056" fullinertia="0.00102110 0.00797382 0.00703679 -0.00001575 0.00233311 0.00000473" />
+            <geom name="hl_leg_l3_visual" type="mesh" mesh="hl_leg_l3" density="0" contype="0" conaffinity="0" group="1" rgba="0.86667 0.9098 1 1" />
+            <geom name="hl_leg_l3_knee_collision" pos="-0.02 0 0.02" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="box" size="0.021 0.015 0.017" />
+            <geom name="hl_leg_l3_upper_collision" pos="0.025 0 -0.01" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.991561893714788 0 0.129634142619695 0" type="box" size="0.035 0.015 0.014" />
+            <geom name="hl_leg_l3_middle_collision" pos="0.11 0 -0.02" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="box" size="0.05 0.0185 0.016" />
+            <geom name="hl_leg_l3_lower_collision" pos="0.215 0 -0.066" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.955336489125606 0 0.29552020666134 0" type="box" size="0.075 0.018 0.016" />
+            <body name="hl_leg_l4" pos="0.27875 0 -0.11092">
+              <inertial pos="-0.00031022 0.05013069 -0.00018119" mass="0.97743156" fullinertia="0.00092163 0.00107251 0.00091904 -0.00000929 0.00000007 -0.00000302" />
+              <geom name="hl_leg_l4_visual" type="mesh" mesh="hl_leg_l4" density="0" contype="0" conaffinity="0" group="1" rgba="0.75294 0.75294 0.75294 1" />
+              <geom name="hl_leg_l4_motor_collision" pos="0 0.04379568 0" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.707106781186546 0.707106781186549 0 0" type="cylinder" size="0.047 0.0388" />
+              <body name="hl_leg_lee" pos="0 0.070096 0">
+                <joint name="hl_leg_ee" type="hinge" axis="0 1 0" limited="false" class="wheel_motor" damping="0.01" frictionloss="0.01" actuatorfrcrange="-15 15" />
+                <inertial pos="0.00000000 0.00124169 0.00000225" mass="0.89639814" fullinertia="0.00336306 0.00644633 0.00336310 0.00000000 -0.00000003 -0.00000002" />
+                <geom name="hl_leg_lee_visual" type="mesh" mesh="hl_leg_lee" density="0" contype="0" conaffinity="0" group="1" rgba="0.86667 0.9098 1 1" />
+                <geom name="hl_leg_lee_wheel_collision" pos="0 0 0" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.707106781186546 0.707106781186549 0 0" type="cylinder" size="0.1025 0.0220005" />
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+      <body name="hr_leg_l1" pos="-0.2445 -0.075 -0.040198">
+        <joint name="hr_leg_1" type="hinge" axis="1 0 0" limited="true" range="-0.785 0.785" class="HY-N8513-X32-IP67-A" actuatorfrcrange="-180 180" />
+        <inertial pos="-0.06090047 0.01520050 -0.00010891" mass="1.71956840" fullinertia="0.00229065 0.00292263 0.00266862 0.00005565 -0.00000160 0.00000671" />
+        <geom name="hr_leg_l1_visual" type="mesh" mesh="hr_leg_l1" density="0" contype="0" conaffinity="0" group="1" rgba="0.86667 0.9098 1 1" />
+        <geom name="hr_leg_l1_motor_collision" pos="-0.066 0.0035 0" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.707106781188279 0.707106781184816 0 0" type="cylinder" size="0.054 0.0195" />
+        <geom name="hr_leg_l1_inner_collision" pos="-0.066 0.0425 0" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.707106781188279 0.707106781184816 0 0" type="cylinder" size="0.036 0.0195" />
+        <body name="hr_leg_l2" pos="-0.066 -0.021 0">
+          <joint name="hr_leg_2" type="hinge" axis="0 1 0" limited="true" range="-3.935 1.475" class="HY-N8513-X32-IP67-H" actuatorfrcrange="-180 180" />
+          <inertial pos="-0.04304084 -0.07386879 0.00697960" mass="3.13313230" fullinertia="0.00697900 0.02909104 0.03137609 -0.00486553 0.00175868 0.00073537" />
+          <geom name="hr_leg_l2_visual" type="mesh" mesh="hr_leg_l2" density="0" contype="0" conaffinity="0" group="1" rgba="0.75294 0.75294 0.75294 1" />
+          <geom name="hr_leg_l2_motor_collision" pos="0 -0.065 0" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.707106781188279 0.707106781184816 0 0" type="cylinder" size="0.059 0.068" />
+          <geom name="hr_leg_l2_beam_collision" pos="-0.175 -0.1095 0.023" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.998750260394966 0 -0.0499791692706783 0" type="box" size="0.15 0.0235 0.035" />
+          <body name="hr_leg_l3" pos="-0.3 -0.1105 0">
+            <joint name="hr_leg_3" type="hinge" axis="0 1 0" limited="true" range="-0.035 1.736" class="HY-N8513-X32-IP67-K" actuatorfrcrange="-180 180" />
+            <inertial pos="0.13892921 -0.00001486 -0.04108657" mass="0.54159152" fullinertia="0.00102111 0.00797416 0.00703712 0.00001571 0.00233327 -0.00000472" />
+            <geom name="hr_leg_l3_visual" type="mesh" mesh="hr_leg_l3" density="0" contype="0" conaffinity="0" group="1" rgba="0.86667 0.9098 1 1" />
+            <geom name="hr_leg_l3_knee_collision" pos="-0.02 0 0.02" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="box" size="0.021 0.015 0.017" />
+            <geom name="hr_leg_l3_upper_collision" pos="0.025 0 -0.01" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.991561893714788 0 0.129634142619695 0" type="box" size="0.035 0.015 0.014" />
+            <geom name="hr_leg_l3_middle_collision" pos="0.11 0 -0.02" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="1 0 0 0" type="box" size="0.05 0.0185 0.016" />
+            <geom name="hr_leg_l3_lower_collision" pos="0.215 0 -0.066" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.955336489125606 0 0.29552020666134 0" type="box" size="0.075 0.018 0.016" />
+            <body name="hr_leg_l4" pos="0.27875 0 -0.11092">
+              <inertial pos="-0.00034095 -0.05013069 -0.00011777" mass="0.97743162" fullinertia="0.00092015 0.00107251 0.00092052 0.00000853 0.00000124 0.00000461" />
+              <geom name="hr_leg_l4_visual" type="mesh" mesh="hr_leg_l4" density="0" contype="0" conaffinity="0" group="1" rgba="0.75294 0.75294 0.75294 1" />
+              <geom name="hr_leg_l4_motor_collision" pos="0 -0.04379568 0" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.707106781186546 0.707106781186549 0 0" type="cylinder" size="0.047 0.0388" />
+              <body name="hr_leg_lee" pos="0 -0.070096 0">
+                <joint name="hr_leg_ee" type="hinge" axis="0 1 0" limited="false" class="wheel_motor" damping="0.01" frictionloss="0.01" actuatorfrcrange="-15 15" />
+                <inertial pos="0.00000197 -0.00124169 -0.00000113" mass="0.89639814" fullinertia="0.00336306 0.00644633 0.00336310 0.00000002 -0.00000002 0.00000000" />
+                <geom name="hr_leg_lee_visual" type="mesh" mesh="hr_leg_lee" density="0" contype="0" conaffinity="0" group="1" rgba="0.86667 0.9098 1 1" />
+                <geom name="hr_leg_lee_wheel_collision" pos="0 0 0" density="0" group="3" rgba="0.2 0.8 0.3 0.55" quat="0.707106781186546 0.707106781186549 0 0" type="cylinder" size="0.1025 0.0220005" />
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <motor name="fl_leg_1" joint="fl_leg_1" gear="32" ctrllimited="true" ctrlrange="-5.625 5.625" />
+    <motor name="fl_leg_2" joint="fl_leg_2" gear="32" ctrllimited="true" ctrlrange="-5.625 5.625" />
+    <motor name="fl_leg_3" joint="fl_leg_3" gear="32" ctrllimited="true" ctrlrange="-5.625 5.625" />
+    <motor name="fl_leg_ee" joint="fl_leg_ee" gear="5.3" ctrllimited="true" ctrlrange="-2.830188679245283 2.830188679245283" />
+    <motor name="fr_leg_1" joint="fr_leg_1" gear="32" ctrllimited="true" ctrlrange="-5.625 5.625" />
+    <motor name="fr_leg_2" joint="fr_leg_2" gear="32" ctrllimited="true" ctrlrange="-5.625 5.625" />
+    <motor name="fr_leg_3" joint="fr_leg_3" gear="32" ctrllimited="true" ctrlrange="-5.625 5.625" />
+    <motor name="fr_leg_ee" joint="fr_leg_ee" gear="5.3" ctrllimited="true" ctrlrange="-2.830188679245283 2.830188679245283" />
+    <motor name="hl_leg_1" joint="hl_leg_1" gear="32" ctrllimited="true" ctrlrange="-5.625 5.625" />
+    <motor name="hl_leg_2" joint="hl_leg_2" gear="32" ctrllimited="true" ctrlrange="-5.625 5.625" />
+    <motor name="hl_leg_3" joint="hl_leg_3" gear="32" ctrllimited="true" ctrlrange="-5.625 5.625" />
+    <motor name="hl_leg_ee" joint="hl_leg_ee" gear="5.3" ctrllimited="true" ctrlrange="-2.830188679245283 2.830188679245283" />
+    <motor name="hr_leg_1" joint="hr_leg_1" gear="32" ctrllimited="true" ctrlrange="-5.625 5.625" />
+    <motor name="hr_leg_2" joint="hr_leg_2" gear="32" ctrllimited="true" ctrlrange="-5.625 5.625" />
+    <motor name="hr_leg_3" joint="hr_leg_3" gear="32" ctrllimited="true" ctrlrange="-5.625 5.625" />
+    <motor name="hr_leg_ee" joint="hr_leg_ee" gear="5.3" ctrllimited="true" ctrlrange="-2.830188679245283 2.830188679245283" />
+  </actuator>
+  <sensor>
+    <jointpos name="fl_leg_1_p" joint="fl_leg_1" user="13" />
+    <jointpos name="fl_leg_2_p" joint="fl_leg_2" user="13" />
+    <jointpos name="fl_leg_3_p" joint="fl_leg_3" user="13" />
+    <jointpos name="fl_leg_ee_p" joint="fl_leg_ee" user="13" />
+    <jointpos name="fr_leg_1_p" joint="fr_leg_1" user="13" />
+    <jointpos name="fr_leg_2_p" joint="fr_leg_2" user="13" />
+    <jointpos name="fr_leg_3_p" joint="fr_leg_3" user="13" />
+    <jointpos name="fr_leg_ee_p" joint="fr_leg_ee" user="13" />
+    <jointpos name="hl_leg_1_p" joint="hl_leg_1" user="13" />
+    <jointpos name="hl_leg_2_p" joint="hl_leg_2" user="13" />
+    <jointpos name="hl_leg_3_p" joint="hl_leg_3" user="13" />
+    <jointpos name="hl_leg_ee_p" joint="hl_leg_ee" user="13" />
+    <jointpos name="hr_leg_1_p" joint="hr_leg_1" user="13" />
+    <jointpos name="hr_leg_2_p" joint="hr_leg_2" user="13" />
+    <jointpos name="hr_leg_3_p" joint="hr_leg_3" user="13" />
+    <jointpos name="hr_leg_ee_p" joint="hr_leg_ee" user="13" />
+    <jointvel name="fl_leg_1_v" joint="fl_leg_1" user="13" />
+    <jointvel name="fl_leg_2_v" joint="fl_leg_2" user="13" />
+    <jointvel name="fl_leg_3_v" joint="fl_leg_3" user="13" />
+    <jointvel name="fl_leg_ee_v" joint="fl_leg_ee" user="13" />
+    <jointvel name="fr_leg_1_v" joint="fr_leg_1" user="13" />
+    <jointvel name="fr_leg_2_v" joint="fr_leg_2" user="13" />
+    <jointvel name="fr_leg_3_v" joint="fr_leg_3" user="13" />
+    <jointvel name="fr_leg_ee_v" joint="fr_leg_ee" user="13" />
+    <jointvel name="hl_leg_1_v" joint="hl_leg_1" user="13" />
+    <jointvel name="hl_leg_2_v" joint="hl_leg_2" user="13" />
+    <jointvel name="hl_leg_3_v" joint="hl_leg_3" user="13" />
+    <jointvel name="hl_leg_ee_v" joint="hl_leg_ee" user="13" />
+    <jointvel name="hr_leg_1_v" joint="hr_leg_1" user="13" />
+    <jointvel name="hr_leg_2_v" joint="hr_leg_2" user="13" />
+    <jointvel name="hr_leg_3_v" joint="hr_leg_3" user="13" />
+    <jointvel name="hr_leg_ee_v" joint="hr_leg_ee" user="13" />
+    <actuatorfrc name="fl_leg_1_f" actuator="fl_leg_1" user="13" />
+    <actuatorfrc name="fl_leg_2_f" actuator="fl_leg_2" user="13" />
+    <actuatorfrc name="fl_leg_3_f" actuator="fl_leg_3" user="13" />
+    <actuatorfrc name="fl_leg_ee_f" actuator="fl_leg_ee" user="13" />
+    <actuatorfrc name="fr_leg_1_f" actuator="fr_leg_1" user="13" />
+    <actuatorfrc name="fr_leg_2_f" actuator="fr_leg_2" user="13" />
+    <actuatorfrc name="fr_leg_3_f" actuator="fr_leg_3" user="13" />
+    <actuatorfrc name="fr_leg_ee_f" actuator="fr_leg_ee" user="13" />
+    <actuatorfrc name="hl_leg_1_f" actuator="hl_leg_1" user="13" />
+    <actuatorfrc name="hl_leg_2_f" actuator="hl_leg_2" user="13" />
+    <actuatorfrc name="hl_leg_3_f" actuator="hl_leg_3" user="13" />
+    <actuatorfrc name="hl_leg_ee_f" actuator="hl_leg_ee" user="13" />
+    <actuatorfrc name="hr_leg_1_f" actuator="hr_leg_1" user="13" />
+    <actuatorfrc name="hr_leg_2_f" actuator="hr_leg_2" user="13" />
+    <actuatorfrc name="hr_leg_3_f" actuator="hr_leg_3" user="13" />
+    <actuatorfrc name="hr_leg_ee_f" actuator="hr_leg_ee" user="13" />
+    <framequat name="orientation" objtype="site" noise="0.0001" objname="imu" />
+    <framepos name="position" objtype="site" noise="0.0001" objname="imu" />
+    <gyro name="angular-velocity" site="imu" noise="0.0005" cutoff="34.9" />
+    <velocimeter name="linear-velocity" site="imu" noise="0.0001" cutoff="30" />
+    <accelerometer name="linear-acceleration" site="imu" noise="0.0005" cutoff="157" />
+    <magnetometer name="magnetometer" site="imu" />
+  </sensor>
+  <!-- Peak leg speed metadata in rad/s; MuJoCo does not enforce these values. -->
+  <custom>
+    <numeric name="fl_leg_1_velocity_limit" data="12.56637061435917" />
+    <numeric name="fl_leg_2_velocity_limit" data="12.56637061435917" />
+    <numeric name="fl_leg_3_velocity_limit" data="12.56637061435917" />
+    <numeric name="fr_leg_1_velocity_limit" data="12.56637061435917" />
+    <numeric name="fr_leg_2_velocity_limit" data="12.56637061435917" />
+    <numeric name="fr_leg_3_velocity_limit" data="12.56637061435917" />
+    <numeric name="hl_leg_1_velocity_limit" data="12.56637061435917" />
+    <numeric name="hl_leg_2_velocity_limit" data="12.56637061435917" />
+    <numeric name="hl_leg_3_velocity_limit" data="12.56637061435917" />
+    <numeric name="hr_leg_1_velocity_limit" data="12.56637061435917" />
+    <numeric name="hr_leg_2_velocity_limit" data="12.56637061435917" />
+    <numeric name="hr_leg_3_velocity_limit" data="12.56637061435917" />
+  </custom>
+  <keyframe>
+    <key name="home" qpos="0 0 0.164107636605819 1 0 0 0 0 -1.3 1.6 0 0 -1.3 1.6 0 0 -1.3 1.6 0 0 -1.3 1.6 0" ctrl="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0" />
+  </keyframe>
+</mujoco>

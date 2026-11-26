@@ -1,0 +1,18 @@
+<mujoco model="aiq11_pro">
+  <!-- Attach the source robot subtree without copying its parameters.
+       Includes source actuators, sensors, equalities and referenced assets. -->
+  <compiler angle="radian"/>
+  <option timestep="0.0005" iterations="50" solver="Newton" gravity="0 0 -9.81"/>
+  <size njmax="500" nconmax="100"/>
+  <visual>
+    <quality shadowsize="4096"/>
+    <map znear="0.05"/>
+    <global offwidth="3840" offheight="3840" cameraid="0"/>
+  </visual>
+  <asset><model name="pro_source" file="aiq11_pro.xml"/></asset>
+  <include file="terrains/cref_lite_l3.xml"/>
+  <worldbody>
+    <light pos="0 0 5" dir="0 0 -1" directional="true"/>
+    <attach model="pro_source" body="base_link" prefix=""/>
+  </worldbody>
+</mujoco>

@@ -1,0 +1,1118 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="Ako">
+  <mujoco>
+    <compiler meshdir="../meshes" balanceinertia="true" discardvisual="false" strippath="true" />
+  </mujoco>
+  <material name="aiq_white">
+    <color rgba="0.94 0.94 0.93 1" />
+  </material>
+  <material name="aiq_silver">
+    <color rgba="0.76 0.78 0.80 1" />
+  </material>
+  <material name="aiq_dark">
+    <color rgba="0.15 0.16 0.18 1" />
+  </material>
+  <material name="aiq_visor">
+    <color rgba="0.06 0.07 0.08 1" />
+  </material>
+  <!-- 在使用urdf转xml文件时不注释(16-21行)，在使用urdf转usd文件时注释(16-21行) -->
+  <!--<link name="world"></link>-->
+  <!--<joint name="floating_base_joint" type="floating">
+		<parent link="world" />
+		<child link="base_link" />
+	</joint>-->
+  <link name="base_link">
+    <inertial>
+      <origin xyz="-0.0165886074936106 1.18761699855182E-05 0.0922603812710993" rpy="0 0 0" />
+      <mass value="4.36799519774327" />
+      <inertia ixx="0.00540936791722701" ixy="-2.07805389667921E-06" ixz="0.000156436082636779" iyy="0.00566993710261411" iyz="-2.35705429030609E-06" izz="0.00561014274646944" />
+    </inertial>
+    <visual name="base_link_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/base_link_vis_white.STL" />
+      </geometry>
+      <material name="aiq_white" />
+    </visual>
+    <visual name="base_link_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/base_link_vis_silver.STL" />
+      </geometry>
+      <material name="aiq_silver" />
+    </visual>
+    <visual name="base_link_vis_2">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/base_link_vis_dark.STL" />
+      </geometry>
+      <material name="aiq_dark" />
+    </visual>
+    <collision name="base_link_col_0">
+      <origin xyz="-0.020 0 0.072" rpy="0 0 0" />
+      <geometry>
+        <box size="0.196 0.136 0.152" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="torso_l1">
+    <inertial>
+      <origin xyz="-0.0167400912909707 0.000180516089011764 0.0461628715789853" rpy="0 0 0" />
+      <mass value="0.382265376447486" />
+      <inertia ixx="0.000242264937292976" ixy="1.93959127354734E-08" ixz="-8.9026687427239E-06" iyy="0.000178849074443413" iyz="-1.20711974242478E-08" izz="0.000367858393787728" />
+    </inertial>
+    <visual name="torso_l1_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/torso_l1_simplified.STL" />
+      </geometry>
+      <material name="aiq_silver" />
+    </visual>
+  </link>
+  <joint name="torso_1" type="revolute">
+    <origin xyz="0 0 0.132437400000001" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="torso_l1" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.1" upper="2.1" effort="0" velocity="0" />
+  </joint>
+  <link name="torso_l2">
+    <inertial>
+      <origin xyz="6.70617226759051E-09 3.9180376580216E-09 0.00137432551875222" rpy="0 0 0" />
+      <mass value="0.130472829099129" />
+      <inertia ixx="2.51334158589798E-05" ixy="-4.42760378003179E-11" ixz="-1.70493128261742E-11" iyy="3.54497361699947E-05" iyz="-9.19601062311638E-12" izz="3.76232316493602E-05" />
+    </inertial>
+    <visual name="torso_l2_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/torso_l2_simplified.STL" />
+      </geometry>
+      <material name="aiq_silver" />
+    </visual>
+  </link>
+  <joint name="torso_2" type="revolute">
+    <origin xyz="0 0 0.0629999999999999" rpy="0 0 0" />
+    <parent link="torso_l1" />
+    <child link="torso_l2" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.524" upper="0.524" effort="0" velocity="0" />
+  </joint>
+  <link name="torso_l3">
+    <inertial>
+      <origin xyz="-0.000336919950709759 -0.00500841887778939 0.183697407716059" rpy="0 0 0" />
+      <mass value="10.1051992940017" />
+      <inertia ixx="0.0450012272329638" ixy="8.14765961911067E-05" ixz="-0.00014211854462094" iyy="0.0279694167858429" iyz="0.000312240127924746" izz="0.0366907700154514" />
+    </inertial>
+    <visual name="torso_l3_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/torso_l3_vis_white.STL" />
+      </geometry>
+      <material name="aiq_white" />
+    </visual>
+    <visual name="torso_l3_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/torso_l3_vis_dark.STL" />
+      </geometry>
+      <material name="aiq_dark" />
+    </visual>
+    <visual name="torso_l3_vis_2">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/torso_l3_vis_silver.STL" />
+      </geometry>
+      <material name="aiq_silver" />
+    </visual>
+    <collision name="torso_l3_col_0">
+      <origin xyz="0 0 0.205" rpy="0 0 0" />
+      <geometry>
+        <box size="0.210 0.244 0.284" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="torso_3" type="revolute">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="torso_l2" />
+    <child link="torso_l3" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.349" upper="0.349" effort="0" velocity="0" />
+  </joint>
+  <link name="neck_l1">
+    <inertial>
+      <origin xyz="-0.0102874207063574 -9.48368835015222E-11 0.0308834832485116" rpy="0 0 0" />
+      <mass value="0.484897500583607" />
+      <inertia ixx="0.000123785425978396" ixy="-1.76194622036406E-10" ixz="-1.54777714803658E-07" iyy="0.000176098283211354" iyz="-7.24279454502716E-09" izz="0.000157850917741457" />
+    </inertial>
+    <visual name="neck_l1_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/neck_l1_simplified.STL" />
+      </geometry>
+      <material name="aiq_dark" />
+    </visual>
+  </link>
+  <joint name="neck_1" type="fixed">
+    <origin xyz="0 0 0.2895" rpy="0 0 0" />
+    <parent link="torso_l3" />
+    <child link="neck_l1" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.57" upper="1.57" effort="0" velocity="0" />
+  </joint>
+  <link name="neck_l2">
+    <inertial>
+      <origin xyz="-3.38271077815477E-16 -5.3130368960458E-16 8.88178419700125E-16" rpy="0 0 0" />
+      <mass value="0.0355126762769369" />
+      <inertia ixx="2.59941721867261E-06" ixy="2.57960839224918E-22" ixz="-6.83713012915068E-20" iyy="2.635388728623E-06" iyz="7.56628439181525E-22" izz="4.74015919148103E-06" />
+    </inertial>
+    <visual name="neck_l2_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/neck_l2_simplified.STL" />
+      </geometry>
+      <material name="aiq_silver" />
+    </visual>
+  </link>
+  <joint name="neck_2" type="fixed">
+    <origin xyz="-0.011 0 0.07" rpy="0 0 0" />
+    <parent link="neck_l1" />
+    <child link="neck_l2" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.436" upper="0.436" effort="0" velocity="0" />
+  </joint>
+  <link name="neck_l3">
+    <inertial>
+      <origin xyz="-0.061909 0.0050625 0.19105" rpy="0 0 0" />
+      <mass value="2.732" />
+      <inertia ixx="0.0091836" ixy="-3.2027E-05" ixz="0.00058279" iyy="0.0081617" iyz="-6.9497E-06" izz="0.0081435" />
+    </inertial>
+    <visual name="neck_l3_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/neck_l3_vis_white.STL" />
+      </geometry>
+      <material name="aiq_white" />
+    </visual>
+    <visual name="neck_l3_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/neck_l3_vis_visor.STL" />
+      </geometry>
+      <material name="aiq_visor" />
+    </visual>
+    <visual name="neck_l3_vis_2">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/neck_l3_vis_dark.STL" />
+      </geometry>
+      <material name="aiq_dark" />
+    </visual>
+    <collision name="neck_l3_col_0">
+      <origin xyz="-0.020 0 0.160" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.142" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="neck_3" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="neck_l2" />
+    <child link="neck_l3" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.262" upper="0.262" effort="0" velocity="0" />
+  </joint>
+  <link name="l_ear_l1">
+    <inertial>
+      <origin xyz="-7.29220476436421E-05 0.0112500511555537 0.0130866879085767" rpy="0 0 0" />
+      <mass value="0.0139888872697392" />
+      <inertia ixx="1.05645034127254E-06" ixy="-3.84076502020622E-20" ixz="-1.46381939057655E-08" iyy="1.75308078011404E-06" iyz="-7.11295330911882E-08" izz="1.43236741370204E-06" />
+    </inertial>
+    <visual name="l_ear_l1_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/l_ear_l1_simplified.STL" />
+      </geometry>
+      <material name="aiq_silver" />
+    </visual>
+  </link>
+  <joint name="l_ear_1" type="fixed">
+    <origin xyz="-0.0767439564045691 0.101333393958547 0.268341117990923" rpy="-0.978659562598158 0.300723509167938 -0.053468051109533" />
+    <parent link="neck_l3" />
+    <child link="l_ear_l1" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2" upper="2" effort="0" velocity="0" />
+  </joint>
+  <link name="l_ear_l2">
+    <inertial>
+      <origin xyz="-0.0458058071241289 1.48487621087767E-08 0.000501060245956642" rpy="0 0 0" />
+      <mass value="0.0168812124251931" />
+      <inertia ixx="2.39655721571264E-06" ixy="4.83025580664779E-13" ixz="-2.52416861341486E-09" iyy="2.70613460566117E-06" iyz="-1.44316093831808E-12" izz="2.84594590383612E-06" />
+    </inertial>
+    <visual name="l_ear_l2_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/l_ear_l2_simplified.STL" />
+      </geometry>
+      <material name="aiq_silver" />
+    </visual>
+  </link>
+  <joint name="l_ear_2" type="fixed">
+    <origin xyz="-0.00529999999893938 0.0149361202209191 -0.0065000000000251" rpy="0 0 0.0525705244882047" />
+    <parent link="l_ear_l1" />
+    <child link="l_ear_l2" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2" upper="2" effort="0" velocity="0" />
+  </joint>
+  <link name="r_ear_l1">
+    <inertial>
+      <origin xyz="-7.29220464495417E-05 -0.00956393093460495 0.0130866879087515" rpy="0 0 0" />
+      <mass value="0.0139888872697392" />
+      <inertia ixx="1.05645034127254E-06" ixy="3.61047793767146E-20" ixz="-1.46381939057676E-08" iyy="1.75308078011403E-06" iyz="7.11295330911878E-08" izz="1.43236741370203E-06" />
+    </inertial>
+    <visual name="r_ear_l1_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/r_ear_l1_simplified.STL" />
+      </geometry>
+      <material name="aiq_silver" />
+    </visual>
+  </link>
+  <joint name="r_ear_1" type="fixed">
+    <origin xyz="-0.0771074871418923 -0.102295279760686 0.267004846122608" rpy="0.978659562598161 0.300723509167938 0.0534680511095327" />
+    <parent link="neck_l3" />
+    <child link="r_ear_l1" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2" upper="2" effort="0" velocity="0" />
+  </joint>
+  <link name="r_ear_l2">
+    <inertial>
+      <origin xyz="-0.0461310061962239 0.00242101169837639 0.00033117569528579" rpy="0 0 0" />
+      <mass value="0.0187019468382819" />
+      <inertia ixx="2.4799418761438E-06" ixy="1.50010660075764E-08" ixz="3.77596801801111E-09" iyy="2.75790413681371E-06" iyz="-8.19605224250729E-10" izz="2.88679393799148E-06" />
+    </inertial>
+    <visual name="r_ear_l2_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/r_ear_l2_simplified.STL" />
+      </geometry>
+      <material name="aiq_silver" />
+    </visual>
+  </link>
+  <joint name="r_ear_2" type="fixed">
+    <origin xyz="-0.00530000000001968 -0.0132499999999718 -0.00649999999999507" rpy="0 0 0" />
+    <parent link="r_ear_l1" />
+    <child link="r_ear_l2" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2" upper="2" effort="0" velocity="0" />
+  </joint>
+  <link name="l_arm_l1">
+    <inertial>
+      <origin xyz="-0.0010696932978121 0.0613485139167637 8.89846892896951E-05" rpy="0 0 0" />
+      <mass value="0.617151089824968" />
+      <inertia ixx="0.000341940340186913" ixy="2.22247087924883E-07" ixz="1.78930043922813E-08" iyy="0.000221142778249639" iyz="-4.36477044404609E-06" izz="0.000307729005882428" />
+    </inertial>
+    <visual name="l_arm_l1_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/l_arm_l1_simplified.STL" />
+      </geometry>
+      <material name="aiq_silver" />
+    </visual>
+  </link>
+  <joint name="l_arm_1" type="revolute">
+    <origin xyz="0 0.120215359502229 0.296422618261728" rpy="0.436332312998585 0 0" />
+    <parent link="torso_l3" />
+    <child link="l_arm_l1" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.403" upper="1.745" effort="0" velocity="0" />
+  </joint>
+  <link name="l_arm_l2">
+    <inertial>
+      <origin xyz="0.0294402618433876 0.014828138572434 -0.069077569872078" rpy="0 0 0" />
+      <mass value="0.616774194790903" />
+      <inertia ixx="0.000445472663271537" ixy="-3.53233841312997E-06" ixz="2.14234107433943E-05" iyy="0.000352453566044135" iyz="4.07644542846845E-05" izz="0.000331283384179515" />
+    </inertial>
+    <visual name="l_arm_l2_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/l_arm_l2_vis_white.STL" />
+      </geometry>
+      <material name="aiq_white" />
+    </visual>
+    <visual name="l_arm_l2_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/l_arm_l2_vis_dark.STL" />
+      </geometry>
+      <material name="aiq_dark" />
+    </visual>
+    <collision name="l_arm_l2_col_0">
+      <origin xyz="0.038 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.055" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="l_arm_2" type="revolute">
+    <origin xyz="-0.0362500000000008 0.0649999999999868 0" rpy="-0.261799387799164 0 0" />
+    <parent link="l_arm_l1" />
+    <child link="l_arm_l2" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.348" upper="2.793" effort="0" velocity="0" />
+  </joint>
+  <link name="l_arm_l3">
+    <inertial>
+      <origin xyz="0.00948292347333836 0.00144712093925209 -0.0763698456060109" rpy="0 0 0" />
+      <mass value="0.686416238477154" />
+      <inertia ixx="0.000319860355603231" ixy="6.96767428264648E-07" ixz="-2.8390390877768E-05" iyy="0.000490729988695137" iyz="1.18083495113517E-07" izz="0.000284276138627593" />
+    </inertial>
+    <visual name="l_arm_l3_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/l_arm_l3_vis_white.STL" />
+      </geometry>
+      <material name="aiq_white" />
+    </visual>
+    <visual name="l_arm_l3_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/l_arm_l3_vis_silver.STL" />
+      </geometry>
+      <material name="aiq_silver" />
+    </visual>
+    <collision name="l_arm_l3_col_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.045" length="0.1" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="l_arm_3" type="revolute">
+    <origin xyz="0.0362000000000175 0.016600000000031 -0.111999999999988" rpy="0 0 0" />
+    <parent link="l_arm_l2" />
+    <child link="l_arm_l3" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.571" upper="1.571" effort="0" velocity="0" />
+  </joint>
+  <link name="l_arm_l4">
+    <inertial>
+      <origin xyz="-0.0103534974057307 -0.0294143601250755 -0.0784652866885563" rpy="0 0 0" />
+      <mass value="0.504125021398545" />
+      <inertia ixx="0.000190100401409858" ixy="-7.50684285038232E-07" ixz="-1.95952127978345E-06" iyy="0.000192115283606147" iyz="-9.45564558945508E-06" izz="0.000226581996198901" />
+    </inertial>
+    <visual name="l_arm_l4_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/l_arm_l4_vis_white.STL" />
+      </geometry>
+      <material name="aiq_white" />
+    </visual>
+    <visual name="l_arm_l4_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/l_arm_l4_vis_silver.STL" />
+      </geometry>
+      <material name="aiq_silver" />
+    </visual>
+    <collision name="l_arm_l4_col_0">
+      <origin xyz="-0.01 -0.03 -0.125" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.055" length="0.13" />
+      </geometry>
+    </collision>
+    <collision name="l_arm_l4_col_1">
+      <origin xyz="0 -0.03 0" rpy="1.57 0 0" />
+      <geometry>
+        <cylinder radius="0.03" length="0.1" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="l_arm_4" type="revolute">
+    <origin xyz="0.0115000000000024 0.0317499999999795 -0.0897000000000175" rpy="0 0 0" />
+    <parent link="l_arm_l3" />
+    <child link="l_arm_l4" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2.356" upper="0" effort="0" velocity="0" />
+  </joint>
+  <link name="l_arm_l5">
+    <inertial>
+      <origin xyz="0.00621849045366936 0.000548351955248716 -0.0378336471403277" rpy="0 0 0" />
+      <mass value="0.263505370472097" />
+      <inertia ixx="0.000340167319370287" ixy="-8.0661660956047E-09" ixz="-3.79323174920717E-07" iyy="0.000198408741034046" iyz="-3.79617332276997E-08" izz="0.00022300962372278" />
+    </inertial>
+    <visual name="l_arm_l5_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/l_arm_l5_simplified.STL" />
+      </geometry>
+      <material name="aiq_white" />
+    </visual>
+  </link>
+  <joint name="l_arm_5" type="revolute">
+    <origin xyz="-0.011499999999999 -0.0320000000000176 -0.109999999999982" rpy="0 0 0" />
+    <parent link="l_arm_l4" />
+    <child link="l_arm_l5" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.571" upper="1.571" effort="0" velocity="0" />
+  </joint>
+  <link name="l_hand_l0">
+    <inertial>
+      <origin xyz="-8.16888061101056E-15 1.22124532708767E-15 -0.0350074953325207" rpy="0 0 0" />
+      <mass value="0.090870325234981" />
+      <inertia ixx="7.61587635520217E-05" ixy="-2.52384219267861E-23" ixz="-3.18252015551391E-20" iyy="7.61703604467781E-05" iyz="1.6940658945086E-21" izz="6.30086540372018E-05" />
+    </inertial>
+    <visual name="l_hand_l0_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/l_hand_l0_simplified.STL" />
+      </geometry>
+      <material name="aiq_white" />
+    </visual>
+    <collision name="l_hand_l0_col_0">
+      <origin xyz="0 0 -0.05" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.04" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="l_hand" type="fixed">
+    <origin xyz="0 0 -0.077" rpy="0 0 0" />
+    <parent link="l_arm_l5" />
+    <child link="l_hand_l0" />
+    <axis xyz="0 0 0" />
+    <limit lower="-2" upper="2" effort="0" velocity="0" />
+  </joint>
+  <link name="r_arm_l1">
+    <inertial>
+      <origin xyz="-0.00106990820856739 -0.0613454054441203 9.47851387235743E-05" rpy="0 0 0" />
+      <mass value="0.617156576680318" />
+      <inertia ixx="0.000341936408373627" ixy="-2.1224149529473E-07" ixz="2.31400879028895E-08" iyy="0.000221132681601561" iyz="4.35725921711798E-06" izz="0.000307745915565725" />
+    </inertial>
+    <visual name="r_arm_l1_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/r_arm_l1_simplified.STL" />
+      </geometry>
+      <material name="aiq_silver" />
+    </visual>
+  </link>
+  <joint name="r_arm_1" type="revolute">
+    <origin xyz="0 -0.12021535950223 0.296422618261727" rpy="-0.436332312998582 0 0" />
+    <parent link="torso_l3" />
+    <child link="r_arm_l1" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.403" upper="1.745" effort="0" velocity="0" />
+  </joint>
+  <link name="r_arm_l2">
+    <inertial>
+      <origin xyz="0.0294442423064121 -0.0147611213461867 -0.0690781694680163" rpy="0 0 0" />
+      <mass value="0.616844918964551" />
+      <inertia ixx="0.000445492855584747" ixy="3.53943728161178E-06" ixz="2.14137596687745E-05" iyy="0.000352454336123157" iyz="-4.07664727665295E-05" izz="0.000331292286223777" />
+    </inertial>
+    <visual name="r_arm_l2_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/r_arm_l2_vis_white.STL" />
+      </geometry>
+      <material name="aiq_white" />
+    </visual>
+    <visual name="r_arm_l2_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/r_arm_l2_vis_dark.STL" />
+      </geometry>
+      <material name="aiq_dark" />
+    </visual>
+    <collision name="r_arm_l2_col_0">
+      <origin xyz="0.038 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.055" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="r_arm_2" type="revolute">
+    <origin xyz="-0.036249999999999 -0.0649999999999861 0" rpy="0.261799387799157 0 0" />
+    <parent link="r_arm_l1" />
+    <child link="r_arm_l2" />
+    <axis xyz="1 0 0" />
+    <limit lower="-2.793" upper="0.348" effort="0" velocity="0" />
+  </joint>
+  <link name="r_arm_l3">
+    <inertial>
+      <origin xyz="0.00941908928865856 -0.0015949878766941 -0.0763204187206831" rpy="0 0 0" />
+      <mass value="0.681155408569753" />
+      <inertia ixx="0.000319085183760411" ixy="-6.96679425971323E-07" ixz="-2.84943959624413E-05" iyy="0.000488291409340237" iyz="-1.22378141721708E-07" izz="0.000282587931654619" />
+    </inertial>
+    <visual name="r_arm_l3_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/r_arm_l3_vis_white.STL" />
+      </geometry>
+      <material name="aiq_white" />
+    </visual>
+    <visual name="r_arm_l3_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/r_arm_l3_vis_silver.STL" />
+      </geometry>
+      <material name="aiq_silver" />
+    </visual>
+    <collision name="r_arm_l3_col_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.045" length="0.1" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="r_arm_3" type="revolute">
+    <origin xyz="0.0362000000000176 -0.016599999999991 -0.111999999999989" rpy="0 0 0" />
+    <parent link="r_arm_l2" />
+    <child link="r_arm_l3" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.571" upper="1.571" effort="0" velocity="0" />
+  </joint>
+  <link name="r_arm_l4">
+    <inertial>
+      <origin xyz="-0.0103637568766645 0.029413489715606 -0.078462309264994" rpy="0 0 0" />
+      <mass value="0.504237635712754" />
+      <inertia ixx="0.000190168302628787" ixy="7.36100638554449E-07" ixz="-1.98265799650965E-06" iyy="0.000192182570209111" iyz="9.45276217937051E-06" izz="0.000226592342849557" />
+    </inertial>
+    <visual name="r_arm_l4_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/r_arm_l4_vis_white.STL" />
+      </geometry>
+      <material name="aiq_white" />
+    </visual>
+    <visual name="r_arm_l4_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/r_arm_l4_vis_silver.STL" />
+      </geometry>
+      <material name="aiq_silver" />
+    </visual>
+    <collision name="r_arm_l4_col_0">
+      <origin xyz="-0.01 0.03 -0.125" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.055" length="0.13" />
+      </geometry>
+    </collision>
+    <collision name="r_arm_l4_col_1">
+      <origin xyz="0 0.03 0" rpy="1.57 0 0" />
+      <geometry>
+        <cylinder radius="0.03" length="0.1" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="r_arm_4" type="revolute">
+    <origin xyz="0.011500000000003 -0.0317500000000205 -0.0896999999999825" rpy="0 0 0" />
+    <parent link="r_arm_l3" />
+    <child link="r_arm_l4" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2.356" upper="0" effort="0" velocity="0" />
+  </joint>
+  <link name="r_arm_l5">
+    <inertial>
+      <origin xyz="0.00625458773787824 0.000610563067226177 -0.037987377745682" rpy="0 0 0" />
+      <mass value="0.262337059849603" />
+      <inertia ixx="0.000340184570438432" ixy="-4.02744174505878E-09" ixz="-3.782885785624E-07" iyy="0.000198387916848339" iyz="-2.583949024357E-08" izz="0.000223026560015297" />
+    </inertial>
+    <visual name="r_arm_l5_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/r_arm_l5_simplified.STL" />
+      </geometry>
+      <material name="aiq_white" />
+    </visual>
+  </link>
+  <joint name="r_arm_5" type="revolute">
+    <origin xyz="-0.0115000000000411 0.0320000000000174 -0.110000000000018" rpy="0 0 0" />
+    <parent link="r_arm_l4" />
+    <child link="r_arm_l5" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.571" upper="1.571" effort="0" velocity="0" />
+  </joint>
+  <link name="r_hand_l0">
+    <inertial>
+      <origin xyz="-2.06601500230691E-16 3.88578058618805E-16 -0.0350074953325209" rpy="0 0 0" />
+      <mass value="0.090870325234981" />
+      <inertia ixx="7.61587635520217E-05" ixy="6.63172060291121E-23" ixz="2.22159483451587E-21" iyy="7.61703604467782E-05" iyz="1.35525271560688E-20" izz="6.30086540372018E-05" />
+    </inertial>
+    <visual name="r_hand_l0_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/r_hand_l0_simplified.STL" />
+      </geometry>
+      <material name="aiq_white" />
+    </visual>
+    <collision name="r_hand_l0_col_0">
+      <origin xyz="0 0 -0.05" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.04" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="r_hand" type="fixed">
+    <origin xyz="0 0 -0.077" rpy="0 0 0" />
+    <parent link="r_arm_l5" />
+    <child link="r_hand_l0" />
+    <axis xyz="0 0 0" />
+    <limit lower="-2" upper="2" effort="0" velocity="0" />
+  </joint>
+  <link name="l_leg_l1">
+    <inertial>
+      <origin xyz="0.000377121990072666 0.0701571706518854 0.000524622124737424" rpy="0 0 0" />
+      <mass value="1.28011781519389" />
+      <inertia ixx="0.00174212912489575" ixy="-7.76848617007923E-05" ixz="0.00019494705026936" iyy="0.00115169508218623" iyz="-1.35616015777626E-05" izz="0.0014133892160606" />
+    </inertial>
+    <visual name="l_leg_l1_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/l_leg_l1_simplified.STL" />
+      </geometry>
+      <material name="aiq_silver" />
+    </visual>
+  </link>
+  <joint name="l_leg_1" type="revolute">
+    <origin xyz="0 0.057 0.068437" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="l_leg_l1" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.960" upper="2.182" effort="0" velocity="0" />
+  </joint>
+  <link name="l_leg_l2">
+    <inertial>
+      <origin xyz="-0.0290840983687948 0.00433142953028601 -0.0764562791017177" rpy="0 0 0" />
+      <mass value="1.48545119911452" />
+      <inertia ixx="0.00212585498835063" ixy="4.3142206573145E-05" ixz="-4.05008970472413E-06" iyy="0.00208286398176467" iyz="3.11499799847445E-05" izz="0.00228203110382349" />
+    </inertial>
+    <visual name="l_leg_l2_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/l_leg_l2_vis_white.STL" />
+      </geometry>
+      <material name="aiq_white" />
+    </visual>
+    <visual name="l_leg_l2_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/l_leg_l2_vis_dark.STL" />
+      </geometry>
+      <material name="aiq_dark" />
+    </visual>
+    <collision name="l_leg_l2_col_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.054" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="l_leg_2" type="revolute">
+    <origin xyz="0.0260348516268942 0.0779999999999994 0.0133322541517293" rpy="0 -0.473274801345603 0" />
+    <parent link="l_leg_l1" />
+    <child link="l_leg_l2" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.250" upper="1.571" effort="0" velocity="0" />
+  </joint>
+  <link name="l_leg_l3">
+    <inertial>
+      <origin xyz="-0.0398104807988488 -0.000457838900474072 -0.123658978563054" rpy="0 0 0" />
+      <mass value="2.0345343468893" />
+      <inertia ixx="0.00231984144880023" ixy="1.67947903910273E-06" ixz="-4.39131509915206E-05" iyy="0.0031104933584168" iyz="1.47433620660525E-05" izz="0.00183463043407626" />
+    </inertial>
+    <visual name="l_leg_l3_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/l_leg_l3_vis_white.STL" />
+      </geometry>
+      <material name="aiq_white" />
+    </visual>
+    <visual name="l_leg_l3_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/l_leg_l3_vis_dark.STL" />
+      </geometry>
+      <material name="aiq_dark" />
+    </visual>
+    <collision name="l_leg_l3_col_0">
+      <origin xyz="0.02 0 0.01" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.05" length="0.12" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="l_leg_3" type="revolute">
+    <origin xyz="-0.0292500000000195 0.00499999999998674 -0.131499999999999" rpy="0 0 0" />
+    <parent link="l_leg_l2" />
+    <child link="l_leg_l3" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.745" upper="1.745" effort="0" velocity="0" />
+  </joint>
+  <link name="l_leg_l4">
+    <inertial>
+      <origin xyz="-0.0114498823059808 -0.0295230919294606 -0.166913941706755" rpy="0 0 0" />
+      <mass value="2.83719951929694" />
+      <inertia ixx="0.0108149518272791" ixy="4.5574652371464E-05" ixz="-0.00121179095107568" iyy="0.0115859041236748" iyz="0.000174782604218724" izz="0.00453058859976658" />
+    </inertial>
+    <visual name="l_leg_l4_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/l_leg_l4_vis_white.STL" />
+      </geometry>
+      <material name="aiq_white" />
+    </visual>
+    <visual name="l_leg_l4_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/l_leg_l4_vis_silver.STL" />
+      </geometry>
+      <material name="aiq_silver" />
+    </visual>
+    <collision name="l_leg_l4_col_0">
+      <origin xyz="-0.0235 -0.02925 -0.170" rpy="0 0.203 0" />
+      <geometry>
+        <cylinder radius="0.062" length="0.210" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="l_leg_4" type="revolute">
+    <origin xyz="-0.0599999999999835 0.0292500000000129 -0.142" rpy="0 0.473274801345603 0" />
+    <parent link="l_leg_l3" />
+    <child link="l_leg_l4" />
+    <axis xyz="0 1 0" />
+    <limit lower="0.000" upper="2.618" effort="0" velocity="0" />
+  </joint>
+  <link name="l_leg_l5">
+    <inertial>
+      <origin xyz="-3.12543912582092E-05 -0.000541881257104498 -2.01664498278298E-06" rpy="0 0 0" />
+      <mass value="0.0553796588906476" />
+      <inertia ixx="6.73277261736449E-06" ixy="-1.72176343530826E-09" ixz="-6.16393449547291E-10" iyy="7.01042555848544E-06" iyz="-4.58762826922555E-10" izz="8.77077512364857E-06" />
+    </inertial>
+    <visual name="l_leg_l5_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/l_leg_l5_simplified.STL" />
+      </geometry>
+      <material name="aiq_silver" />
+    </visual>
+  </link>
+  <joint name="l_leg_5" type="revolute">
+    <origin xyz="-0.0712574500131608 -0.0292500000000638 -0.322214797639123" rpy="0 0 0" />
+    <parent link="l_leg_l4" />
+    <child link="l_leg_l5" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.925" upper="0.663" effort="0" velocity="0" />
+  </joint>
+  <link name="l_leg_l6">
+    <inertial>
+      <origin xyz="0.0302554176155156 4.71732025061899E-06 -0.0205198405832385" rpy="0 0 0" />
+      <mass value="0.415679033963349" />
+      <inertia ixx="0.000317280377585337" ixy="2.3455890356394E-08" ixz="4.94941245055505E-06" iyy="0.000691041229711675" iyz="4.06327327782738E-09" izz="0.000975977186719259" />
+    </inertial>
+    <visual name="l_leg_l6_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/l_leg_l6_simplified.STL" />
+      </geometry>
+      <material name="aiq_silver" />
+    </visual>
+  </link>
+  <joint name="l_leg_6" type="revolute">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="l_leg_l5" />
+    <child link="l_leg_l6" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.349" upper="0.349" effort="0" velocity="0" />
+  </joint>
+  <link name="l_foot_l0">
+    <inertial>
+      <origin xyz="0.0395018534592028 -4.5351601067195E-05 -0.00688192506329954" rpy="0 0 0" />
+      <mass value="0.477830305783672" />
+      <inertia ixx="0.000616113457576953" ixy="-3.18613038211398E-07" ixz="2.13293926206174E-07" iyy="0.0018732341711467" iyz="-8.36580342507311E-08" izz="0.00243805129041622" />
+    </inertial>
+    <visual name="l_foot_l0_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/l_foot_l0_vis_white.STL" />
+      </geometry>
+      <material name="aiq_white" />
+    </visual>
+    <visual name="l_foot_l0_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/l_foot_l0_vis_dark.STL" />
+      </geometry>
+      <material name="aiq_dark" />
+    </visual>
+    <collision name="l_foot_l0_col_0">
+      <origin xyz="-0.055 0.035 -0.015" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01" />
+      </geometry>
+    </collision>
+    <collision name="l_foot_l0_col_1">
+      <origin xyz="-0.055 -0.035 -0.015" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01" />
+      </geometry>
+    </collision>
+    <collision name="l_foot_l0_col_2">
+      <origin xyz="0.08 0.06 -0.015" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01" />
+      </geometry>
+    </collision>
+    <collision name="l_foot_l0_col_3">
+      <origin xyz="0.08 -0.06 -0.015" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01" />
+      </geometry>
+    </collision>
+    <collision name="l_foot_l0_col_4">
+      <origin xyz="0.13 0.025 -0.015" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01" />
+      </geometry>
+    </collision>
+    <collision name="l_foot_l0_col_5">
+      <origin xyz="0.13 -0.025 -0.015" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="l_foot" type="fixed">
+    <origin xyz="0 0 -0.0290000000000002" rpy="0 0 0" />
+    <parent link="l_leg_l6" />
+    <child link="l_foot_l0" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="r_leg_l1">
+    <inertial>
+      <origin xyz="0.000126749302298078 -0.0705124547724505 0.000582346074084234" rpy="0 0 0" />
+      <mass value="1.27705868563855" />
+      <inertia ixx="0.00173656842243884" ixy="7.78412928225343E-05" ixz="0.000198708804876986" iyy="0.00114095676977148" iyz="1.35740741296675E-05" izz="0.00140913351302531" />
+    </inertial>
+    <visual name="r_leg_l1_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/r_leg_l1_simplified.STL" />
+      </geometry>
+      <material name="aiq_silver" />
+    </visual>
+  </link>
+  <joint name="r_leg_1" type="revolute">
+    <origin xyz="0 -0.0569999999999997 0.0684374000000004" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="r_leg_l1" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.960" upper="2.182" effort="0" velocity="0" />
+  </joint>
+  <link name="r_leg_l2">
+    <inertial>
+      <origin xyz="-0.0291217969471693 -0.00432862470251311 -0.0764566895399128" rpy="0 0 0" />
+      <mass value="1.48544170410761" />
+      <inertia ixx="0.00212561760107476" ixy="-4.31836161170495E-05" ixz="-4.0561236930185E-06" iyy="0.00208270991982689" iyz="-3.0831028422833E-05" izz="0.00228199954767716" />
+    </inertial>
+    <visual name="r_leg_l2_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/r_leg_l2_vis_white.STL" />
+      </geometry>
+      <material name="aiq_white" />
+    </visual>
+    <visual name="r_leg_l2_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/r_leg_l2_vis_dark.STL" />
+      </geometry>
+      <material name="aiq_dark" />
+    </visual>
+    <collision name="r_leg_l2_col_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.054" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="r_leg_2" type="revolute">
+    <origin xyz="0.0260348516268808 -0.078 0.0133322541517291" rpy="0 -0.473274801345603 0" />
+    <parent link="r_leg_l1" />
+    <child link="r_leg_l2" />
+    <axis xyz="1 0 0" />
+    <limit lower="-1.571" upper="0.25" effort="0" velocity="0" />
+  </joint>
+  <link name="r_leg_l3">
+    <inertial>
+      <origin xyz="-0.0398158549218423 0.000458164557060686 -0.123654266907976" rpy="0 0 0" />
+      <mass value="2.03450246634787" />
+      <inertia ixx="0.00231974799868179" ixy="-1.23064477399701E-06" ixz="-4.39298746447505E-05" iyy="0.00311041842425183" iyz="-1.52707986240374E-05" izz="0.00183460429046743" />
+    </inertial>
+    <visual name="r_leg_l3_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/r_leg_l3_vis_white.STL" />
+      </geometry>
+      <material name="aiq_white" />
+    </visual>
+    <visual name="r_leg_l3_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/r_leg_l3_vis_dark.STL" />
+      </geometry>
+      <material name="aiq_dark" />
+    </visual>
+    <collision name="r_leg_l3_col_0">
+      <origin xyz="0.02 0 0.01" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.05" length="0.12" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="r_leg_3" type="revolute">
+    <origin xyz="-0.0292500000000023 -0.00500000000002079 -0.1315" rpy="0 0 0" />
+    <parent link="r_leg_l2" />
+    <child link="r_leg_l3" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.745" upper="1.745" effort="0" velocity="0" />
+  </joint>
+  <link name="r_leg_l4">
+    <inertial>
+      <origin xyz="-0.0117528965978787 0.0295758319604705 -0.167165599226147" rpy="0 0 0" />
+      <mass value="2.84483663994871" />
+      <inertia ixx="0.0109374807536797" ixy="-4.7938144733069E-05" ixz="-0.00120551320601497" iyy="0.0116974635567375" iyz="-0.000166542101166712" izz="0.00461985650936732" />
+    </inertial>
+    <visual name="r_leg_l4_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/r_leg_l4_vis_white.STL" />
+      </geometry>
+      <material name="aiq_white" />
+    </visual>
+    <visual name="r_leg_l4_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/r_leg_l4_vis_silver.STL" />
+      </geometry>
+      <material name="aiq_silver" />
+    </visual>
+    <collision name="r_leg_l4_col_0">
+      <origin xyz="-0.0235 0.02925 -0.170" rpy="0 0.203 0" />
+      <geometry>
+        <cylinder radius="0.062" length="0.210" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="r_leg_4" type="revolute">
+    <origin xyz="-0.0600000000000013 -0.0292499999999793 -0.141999999999999" rpy="0 0.473274801345605 0" />
+    <parent link="r_leg_l3" />
+    <child link="r_leg_l4" />
+    <axis xyz="0 1 0" />
+    <limit lower="0.000" upper="2.618" effort="0" velocity="0" />
+  </joint>
+  <link name="r_leg_l5">
+    <inertial>
+      <origin xyz="-3.22664536685547E-05 4.4654036870706E-05 -4.31333759154384E-07" rpy="0 0 0" />
+      <mass value="0.0543708757066369" />
+      <inertia ixx="6.72236081155508E-06" ixy="2.2669171070437E-09" ixz="6.16387592535602E-10" iyy="6.99529067302303E-06" iyz="2.3235619205903E-11" izz="8.75981860232277E-06" />
+    </inertial>
+    <visual name="r_leg_l5_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/r_leg_l5_simplified.STL" />
+      </geometry>
+      <material name="aiq_silver" />
+    </visual>
+  </link>
+  <joint name="r_leg_5" type="revolute">
+    <origin xyz="-0.0712574414348295 0.0292499927682058 -0.322214791763757" rpy="0 0 0" />
+    <parent link="r_leg_l4" />
+    <child link="r_leg_l5" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.925" upper="0.663" effort="0" velocity="0" />
+  </joint>
+  <link name="r_leg_l6">
+    <inertial>
+      <origin xyz="0.0313219530206337 -2.69468154298624E-05 -0.0216228173580079" rpy="0 0 0" />
+      <mass value="0.396608632770495" />
+      <inertia ixx="0.000315964122923431" ixy="2.34580242380047E-08" ixz="4.94934902083323E-06" iyy="0.000690345902242814" iyz="4.06393636461272E-09" izz="0.000975293373798683" />
+    </inertial>
+    <visual name="r_leg_l6_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/r_leg_l6_simplified.STL" />
+      </geometry>
+      <material name="aiq_silver" />
+    </visual>
+  </link>
+  <joint name="r_leg_6" type="revolute">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="r_leg_l5" />
+    <child link="r_leg_l6" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.349" upper="0.349" effort="0" velocity="0" />
+  </joint>
+  <link name="r_foot_l0">
+    <inertial>
+      <origin xyz="0.0395018707464955 -4.48778991914145E-05 -0.00688218428370102" rpy="0 0 0" />
+      <mass value="0.477838572637917" />
+      <inertia ixx="0.000616117915203143" ixy="-3.13522878118369E-07" ixz="2.12155564598527E-07" iyy="0.00187323212803876" iyz="-8.26628909489869E-08" izz="0.00243805321324873" />
+    </inertial>
+    <visual name="r_foot_l0_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/r_foot_l0_vis_white.STL" />
+      </geometry>
+      <material name="aiq_white" />
+    </visual>
+    <visual name="r_foot_l0_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://aiq01_description/meshes/r_foot_l0_vis_dark.STL" />
+      </geometry>
+      <material name="aiq_dark" />
+    </visual>
+    <collision name="r_foot_l0_col_0">
+      <origin xyz="-0.055 0.035 -0.015" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01" />
+      </geometry>
+    </collision>
+    <collision name="r_foot_l0_col_1">
+      <origin xyz="-0.055 -0.035 -0.015" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01" />
+      </geometry>
+    </collision>
+    <collision name="r_foot_l0_col_2">
+      <origin xyz="0.08 0.06 -0.015" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01" />
+      </geometry>
+    </collision>
+    <collision name="r_foot_l0_col_3">
+      <origin xyz="0.08 -0.06 -0.015" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01" />
+      </geometry>
+    </collision>
+    <collision name="r_foot_l0_col_4">
+      <origin xyz="0.13 0.025 -0.015" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01" />
+      </geometry>
+    </collision>
+    <collision name="r_foot_l0_col_5">
+      <origin xyz="0.13 -0.025 -0.015" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="r_foot" type="fixed">
+    <origin xyz="0 0 -0.0290000057735473" rpy="0 0 0" />
+    <parent link="r_leg_l6" />
+    <child link="r_foot_l0" />
+    <axis xyz="0 0 0" />
+  </joint>
+</robot>

@@ -1,0 +1,1653 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="ehr21_half">
+  <mujoco>
+    <compiler meshdir="../meshes/" balanceinertia="false" discardvisual="false" />
+  </mujoco>
+  <material name="ehr_silver">
+    <color rgba="0.48 0.51 0.54 1" />
+  </material>
+  <material name="ehr_gunmetal">
+    <color rgba="0.24 0.27 0.30 1" />
+  </material>
+  <material name="ehr_dark">
+    <color rgba="0.12 0.13 0.15 1" />
+  </material>
+  <material name="ehr_black">
+    <color rgba="0.10 0.11 0.13 1" />
+  </material>
+  <material name="ehr_visor">
+    <color rgba="0.05 0.06 0.08 0.96" />
+  </material>
+  <material name="ehr_red">
+    <color rgba="0.70 0.10 0.10 1" />
+  </material>
+  <!-- 在使用urdf转xml文件时不注释以下(7-13行)，在使用urdf转usd文件时注释以下(7-13行) -->
+  <link name="world" />
+  <joint name="floating_base_joint" type="floating">
+    <parent link="world" />
+    <child link="base_link" />
+  </joint>
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.10983 2.2425E-07 -0.39765" rpy="0 0 0" />
+      <mass value="29.574" />
+      <inertia ixx="0.67178" ixy="5.4774E-07" ixz="1.8304E-05" iyy="0.25047" iyz="-5.9735E-08" izz="0.81187" />
+    </inertial>
+    <visual name="base_link_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/base_link_simplified.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+    <visual name="base_link_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/base_link_vis_dark.STL" />
+      </geometry>
+      <material name="ehr_dark" />
+    </visual>
+    <collision name="base_link_col_0">
+      <origin xyz="0.145 0 -0.455" rpy="0 0 0" />
+      <geometry>
+        <box size="0.60 0.70 0.06" />
+      </geometry>
+    </collision>
+    <collision name="base_link_col_1">
+      <origin xyz="0.000 0 -0.2135" rpy="0 0 0" />
+      <geometry>
+        <box size="0.10 0.10 0.409" />
+      </geometry>
+    </collision>
+    <collision name="base_link_col_2">
+      <origin xyz="-0.030 0 -0.018" rpy="0 0 0" />
+      <geometry>
+        <box size="0.21 0.15 0.10" />
+      </geometry>
+    </collision>
+    <collision name="base_link_col_3">
+      <origin xyz="-0.14853 -0.29678 -0.55725" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.0315" />
+      </geometry>
+    </collision>
+    <collision name="base_link_col_4">
+      <origin xyz="-0.10203 0.34327 -0.55725" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.0315" />
+      </geometry>
+    </collision>
+    <collision name="base_link_col_5">
+      <origin xyz="0.39153 -0.34327 -0.55725" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.0315" />
+      </geometry>
+    </collision>
+    <collision name="base_link_col_6">
+      <origin xyz="0.43803 0.29678 -0.55725" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.0315" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="torso_l1">
+    <inertial>
+      <origin xyz="0.0116072100472524 -0.000729410986984175 0.0164075177455941" rpy="0 0 0" />
+      <mass value="0.165914491812148" />
+      <inertia ixx="5.73979896336738E-05" ixy="1.03150212136751E-08" ixz="1.08208342756624E-05" iyy="5.26177604764617E-05" iyz="-7.94327171559615E-09" izz="7.18873015305642E-05" />
+    </inertial>
+    <visual name="torso_l1_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/torso_l1_simplified.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="torso_1" type="revolute">
+    <origin xyz="0 0 0.035" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="torso_l1" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.007" upper="2.007" effort="75" velocity="20" />
+  </joint>
+  <link name="torso_l2">
+    <inertial>
+      <origin xyz="-0.00143331432869598 0.000859836457708041 1.17377441100075E-10" rpy="0 0 0" />
+      <mass value="0.0798308108892575" />
+      <inertia ixx="9.86222132295945E-06" ixy="3.59188212064482E-09" ixz="-1.06214271745038E-13" iyy="6.96040838842608E-06" iyz="-1.52710285357792E-12" izz="1.06792419035586E-05" />
+    </inertial>
+    <visual name="torso_l2_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/torso_l2_simplified.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="torso_2" type="revolute">
+    <origin xyz="0 0 0.037" rpy="0 0 0" />
+    <parent link="torso_l1" />
+    <child link="torso_l2" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.297" upper="0.297" effort="75" velocity="20" />
+  </joint>
+  <link name="torso_l3">
+    <inertial>
+      <origin xyz="-0.00233175198939106 -0.00864447960929229 0.235870072003956" rpy="0 0 0" />
+      <mass value="11.6874781198775" />
+      <inertia ixx="0.082922047028807" ixy="-3.41846617163969E-05" ixz="9.54567294378767E-05" iyy="0.0477377055143849" iyz="0.000890970945429924" izz="0.0518311099307442" />
+    </inertial>
+    <visual name="torso_l3_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/torso_l3_vis_silver.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+    <visual name="torso_l3_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/torso_l3_vis_gunmetal.STL" />
+      </geometry>
+      <material name="ehr_gunmetal" />
+    </visual>
+    <visual name="torso_l3_vis_2">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/torso_l3_vis_dark.STL" />
+      </geometry>
+      <material name="ehr_dark" />
+    </visual>
+    <visual name="torso_l3_vis_3">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/torso_l3_vis_red.STL" />
+      </geometry>
+      <material name="ehr_red" />
+    </visual>
+    <collision name="torso_l3_col_0">
+      <origin xyz="0 0 0.245" rpy="0 0 0" />
+      <geometry>
+        <box size="0.230 0.260 0.350" />
+      </geometry>
+    </collision>
+    <collision name="torso_l3_col_1">
+      <origin xyz="-0.133 0 0.327" rpy="0 0.25 0" />
+      <geometry>
+        <box size="0.015 0.12 0.015" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="torso_3" type="revolute">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="torso_l2" />
+    <child link="torso_l3" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.244" upper="0.506" effort="75" velocity="20" />
+  </joint>
+  <link name="neck_l1">
+    <inertial>
+      <origin xyz="4.02821775735696E-06 0.00854869214998094 0.041357583463541" rpy="0 0 0" />
+      <mass value="0.19316451615338" />
+      <inertia ixx="7.1081710285043E-05" ixy="1.37849486725165E-08" ixz="1.71423043634805E-09" iyy="7.18525495009488E-05" iyz="-6.19246934897925E-06" izz="6.403102185205E-05" />
+    </inertial>
+    <visual name="neck_l1_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/neck_l1_simplified.STL" />
+      </geometry>
+      <material name="ehr_dark" />
+    </visual>
+  </link>
+  <joint name="neck_1" type="revolute">
+    <origin xyz="0.00011888 0 0.47625" rpy="0 0 0" />
+    <parent link="torso_l3" />
+    <child link="neck_l1" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.571" upper="1.571" effort="20" velocity="20" />
+  </joint>
+  <link name="neck_l2">
+    <inertial>
+      <origin xyz="0.0174539962959379 -0.0195103130524175 0.0611677503558382" rpy="0 0 0" />
+      <mass value="0.667964644079417" />
+      <inertia ixx="0.0024588499808775" ixy="-4.81695526704393E-07" ixz="0.0004772316341662" iyy="0.00244752847871603" iyz="1.44080534142908E-06" izz="0.00209856220782431" />
+    </inertial>
+    <visual name="neck_l2_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/neck_l2_vis_black.STL" />
+      </geometry>
+      <material name="ehr_black" />
+    </visual>
+    <visual name="neck_l2_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/neck_l2_vis_visor.STL" />
+      </geometry>
+      <material name="ehr_visor" />
+    </visual>
+    <collision name="neck_l2_col_0">
+      <origin xyz="0.006 -0.022 0.090" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.100" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="neck_2" type="revolute">
+    <origin xyz="0 0.022 0.048" rpy="0 0 0" />
+    <parent link="neck_l1" />
+    <child link="neck_l2" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.436" upper="0.436" effort="20" velocity="20" />
+  </joint>
+  <link name="l_arm_l1">
+    <inertial>
+      <origin xyz="0.00173703916789814 0.0484880668987168 0.000541519237631349" rpy="0 0 0" />
+      <mass value="0.416261709017666" />
+      <inertia ixx="0.000302565722900819" ixy="-4.96159254197159E-07" ixz="1.76673560293748E-06" iyy="0.000386734457983892" iyz="6.50987585823766E-07" izz="0.000260534192269486" />
+    </inertial>
+    <visual name="l_arm_l1_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/l_arm_l1_simplified.STL" />
+      </geometry>
+      <material name="ehr_dark" />
+    </visual>
+    <collision name="l_arm_l1_col_0">
+      <origin xyz="0 0.055 0" rpy="-1.570796 -1.570796 -1.570796" />
+      <geometry>
+        <cylinder radius="0.040" length="0.074" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="l_arm_1" type="revolute">
+    <origin xyz="0 0.1449 0.3613" rpy="0.34907 0 0" />
+    <parent link="torso_l3" />
+    <child link="l_arm_l1" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.142" upper="1.883" effort="100" velocity="20" />
+  </joint>
+  <link name="l_arm_l2">
+    <inertial>
+      <origin xyz="0.00134095017471436 0.010094762031438 -0.0793030776797246" rpy="0 0 0" />
+      <mass value="0.726353282875881" />
+      <inertia ixx="0.000904699628607111" ixy="4.25158252023466E-07" ixz="-1.12805432680492E-05" iyy="0.000839251489468788" iyz="5.81738758292613E-05" izz="0.000423902554248159" />
+    </inertial>
+    <visual name="l_arm_l2_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/l_arm_l2_vis_silver.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+    <visual name="l_arm_l2_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/l_arm_l2_vis_dark.STL" />
+      </geometry>
+      <material name="ehr_dark" />
+    </visual>
+    <collision name="l_arm_l2_col_0">
+      <origin xyz="0 0.013 -0.092" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.033" length="0.080" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="l_arm_2" type="revolute">
+    <origin xyz="0 0.06 0" rpy="-0.34907 0 0" />
+    <parent link="l_arm_l1" />
+    <child link="l_arm_l2" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.087" upper="2.880" effort="75" velocity="20" />
+  </joint>
+  <link name="l_arm_l3">
+    <inertial>
+      <origin xyz="0.00913945550522599 0.00262775744051567 -0.125103076116955" rpy="0 0 0" />
+      <mass value="0.688639987751934" />
+      <inertia ixx="0.000975343583026047" ixy="2.5279463916417E-07" ixz="6.83338181483373E-05" iyy="0.00094061108705502" iyz="1.87450018295823E-07" izz="0.000362928131451425" />
+    </inertial>
+    <visual name="l_arm_l3_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/l_arm_l3_vis_silver.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+    <visual name="l_arm_l3_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/l_arm_l3_vis_dark.STL" />
+      </geometry>
+      <material name="ehr_dark" />
+    </visual>
+    <collision name="l_arm_l3_col_0">
+      <origin xyz="0.0115 0 -0.1442" rpy="1.5708 0 0" />
+      <geometry>
+        <cylinder radius="0.039" length="0.060" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="l_arm_3" type="revolute">
+    <origin xyz="0.00049896 0.012 -0.1218" rpy="0 0 0" />
+    <parent link="l_arm_l2" />
+    <child link="l_arm_l3" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.304" upper="2.304" effort="36" velocity="20" />
+  </joint>
+  <link name="l_arm_l4">
+    <inertial>
+      <origin xyz="-0.0109198472866761 0.00375416268389261 -0.0739123891279979" rpy="0 0 0" />
+      <mass value="0.600753933180495" />
+      <inertia ixx="0.000417597295411106" ixy="-2.99548906670945E-06" ixz="-1.11646515030813E-05" iyy="0.000471888568295709" iyz="-2.4657160049669E-05" izz="0.000348452612679533" />
+    </inertial>
+    <visual name="l_arm_l4_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/l_arm_l4_simplified.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+    <collision name="l_arm_l4_col_0">
+      <origin xyz="-0.01 0 -0.087" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.039" length="0.048" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="l_arm_4" type="revolute">
+    <origin xyz="0.0115 0 -0.1442" rpy="0 0 0" />
+    <parent link="l_arm_l3" />
+    <child link="l_arm_l4" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2.356" upper="0.175" effort="36" velocity="20" />
+  </joint>
+  <link name="l_arm_l5">
+    <inertial>
+      <origin xyz="0.000277258573876837 0.000501139975156266 -0.0465381620856904" rpy="0 0 0" />
+      <mass value="0.28899618425282" />
+      <inertia ixx="0.000263740414658597" ixy="-2.85593657196654E-07" ixz="2.35654835959518E-06" iyy="0.000338426847420273" iyz="-4.91660470801911E-07" izz="0.000164864132339938" />
+    </inertial>
+    <visual name="l_arm_l5_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/l_arm_l5_vis_silver.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+    <visual name="l_arm_l5_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/l_arm_l5_vis_dark.STL" />
+      </geometry>
+      <material name="ehr_dark" />
+    </visual>
+    <collision name="l_arm_l5_col_0">
+      <origin xyz="0 0 -0.038" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.035" length="0.035" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="l_arm_5" type="revolute">
+    <origin xyz="-0.0115 0 -0.1068" rpy="0 0 0" />
+    <parent link="l_arm_l4" />
+    <child link="l_arm_l5" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.269" upper="2.269" effort="36" velocity="20" />
+  </joint>
+  <link name="l_arm_l51">
+    <inertial>
+      <origin xyz="-0.000190387775211409 0.00200571721717731 -2.22044604925031E-16" rpy="0 0 0" />
+      <mass value="0.00464101579134823" />
+      <inertia ixx="2.29427327702328E-07" ixy="5.97894600311252E-09" ixz="1.30539076953992E-20" iyy="6.84722825730106E-07" iyz="-6.49012449370878E-22" izz="4.69147846155789E-07" />
+    </inertial>
+    <visual name="l_arm_l51_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/l_arm_l51_simplified.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="l_arm_51" type="revolute">
+    <origin xyz="0 0.0144 -0.0667" rpy="0 0 0" />
+    <parent link="l_arm_l5" />
+    <child link="l_arm_l51" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.785" upper="0.785" effort="36" velocity="20" />
+  </joint>
+  <link name="l_arm_l52">
+    <inertial>
+      <origin xyz="4.44089209850063E-16 0.00130652519397197 -0.0274997497207212" rpy="0 0 0" />
+      <mass value="0.00741026715278557" />
+      <inertia ixx="3.61466181926876E-06" ixy="-7.56712669818842E-22" ixz="4.95538397014821E-21" iyy="3.64597947364727E-06" iyz="2.11495866446321E-07" izz="9.04619994997513E-08" />
+    </inertial>
+    <visual name="l_arm_l52_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/l_arm_l52_simplified.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="l_arm_52" type="revolute">
+    <origin xyz="-0.015 0.008 0" rpy="0 0 0" />
+    <parent link="l_arm_l51" />
+    <child link="l_arm_l52" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.785" upper="0.785" effort="36" velocity="20" />
+  </joint>
+  <link name="l_arm_l6">
+    <inertial>
+      <origin xyz="-0.00151782022796509 -0.000266288160077337 -0.000213081048196562" rpy="0 0 0" />
+      <mass value="0.0539477644304779" />
+      <inertia ixx="2.02637262467006E-05" ixy="-1.18948627744194E-07" ixz="-1.01255053061075E-07" iyy="1.52606195767355E-05" iyz="-6.10020598532691E-08" izz="1.89631467329628E-05" />
+    </inertial>
+    <visual name="l_arm_l6_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/l_arm_l6_vis_silver.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+    <visual name="l_arm_l6_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/l_arm_l6_vis_dark.STL" />
+      </geometry>
+      <material name="ehr_dark" />
+    </visual>
+    <collision name="l_arm_l6_col_0">
+      <origin xyz="0 0 0" rpy="0 1.57 0" />
+      <geometry>
+        <cylinder radius="0.023" length="0.045" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="l_arm_6" type="revolute">
+    <origin xyz="0 -0.0001 -0.1217" rpy="0 0 0" />
+    <parent link="l_arm_l5" />
+    <child link="l_arm_l6" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.785" upper="0.785" effort="36" velocity="20" />
+  </joint>
+  <link name="l_arm_l7">
+    <inertial>
+      <origin xyz="0.0509735042247861 0.00455759946750329 -0.0625764293142995" rpy="0 0 0" />
+      <mass value="0.202361997997532" />
+      <inertia ixx="0.000163517213500916" ixy="-5.98367594126524E-06" ixz="4.67404399389698E-05" iyy="0.000201339431159072" iyz="2.86209008077881E-05" izz="0.000148070565547958" />
+    </inertial>
+    <visual name="l_arm_l7_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/l_arm_l7_vis_silver.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+    <visual name="l_arm_l7_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/l_arm_l7_vis_dark.STL" />
+      </geometry>
+      <material name="ehr_dark" />
+    </visual>
+    <collision name="l_arm_l7_col_0">
+      <origin xyz="0 0 -0.040" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.023" length="0.025" />
+      </geometry>
+    </collision>
+    <collision name="l_arm_l7_col_1">
+      <origin xyz="0.074 -0.019 -0.0575" rpy="0 0 0" />
+      <geometry>
+        <box size="0.100 0.008 0.008" />
+      </geometry>
+    </collision>
+    <collision name="l_arm_l7_col_2">
+      <origin xyz="0.074 0.019 -0.0575" rpy="0 0 0" />
+      <geometry>
+        <box size="0.100 0.008 0.008" />
+      </geometry>
+    </collision>
+    <collision name="l_arm_l7_col_3">
+      <origin xyz="0.152 -0.021 -0.104" rpy="0 1.03 0" />
+      <geometry>
+        <box size="0.100 0.007 0.008" />
+      </geometry>
+    </collision>
+    <collision name="l_arm_l7_col_4">
+      <origin xyz="0.152 0.021 -0.104" rpy="0 1.03 0" />
+      <geometry>
+        <box size="0.100 0.007 0.008" />
+      </geometry>
+    </collision>
+    <collision name="l_arm_l7_col_5">
+      <origin xyz="0.123 -0.021 -0.086" rpy="0 0.95 0" />
+      <geometry>
+        <box size="0.063 0.007 0.008" />
+      </geometry>
+    </collision>
+    <collision name="l_arm_l7_col_6">
+      <origin xyz="0.123 0.021 -0.086" rpy="0 0.95 0" />
+      <geometry>
+        <box size="0.063 0.007 0.008" />
+      </geometry>
+    </collision>
+    <collision name="l_arm_l7_col_7">
+      <origin xyz="0.16355 0.02508 -0.14053" rpy="-1.249299 0.623281 -2.452349" />
+      <geometry>
+        <box size="0.021 0.038 0.038" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="l_arm_7" type="revolute">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="l_arm_l6" />
+    <child link="l_arm_l7" />
+    <axis xyz="1 0 0" />
+    <limit lower="-1.047" upper="1.047" effort="36" velocity="20" />
+  </joint>
+  <link name="gemini305_l2">
+    <inertial>
+      <origin xyz="0.0090171 -9.7168E-07 -0.011496" rpy="0 0 0" />
+      <mass value="0.040707" />
+      <inertia ixx="7.6746E-06" ixy="-8.1154E-10" ixz="1.6252E-09" iyy="7.6479E-06" iyz="-9.2424E-11" izz="1.174E-05" />
+    </inertial>
+    <visual name="gemini305_l2_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/gemini305_l2_simplified.STL" />
+      </geometry>
+      <material name="ehr_dark" />
+    </visual>
+  </link>
+  <joint name="gemini305_2" type="fixed">
+    <origin xyz="0.15219104 0.0267885279082 -0.14955144256" rpy="2.2192 -0.25946 -1.0735" />
+    <parent link="l_arm_l7" />
+    <child link="gemini305_l2" />
+  </joint>
+  <link name="l_hand_l0">
+    <inertial>
+      <origin xyz="0.0023434 -0.001969 -0.090507" rpy="0 0 0" />
+      <mass value="0.70576" />
+      <inertia ixx="0.00030389" ixy="7.4364E-06" ixz="2.0531E-05" iyy="0.00045217" iyz="-7.6225E-06" izz="0.00031716" />
+    </inertial>
+    <visual name="l_hand_l0_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/L_base_link_vis_dark.STL" />
+      </geometry>
+      <material name="ehr_dark" />
+    </visual>
+    <visual name="l_hand_l0_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/L_base_link_vis_silver.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+    <collision name="l_hand_l0_col_0">
+      <origin xyz="0 0.002 0.107" rpy="0 0 0" />
+      <geometry>
+        <box size="0.055 0.082 0.214" />
+      </geometry>
+    </collision>
+    <collision name="l_hand_l0_col_1">
+      <origin xyz="0.02818 -0.06154 0.08954" rpy="2.326649 -0.013493 -2.909115" />
+      <geometry>
+        <box size="0.019 0.034 0.120" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="l_hand_0" type="fixed">
+    <origin xyz="0 0 -0.0655" rpy="0 3.141592653589793 1.5707963267948966" />
+    <parent link="l_arm_l7" />
+    <child link="l_hand_l0" />
+  </joint>
+  <link name="left_thumb_1">
+    <inertial>
+      <origin xyz="0.00482215750223 -0.000853471678483 0.00482000028607" rpy="3.14159265359 0 -1.57079632679" />
+      <mass value="0.00483" />
+      <inertia ixx="1.9502e-07" ixy="3.536e-08" ixz="3.1e-09" iyy="1.4336e-07" iyz="7.9e-09" izz="1.6891e-07" />
+    </inertial>
+    <visual name="left_thumb_1_vis_0">
+      <origin xyz="0 0 0" rpy="3.14159265359 0 -1.57079632679" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/left_thumb_1.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="left_thumb_1_joint" type="revolute">
+    <origin xyz="0.01696 -0.02045 0.06635" rpy="3.14159265359 0 -1.57079632679" />
+    <parent link="l_hand_l0" />
+    <child link="left_thumb_1" />
+    <axis xyz="0 0 -1" />
+    <limit lower="0" upper="1.246165" effort="50" velocity="1" />
+  </joint>
+  <link name="left_thumb_2">
+    <inertial>
+      <origin xyz="0.0194665821577 0.00803846870342 -0.0163039156062" rpy="-1.57079632679 0 3.14159265359" />
+      <mass value="0.05759" />
+      <inertia ixx="1.0666209999999999e-05" ixy="4.413609999999999e-06" ixz="5.150000000000001e-09" iyy="8.92353e-06" iyz="-2.59e-09" izz="1.700133e-05" />
+    </inertial>
+    <visual name="left_thumb_2_vis_0">
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 3.14159265359" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/left_thumb_2.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="left_thumb_2_joint" type="revolute">
+    <origin xyz="0.0090002 -0.010735 0.0065" rpy="-3.67320510335e-06 0 -0.265303673205" />
+    <parent link="left_thumb_1" />
+    <child link="left_thumb_2" />
+    <axis xyz="0 -1 0" />
+    <limit lower="-0.48" upper="0" effort="50" velocity="1" />
+  </joint>
+  <link name="left_thumb_3">
+    <inertial>
+      <origin xyz="0.00946662035085 0.0071998912924 -0.00207562096651" rpy="-1.57079632679 0 3.14159265359" />
+      <mass value="0.00985" />
+      <inertia ixx="1.21069e-06" ixy="1.0767e-07" ixz="1.0000000000000001e-11" iyy="6.011799999999999e-07" iyz="3e-11" izz="1.28966e-06" />
+    </inertial>
+    <visual name="left_thumb_3_vis_0">
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 3.14159265359" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/left_thumb_3.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="left_thumb_3_joint" type="revolute">
+    <origin xyz="0.037617 0.0008 -0.041486" rpy="0 0 0" />
+    <parent link="left_thumb_2" />
+    <child link="left_thumb_3" />
+    <axis xyz="0 -1 0" />
+    <limit lower="-0.3578" upper="0" effort="50" velocity="1" />
+    <mimic joint="left_thumb_2_joint" multiplier="1.1425" offset="0" />
+  </joint>
+  <link name="left_thumb_4">
+    <inertial>
+      <origin xyz="0.00604903882221 0.00600331217685 -0.008615211927" rpy="-1.57079632679 0 3.14159265359" />
+      <mass value="0.00552" />
+      <inertia ixx="3.1668e-07" ixy="4.536e-08" ixz="-1.0000000000000001e-11" iyy="1.2999000000000001e-07" iyz="-4e-10" izz="3.3747e-07" />
+    </inertial>
+    <visual name="left_thumb_4_vis_0">
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 3.14159265359" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/left_thumb_4.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="left_thumb_4_joint" type="revolute">
+    <origin xyz="0.014957 0.0012 -0.017012" rpy="0 0 0" />
+    <parent link="left_thumb_3" />
+    <child link="left_thumb_4" />
+    <axis xyz="0 -1 0" />
+    <limit lower="-0.2775" upper="0" effort="50" velocity="1" />
+    <mimic joint="left_thumb_3_joint" multiplier="0.7508" offset="0" />
+  </joint>
+  <link name="left_thumb_tip" />
+  <joint name="left_thumb_tip_joint" type="fixed">
+    <parent link="left_thumb_4" />
+    <child link="left_thumb_tip" />
+    <origin xyz="0.005 0.005 -0.005" rpy="0 0 0" />
+  </joint>
+  <link name="left_index_1">
+    <inertial>
+      <origin xyz="0.00599989169039 -0.000852715984885 -0.0119736084448" rpy="-1.57079632679 0 -1.57079632679" />
+      <mass value="0.012289999999999999" />
+      <inertia ixx="1.93998e-06" ixy="1.5035e-07" ixz="4.1e-10" iyy="5.6245e-07" iyz="3.49e-09" izz="2.05872e-06" />
+    </inertial>
+    <visual name="left_index_1_vis_0">
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 -1.57079632679" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/left_index_1.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="left_index_1_joint" type="revolute">
+    <origin xyz="-0.00028533 -0.020275 0.13695" rpy="3.14159265359 0.0349036732051 -1.57079632679" />
+    <parent link="l_hand_l0" />
+    <child link="left_index_1" />
+    <axis xyz="1 0 0" />
+    <limit lower="-1.333" upper="0" effort="50" velocity="1" />
+  </joint>
+  <link name="left_index_2">
+    <inertial>
+      <origin xyz="0.00500003100757 -0.00408344708692 -0.0192601764487" rpy="-1.57079632679 0 -1.57079632679" />
+      <mass value="0.00633" />
+      <inertia ixx="9.4327e-07" ixy="3.8912e-07" ixz="2.0000000000000002e-11" iyy="2.897e-07" iyz="5e-11" izz="1.14024e-06" />
+    </inertial>
+    <visual name="left_index_2_vis_0">
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 -1.57079632679" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/left_index_2.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="left_index_2_joint" type="revolute">
+    <origin xyz="0.001 -0.0080993 -0.031095" rpy="0 0 0" />
+    <parent link="left_index_1" />
+    <child link="left_index_2" />
+    <axis xyz="1 0 0" />
+    <limit lower="-1.527" upper="0" effort="50" velocity="1" />
+    <mimic joint="left_index_1_joint" multiplier="1.1169" offset="0" />
+  </joint>
+  <link name="left_index_tip" />
+  <joint name="left_index_tip_joint" type="fixed">
+    <parent link="left_index_2" />
+    <child link="left_index_tip" />
+    <origin xyz="0.005 -0.01 -0.03" rpy="0 0 0" />
+  </joint>
+  <link name="left_middle_1">
+    <inertial>
+      <origin xyz="0.00599988891959 -0.000852877556916 -0.0119736405947" rpy="-1.57079632679 0 -1.57079632679" />
+      <mass value="0.012289999999999999" />
+      <inertia ixx="1.94e-06" ixy="1.5036e-07" ixz="9.899999999999999e-10" iyy="5.6248e-07" iyz="5.01e-09" izz="2.05872e-06" />
+    </inertial>
+    <visual name="left_middle_1_vis_0">
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 -1.57079632679" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/left_middle_1.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="left_middle_1_joint" type="revolute">
+    <origin xyz="-0.00028533 -0.00095 0.1371" rpy="3.14159265359 3.67320510335e-06 -1.57079632679" />
+    <parent link="l_hand_l0" />
+    <child link="left_middle_1" />
+    <axis xyz="1 0 0" />
+    <limit lower="-1.333" upper="0" effort="50" velocity="1" />
+  </joint>
+  <link name="left_middle_2">
+    <inertial>
+      <origin xyz="0.00500013550499 -0.00471131608223 -0.0203464425452" rpy="-1.57079632679 0 -1.57079632679" />
+      <mass value="0.006809999999999999" />
+      <inertia ixx="1.18348e-06" ixy="5.0397e-07" ixz="0.0" iyy="3.558e-07" iyz="0.0" izz="1.43878e-06" />
+    </inertial>
+    <visual name="left_middle_2_vis_0">
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 -1.57079632679" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/left_middle_2.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="left_middle_2_joint" type="revolute">
+    <origin xyz="0.001 -0.0080996 -0.031095" rpy="0 0 0" />
+    <parent link="left_middle_1" />
+    <child link="left_middle_2" />
+    <axis xyz="1 0 0" />
+    <limit lower="-1.527" upper="0" effort="50" velocity="1" />
+    <mimic joint="left_middle_1_joint" multiplier="1.1169" offset="0" />
+  </joint>
+  <link name="left_middle_tip" />
+  <joint name="left_middle_tip_joint" type="fixed">
+    <parent link="left_middle_2" />
+    <child link="left_middle_tip" />
+    <origin xyz="0.005 -0.015 -0.035" rpy="0 0 0" />
+  </joint>
+  <link name="left_ring_1">
+    <inertial>
+      <origin xyz="0.00599988335942 -0.000852611292408 -0.0119736634068" rpy="-1.57079632679 0 -1.57079632679" />
+      <mass value="0.012289999999999999" />
+      <inertia ixx="1.93998e-06" ixy="1.5033000000000002e-07" ixz="5.1e-10" iyy="5.6244e-07" iyz="3.52e-09" izz="2.05872e-06" />
+    </inertial>
+    <visual name="left_ring_1_vis_0">
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 -1.57079632679" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/left_ring_1.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="left_ring_1_joint" type="revolute">
+    <origin xyz="-0.00028533 0.018271 0.13628" rpy="3.14159265359 -0.0523963267949 -1.57079632679" />
+    <parent link="l_hand_l0" />
+    <child link="left_ring_1" />
+    <axis xyz="1 0 0" />
+    <limit lower="-1.333" upper="0" effort="50" velocity="1" />
+  </joint>
+  <link name="left_ring_2">
+    <inertial>
+      <origin xyz="0.00500000332159 -0.0040829950626 -0.0192602956948" rpy="-1.57079632679 0 -1.57079632679" />
+      <mass value="0.00633" />
+      <inertia ixx="8.98489531e-07" ixy="-3.65756812e-07" ixz="-6.78625097e-12" iyy="2.88206275e-07" iyz="-2.35707338e-11" izz="1.08251184e-06" />
+    </inertial>
+    <visual name="left_ring_2_vis_0">
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 -1.57079632679" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/left_ring_2.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="left_ring_2_joint" type="revolute">
+    <origin xyz="0.001 -0.0080989 -0.031095" rpy="0 0 0" />
+    <parent link="left_ring_1" />
+    <child link="left_ring_2" />
+    <axis xyz="1 0 0" />
+    <limit lower="-1.527" upper="0" effort="50" velocity="1" />
+    <mimic joint="left_ring_1_joint" multiplier="1.1169" offset="0" />
+  </joint>
+  <link name="left_ring_tip" />
+  <joint name="left_ring_tip_joint" type="fixed">
+    <parent link="left_ring_2" />
+    <child link="left_ring_tip" />
+    <origin xyz="0.005 -0.01 -0.03" rpy="0 0 0" />
+  </joint>
+  <link name="left_little_1">
+    <inertial>
+      <origin xyz="0.00599988919521 -0.000851752984712 -0.0119737230065" rpy="-1.57079632679 0 -1.57079632679" />
+      <mass value="0.012289999999999999" />
+      <inertia ixx="1.94e-06" ixy="1.5023e-07" ixz="3e-10" iyy="5.624199999999999e-07" iyz="3.18e-09" izz="2.05872e-06" />
+    </inertial>
+    <visual name="left_little_1_vis_0">
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 -1.57079632679" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/left_little_1.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="left_little_1_joint" type="revolute">
+    <origin xyz="-0.00028533 0.037422 0.13446" rpy="3.14159265359 -0.104696326795 -1.57079632679" />
+    <parent link="l_hand_l0" />
+    <child link="left_little_1" />
+    <axis xyz="1 0 0" />
+    <limit lower="-1.333" upper="0" effort="50" velocity="1" />
+  </joint>
+  <link name="left_little_2">
+    <inertial>
+      <origin xyz="0.00500586036971 -0.00273890807897 -0.0161632709361" rpy="-1.57079632679 0 -1.57079632679" />
+      <mass value="0.00525" />
+      <inertia ixx="5.5787e-07" ixy="2.175e-07" ixz="0.0" iyy="1.8624e-07" iyz="0.0" izz="6.690599999999999e-07" />
+    </inertial>
+    <visual name="left_little_2_vis_0">
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 -1.57079632679" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/left_little_2.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="left_little_2_joint" type="revolute">
+    <origin xyz="0.001 -0.0080966 -0.031096" rpy="0 0 0" />
+    <parent link="left_little_1" />
+    <child link="left_little_2" />
+    <axis xyz="1 0 0" />
+    <limit lower="-1.527" upper="0" effort="50" velocity="1" />
+    <mimic joint="left_little_1_joint" multiplier="1.1169" offset="0" />
+  </joint>
+  <link name="left_little_tip" />
+  <joint name="left_little_tip_joint" type="fixed">
+    <parent link="left_little_2" />
+    <child link="left_little_tip" />
+    <origin xyz="0.005 -0.005 -0.025" rpy="0 0 0" />
+  </joint>
+  <link name="r_arm_l1">
+    <inertial>
+      <origin xyz="0.00151485551261743 -0.0486762988244791 0.000806730792843546" rpy="0 0 0" />
+      <mass value="0.42262498008837" />
+      <inertia ixx="0.000302623460055786" ixy="5.28360920708198E-07" ixz="-1.40280168126117E-06" iyy="0.000386792164717218" iyz="1.18506895648545E-06" izz="0.000260610379833323" />
+    </inertial>
+    <visual name="r_arm_l1_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/r_arm_l1_simplified.STL" />
+      </geometry>
+      <material name="ehr_dark" />
+    </visual>
+    <collision name="r_arm_l1_col_0">
+      <origin xyz="0 -0.055 0" rpy="-1.570796 -1.570796 -1.570796" />
+      <geometry>
+        <cylinder radius="0.040" length="0.074" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="r_arm_1" type="revolute">
+    <origin xyz="0 -0.1449 0.3613" rpy="-0.34907 0 0" />
+    <parent link="torso_l3" />
+    <child link="r_arm_l1" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.142" upper="1.883" effort="100" velocity="20" />
+  </joint>
+  <link name="r_arm_l2">
+    <inertial>
+      <origin xyz="0.00129057849450276 -0.0100953335488647 -0.0793027087500858" rpy="0 0 0" />
+      <mass value="0.726360341995338" />
+      <inertia ixx="0.000904700165534601" ixy="-4.40776702084171E-07" ixz="-1.05755409470677E-05" iyy="0.000839247995139174" iyz="-5.8160622370472E-05" izz="0.000423893966028258" />
+    </inertial>
+    <visual name="r_arm_l2_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/r_arm_l2_vis_silver.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+    <visual name="r_arm_l2_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/r_arm_l2_vis_dark.STL" />
+      </geometry>
+      <material name="ehr_dark" />
+    </visual>
+    <collision name="r_arm_l2_col_0">
+      <origin xyz="0 -0.013 -0.092" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.033" length="0.080" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="r_arm_2" type="revolute">
+    <origin xyz="0 -0.06 0" rpy="0.34907 0 0" />
+    <parent link="r_arm_l1" />
+    <child link="r_arm_l2" />
+    <axis xyz="1 0 0" />
+    <limit lower="-2.880" upper="0.087" effort="75" velocity="20" />
+  </joint>
+  <link name="r_arm_l3">
+    <inertial>
+      <origin xyz="0.0091042407297266 -0.00262889296772378 -0.125114435830895" rpy="0 0 0" />
+      <mass value="0.68864008539145" />
+      <inertia ixx="0.00097535157871697" ixy="3.33218581936907E-07" ixz="6.83229082991564E-05" iyy="0.00094061120865345" iyz="-6.22501902848749E-08" izz="0.00036292030755375" />
+    </inertial>
+    <visual name="r_arm_l3_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/r_arm_l3_vis_silver.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+    <visual name="r_arm_l3_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/r_arm_l3_vis_dark.STL" />
+      </geometry>
+      <material name="ehr_dark" />
+    </visual>
+    <collision name="r_arm_l3_col_0">
+      <origin xyz="0.0115 0 -0.1442" rpy="1.5708 0 0" />
+      <geometry>
+        <cylinder radius="0.039" length="0.060" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="r_arm_3" type="revolute">
+    <origin xyz="0.00050105 -0.012 -0.1218" rpy="0 0 0" />
+    <parent link="r_arm_l2" />
+    <child link="r_arm_l3" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.304" upper="2.304" effort="36" velocity="20" />
+  </joint>
+  <link name="r_arm_l4">
+    <inertial>
+      <origin xyz="-0.010614082161394 -0.00377997558621174 -0.0738705607710415" rpy="0 0 0" />
+      <mass value="0.600945847420221" />
+      <inertia ixx="0.000417595155110429" ixy="3.01902632030658E-06" ixz="-1.17886218476761E-05" iyy="0.000471888144180389" iyz="2.46579468146166E-05" izz="0.000348451189415492" />
+    </inertial>
+    <visual name="r_arm_l4_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/r_arm_l4_simplified.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+    <collision name="r_arm_l4_col_0">
+      <origin xyz="-0.01 0 -0.087" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.039" length="0.048" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="r_arm_4" type="revolute">
+    <origin xyz="0.0115 0 -0.1442" rpy="0 0 0" />
+    <parent link="r_arm_l3" />
+    <child link="r_arm_l4" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2.356" upper="0.175" effort="36" velocity="20" />
+  </joint>
+  <link name="r_arm_l5">
+    <inertial>
+      <origin xyz="0.000280845219110093 -0.0053620285234528 -0.04556586015834" rpy="0 0 0" />
+      <mass value="0.285305441238746" />
+      <inertia ixx="0.000263696162037988" ixy="-2.855936543833E-07" ixz="2.35654835426586E-06" iyy="0.000338362594958419" iyz="-4.91660471507458E-07" izz="0.000164819879735472" />
+    </inertial>
+    <visual name="r_arm_l5_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/r_arm_l5_vis_silver.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+    <visual name="r_arm_l5_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/r_arm_l5_vis_dark.STL" />
+      </geometry>
+      <material name="ehr_dark" />
+    </visual>
+    <collision name="r_arm_l5_col_0">
+      <origin xyz="0 -0.0058709 -0.038" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.035" length="0.035" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="r_arm_5" type="revolute">
+    <origin xyz="-0.0115 0.0058709 -0.1068" rpy="0 0 0" />
+    <parent link="r_arm_l4" />
+    <child link="r_arm_l5" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.269" upper="2.269" effort="36" velocity="20" />
+  </joint>
+  <link name="r_arm_l51">
+    <inertial>
+      <origin xyz="-0.000190387775210743 -0.00386522769849285 5.55111512312578E-17" rpy="0 0 0" />
+      <mass value="0.00464101579134823" />
+      <inertia ixx="2.29427327702329E-07" ixy="5.97894600311244E-09" ixz="1.19038524906535E-20" iyy="6.84722825730105E-07" iyz="-9.13155747165462E-22" izz="4.69147846155787E-07" />
+    </inertial>
+    <visual name="r_arm_l51_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/r_arm_l51_simplified.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="r_arm_51" type="revolute">
+    <origin xyz="0 0.0144 -0.0667" rpy="0 0 0" />
+    <parent link="r_arm_l5" />
+    <child link="r_arm_l51" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.785" upper="0.785" effort="36" velocity="20" />
+  </joint>
+  <link name="r_arm_l52">
+    <inertial>
+      <origin xyz="4.44089209850063E-16 0.00130652519397179 -0.0274997497207209" rpy="0 0 0" />
+      <mass value="0.00741026715278557" />
+      <inertia ixx="3.61466181926875E-06" ixy="-1.03358109835321E-21" ixz="6.07058935187625E-21" iyy="3.64597947364726E-06" iyz="2.11495866446302E-07" izz="9.04619994997489E-08" />
+    </inertial>
+    <visual name="r_arm_l52_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/r_arm_l52_simplified.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="r_arm_52" type="revolute">
+    <origin xyz="-0.015 0.0021291 0" rpy="0 0 0" />
+    <parent link="r_arm_l51" />
+    <child link="r_arm_l52" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.785" upper="0.785" effort="36" velocity="20" />
+  </joint>
+  <link name="r_arm_l6">
+    <inertial>
+      <origin xyz="-0.00144431055471084 -0.00626256763839894 -0.000214242842395101" rpy="0 0 0" />
+      <mass value="0.0536552169689812" />
+      <inertia ixx="2.02593817074997E-05" ixy="-1.18948627744058E-07" ixz="-1.01255053061225E-07" iyy="1.52600374991001E-05" iyz="-6.10020598533247E-08" izz="1.89588021937617E-05" />
+    </inertial>
+    <visual name="r_arm_l6_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/r_arm_l6_vis_silver.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+    <visual name="r_arm_l6_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/r_arm_l6_vis_dark.STL" />
+      </geometry>
+      <material name="ehr_dark" />
+    </visual>
+    <collision name="r_arm_l6_col_0">
+      <origin xyz="0 -0.0058709 0" rpy="0 1.57 0" />
+      <geometry>
+        <cylinder radius="0.023" length="0.045" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="r_arm_6" type="revolute">
+    <origin xyz="0 -0.0001 -0.1217" rpy="0 0 0" />
+    <parent link="r_arm_l5" />
+    <child link="r_arm_l6" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.785" upper="0.785" effort="36" velocity="20" />
+  </joint>
+  <link name="r_arm_l7">
+    <inertial>
+      <origin xyz="0.0509756855216543 -0.010283898948906 -0.062576175513621" rpy="0 0 0" />
+      <mass value="0.202364552805844" />
+      <inertia ixx="0.00016352765038835" ixy="5.97774225814786E-06" ixz="4.6734644681031E-05" iyy="0.000201336117453215" iyz="-2.86223871586859E-05" izz="0.000148051272042111" />
+    </inertial>
+    <visual name="r_arm_l7_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/r_arm_l7_vis_silver.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+    <visual name="r_arm_l7_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/r_arm_l7_vis_dark.STL" />
+      </geometry>
+      <material name="ehr_dark" />
+    </visual>
+    <collision name="r_arm_l7_col_0">
+      <origin xyz="0 -0.0058709 -0.040" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.023" length="0.025" />
+      </geometry>
+    </collision>
+    <collision name="r_arm_l7_col_1">
+      <origin xyz="0.074 -0.0248709 -0.0575" rpy="0 0 0" />
+      <geometry>
+        <box size="0.100 0.008 0.008" />
+      </geometry>
+    </collision>
+    <collision name="r_arm_l7_col_2">
+      <origin xyz="0.074 0.0131291 -0.0575" rpy="0 0 0" />
+      <geometry>
+        <box size="0.100 0.008 0.008" />
+      </geometry>
+    </collision>
+    <collision name="r_arm_l7_col_3">
+      <origin xyz="0.152 -0.0268709 -0.104" rpy="0 1.03 0" />
+      <geometry>
+        <box size="0.100 0.007 0.008" />
+      </geometry>
+    </collision>
+    <collision name="r_arm_l7_col_4">
+      <origin xyz="0.152 0.0151291 -0.104" rpy="0 1.03 0" />
+      <geometry>
+        <box size="0.100 0.007 0.008" />
+      </geometry>
+    </collision>
+    <collision name="r_arm_l7_col_5">
+      <origin xyz="0.123 -0.0268709 -0.086" rpy="0 0.95 0" />
+      <geometry>
+        <box size="0.063 0.007 0.008" />
+      </geometry>
+    </collision>
+    <collision name="r_arm_l7_col_6">
+      <origin xyz="0.123 0.0151291 -0.086" rpy="0 0.95 0" />
+      <geometry>
+        <box size="0.063 0.007 0.008" />
+      </geometry>
+    </collision>
+    <collision name="r_arm_l7_col_7">
+      <origin xyz="0.16357 -0.0309509 -0.14055" rpy="-1.889396 0.623280 2.452350" />
+      <geometry>
+        <box size="0.021 0.038 0.038" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="r_arm_7" type="revolute">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="r_arm_l6" />
+    <child link="r_arm_l7" />
+    <axis xyz="1 0 0" />
+    <limit lower="-1.047" upper="1.047" effort="36" velocity="20" />
+  </joint>
+  <link name="gemini305_l1">
+    <inertial>
+      <origin xyz="0.0090171 -9.7168E-07 -0.011496" rpy="0 0 0" />
+      <mass value="0.040707" />
+      <inertia ixx="7.6746E-06" ixy="-8.1154E-10" ixz="1.6252E-09" iyy="7.6479E-06" iyz="-9.2424E-11" izz="1.174E-05" />
+    </inertial>
+    <visual name="gemini305_l1_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/gemini305_l1_simplified.STL" />
+      </geometry>
+      <material name="ehr_dark" />
+    </visual>
+  </link>
+  <joint name="gemini305_1" type="fixed">
+    <origin xyz="0.15218895 -0.0326594279082 -0.14955144256" rpy="-2.2192 -0.25946 1.0735" />
+    <parent link="r_arm_l7" />
+    <child link="gemini305_l1" />
+  </joint>
+  <link name="r_hand_l0">
+    <inertial>
+      <origin xyz="0.002153 0.0022194 -0.091965" rpy="0 0 0" />
+      <mass value="0.70318" />
+      <inertia ixx="0.00070478" ixy="-1.0092E-05" ixz="1.4584E-05" iyy="0.00084179" iyz="-3.932E-06" izz="0.00031339" />
+    </inertial>
+    <visual name="r_hand_l0_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/R_base_link_vis_dark.STL" />
+      </geometry>
+      <material name="ehr_dark" />
+    </visual>
+    <visual name="r_hand_l0_vis_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/R_base_link_vis_silver.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+    <collision name="r_hand_l0_col_0">
+      <origin xyz="0 -0.002 0.107" rpy="0 0 0" />
+      <geometry>
+        <box size="0.055 0.082 0.214" />
+      </geometry>
+    </collision>
+    <collision name="r_hand_l0_col_1">
+      <origin xyz="0.02817 0.06155 0.08954" rpy="-0.814831 0.015892 -0.231454" />
+      <geometry>
+        <box size="0.019 0.034 0.120" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="r_hand_0" type="fixed">
+    <origin xyz="0 -0.0058709 -0.0655" rpy="0 3.141592653589793 -1.5707963267948966" />
+    <parent link="r_arm_l7" />
+    <child link="r_hand_l0" />
+  </joint>
+  <link name="right_thumb_1">
+    <inertial>
+      <origin xyz="0.00482216769884 0.000853491366154 0.00481999614705" rpy="3.14159265359 0 1.57079632679" />
+      <mass value="0.00483" />
+      <inertia ixx="1.9502e-07" ixy="-3.536e-08" ixz="-3.1e-09" iyy="1.4336e-07" iyz="-7.9e-09" izz="1.6891e-07" />
+    </inertial>
+    <visual name="right_thumb_1_vis_0">
+      <origin xyz="0 0 0" rpy="3.14159265359 0 1.57079632679" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/right_thumb_1.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="right_thumb_1_joint" type="revolute">
+    <origin xyz="0.01696 0.0204500000022 0.06635" rpy="3.14159265359 0 1.57079632679" />
+    <parent link="r_hand_l0" />
+    <child link="right_thumb_1" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-1.246165" upper="0" effort="50" velocity="1" />
+  </joint>
+  <link name="right_thumb_2">
+    <inertial>
+      <origin xyz="0.019464129393 -0.00803857337745 -0.0162980383727" rpy="-1.57079632679 0 0" />
+      <mass value="0.05759" />
+      <inertia ixx="1.0666209999999999e-05" ixy="-4.413609999999999e-06" ixz="-5.150000000000001e-09" iyy="8.92353e-06" iyz="2.59e-09" izz="1.700133e-05" />
+    </inertial>
+    <visual name="right_thumb_2_vis_0">
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/right_thumb_2.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="right_thumb_2_joint" type="revolute">
+    <origin xyz="0.0090001762573 0.0107353075101 0.0065" rpy="0 0 0.265290046303" />
+    <parent link="right_thumb_1" />
+    <child link="right_thumb_2" />
+    <axis xyz="0 1 0" />
+    <limit lower="0" upper="0.48" effort="50" velocity="1" />
+  </joint>
+  <link name="right_thumb_3">
+    <inertial>
+      <origin xyz="0.00946651884646 -0.00720000588825 -0.00207630823867" rpy="-1.57079632679 0 0" />
+      <mass value="0.00985" />
+      <inertia ixx="1.21069e-06" ixy="-1.0767e-07" ixz="-1.0000000000000001e-11" iyy="6.011799999999999e-07" iyz="-3e-11" izz="1.28966e-06" />
+    </inertial>
+    <visual name="right_thumb_3_vis_0">
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/right_thumb_3.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="right_thumb_3_joint" type="revolute">
+    <origin xyz="0.0376167925539 -0.0008 -0.0414855421501" rpy="0 0 0" />
+    <parent link="right_thumb_2" />
+    <child link="right_thumb_3" />
+    <axis xyz="0 1 0" />
+    <limit lower="0" upper="0.3578" effort="50" velocity="1" />
+    <mimic joint="right_thumb_2_joint" multiplier="1.1425" offset="0" />
+  </joint>
+  <link name="right_thumb_4">
+    <inertial>
+      <origin xyz="0.00604904909828 -0.00600329390501 -0.00861522746372" rpy="-1.57079632679 0 0" />
+      <mass value="0.00552" />
+      <inertia ixx="3.1668e-07" ixy="-4.536e-08" ixz="1.0000000000000001e-11" iyy="1.2999000000000001e-07" iyz="4e-10" izz="3.3747e-07" />
+    </inertial>
+    <visual name="right_thumb_4_vis_0">
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/right_thumb_4.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="right_thumb_4_joint" type="revolute">
+    <origin xyz="0.0149571022376 -0.0012 -0.017012413255" rpy="0 0 0" />
+    <parent link="right_thumb_3" />
+    <child link="right_thumb_4" />
+    <axis xyz="0 1 0" />
+    <limit lower="0" upper="0.2775" effort="50" velocity="1" />
+    <mimic joint="right_thumb_3_joint" multiplier="0.7508" offset="0" />
+  </joint>
+  <link name="right_thumb_tip" />
+  <joint name="right_thumb_tip_joint" type="fixed">
+    <parent link="right_thumb_4" />
+    <child link="right_thumb_tip" />
+    <origin xyz="0.005 -0.005 -0.005" rpy="0 0 0" />
+  </joint>
+  <link name="right_index_1">
+    <inertial>
+      <origin xyz="0.00599986563267 0.000852715296527 -0.0119735955318" rpy="-1.57079632679 0 1.57079632679" />
+      <mass value="0.01229" />
+      <inertia ixx="1.93998e-06" ixy="-1.5035e-07" ixz="-4.1e-10" iyy="5.6245e-07" iyz="-3.49e-09" izz="2.05872e-06" />
+    </inertial>
+    <visual name="right_index_1_vis_0">
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 1.57079632679" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/right_index_1.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="right_index_1_joint" type="revolute">
+    <origin xyz="-0.000285333323389 0.0202750317162 0.136945958498" rpy="3.14159265359 0.0349065850399 1.57079632679" />
+    <parent link="r_hand_l0" />
+    <child link="right_index_1" />
+    <axis xyz="-1 0 0" />
+    <limit lower="-1.333" upper="0" effort="50" velocity="1" />
+  </joint>
+  <link name="right_index_2">
+    <inertial>
+      <origin xyz="0.00500000380847 0.0040834299919 -0.0192600939391" rpy="-1.57079632679 0 1.57079632679" />
+      <mass value="0.00633" />
+      <inertia ixx="9.4327e-07" ixy="-3.8912e-07" ixz="-2.0000000000000002e-11" iyy="2.897e-07" iyz="-5e-11" izz="1.14024e-06" />
+    </inertial>
+    <visual name="right_index_2_vis_0">
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 1.57079632679" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/right_index_2.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="right_index_2_joint" type="revolute">
+    <origin xyz="0.001 0.00809926979632 -0.0310949249595" rpy="0 0 0" />
+    <parent link="right_index_1" />
+    <child link="right_index_2" />
+    <axis xyz="-1 0 0" />
+    <limit lower="-1.527" upper="0" effort="50" velocity="1" />
+    <mimic joint="right_index_1_joint" multiplier="1.1169" offset="0" />
+  </joint>
+  <link name="right_index_tip" />
+  <joint name="right_index_tip_joint" type="fixed">
+    <parent link="right_index_2" />
+    <child link="right_index_tip" />
+    <origin xyz="0.005 0.01 -0.03" rpy="0 0 0" />
+  </joint>
+  <link name="right_middle_1">
+    <inertial>
+      <origin xyz="0.00399984588006 0.000852855866233 -0.0119736067985" rpy="-1.57079632679 0 1.57079632679" />
+      <mass value="0.01229" />
+      <inertia ixx="1.94e-06" ixy="-1.5036e-07" ixz="-9.899999999999999e-10" iyy="5.6248e-07" iyz="-5.01e-09" izz="2.05872e-06" />
+    </inertial>
+    <visual name="right_middle_1_vis_0">
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 1.57079632679" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/right_middle_1.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="right_middle_1_joint" type="revolute">
+    <origin xyz="-0.000285333314556 0.00295000000024 0.1371" rpy="3.14159265359 1.56966163991e-11 1.57079632679" />
+    <parent link="r_hand_l0" />
+    <child link="right_middle_1" />
+    <axis xyz="-1 0 0" />
+    <limit lower="-1.333" upper="0" effort="50" velocity="1" />
+  </joint>
+  <link name="right_middle_2">
+    <inertial>
+      <origin xyz="0.00500003269708 0.00471134588805 -0.0203465768774" rpy="-1.57079632679 0 1.57079632679" />
+      <mass value="0.00681" />
+      <inertia ixx="1.18348e-06" ixy="-5.0397e-07" ixz="-0.0" iyy="3.558e-07" iyz="-0.0" izz="1.43878e-06" />
+    </inertial>
+    <visual name="right_middle_2_vis_0">
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 1.57079632679" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/right_middle_2.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="right_middle_2_joint" type="revolute">
+    <origin xyz="-0.001 0.00809959893698 -0.0310948392267" rpy="0 0 0" />
+    <parent link="right_middle_1" />
+    <child link="right_middle_2" />
+    <axis xyz="-1 0 0" />
+    <limit lower="-1.527" upper="0" effort="50" velocity="1" />
+    <mimic joint="right_middle_1_joint" multiplier="1.1169" offset="0" />
+  </joint>
+  <link name="right_middle_tip" />
+  <joint name="right_middle_tip_joint" type="fixed">
+    <parent link="right_middle_2" />
+    <child link="right_middle_tip" />
+    <origin xyz="0.005 0.015 -0.035" rpy="0 0 0" />
+  </joint>
+  <link name="right_ring_1">
+    <inertial>
+      <origin xyz="0.00599989251267 0.000852458459178 -0.0119734648812" rpy="-1.57079632679 0 1.57079632679" />
+      <mass value="0.01229" />
+      <inertia ixx="1.93998e-06" ixy="-1.5033000000000002e-07" ixz="-5.1e-10" iyy="5.6244e-07" iyz="-3.52e-09" izz="2.05872e-06" />
+    </inertial>
+    <visual name="right_ring_1_vis_0">
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 1.57079632679" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/right_ring_1.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="right_ring_1_joint" type="revolute">
+    <origin xyz="-0.000285333323395 -0.0182707111727 0.136282456906" rpy="3.14159265359 -0.0523598775598 1.57079632679" />
+    <parent link="r_hand_l0" />
+    <child link="right_ring_1" />
+    <axis xyz="-1 0 0" />
+    <limit lower="-1.333" upper="0" effort="50" velocity="1" />
+  </joint>
+  <link name="right_ring_2">
+    <inertial>
+      <origin xyz="0.00499998343104 0.00408287363348 -0.0192599767415" rpy="-1.57079632679 0 1.57079632679" />
+      <mass value="0.00633" />
+      <inertia ixx="9.4329e-07" ixy="0" ixz="0" iyy="2.9615e-07" iyz="0" izz="1.13377e-06" />
+    </inertial>
+    <visual name="right_ring_2_vis_0">
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 1.57079632679" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/right_ring_2.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="right_ring_2_joint" type="revolute">
+    <origin xyz="0.001 0.00809885846186 -0.0310950320966" rpy="0 0 0" />
+    <parent link="right_ring_1" />
+    <child link="right_ring_2" />
+    <axis xyz="-1 0 0" />
+    <limit lower="-1.527" upper="0" effort="50" velocity="1" />
+    <mimic joint="right_ring_1_joint" multiplier="1.1169" offset="0" />
+  </joint>
+  <link name="right_ring_tip" />
+  <joint name="right_ring_tip_joint" type="fixed">
+    <parent link="right_ring_2" />
+    <child link="right_ring_tip" />
+    <origin xyz="0.005 0.01 -0.03" rpy="0 0 0" />
+  </joint>
+  <link name="right_little_1">
+    <inertial>
+      <origin xyz="0.00599989467442 0.000851610973033 -0.0119735303202" rpy="-1.57079632679 0 1.57079632679" />
+      <mass value="0.012289999999999999" />
+      <inertia ixx="1.94e-06" ixy="-1.5023e-07" ixz="-3e-10" iyy="5.624199999999999e-07" iyz="-3.18e-09" izz="2.05872e-06" />
+    </inertial>
+    <visual name="right_little_1_vis_0">
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 1.57079632679" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/right_little_1.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="right_little_1_joint" type="revolute">
+    <origin xyz="-0.000285333323391 -0.0374222941313 0.134460099927" rpy="3.14159265359 -0.10471975512 1.57079632679" />
+    <parent link="r_hand_l0" />
+    <child link="right_little_1" />
+    <axis xyz="-1 0 0" />
+    <limit lower="-1.333" upper="0" effort="50" velocity="1" />
+  </joint>
+  <link name="right_little_2">
+    <inertial>
+      <origin xyz="0.004996677659 0.00273929963119 -0.0161600317264" rpy="-1.57079632679 0 1.57079632679" />
+      <mass value="0.00525" />
+      <inertia ixx="5.5787e-07" ixy="-2.175e-07" ixz="-0.0" iyy="1.8624e-07" iyz="-0.0" izz="6.690599999999999e-07" />
+    </inertial>
+    <visual name="right_little_2_vis_0">
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 1.57079632679" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/right_little_2.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="right_little_2_joint" type="revolute">
+    <origin xyz="0.001 0.0080966 -0.031096" rpy="0 0 0" />
+    <parent link="right_little_1" />
+    <child link="right_little_2" />
+    <axis xyz="-1 0 0" />
+    <limit lower="-1.527" upper="0" effort="50" velocity="1" />
+    <mimic joint="right_little_1_joint" multiplier="1.1169" offset="0" />
+  </joint>
+  <link name="right_little_tip" />
+  <joint name="right_little_tip_joint" type="fixed">
+    <parent link="right_little_2" />
+    <child link="right_little_tip" />
+    <origin xyz="0.005 0.005 -0.025" rpy="0 0 0" />
+  </joint>
+  <link name="torso_l31">
+    <inertial>
+      <origin xyz="0.00901727193159241 -0.011314838558939 -0.00245414732340804" rpy="0 0 0" />
+      <mass value="0.0224588514826561" />
+      <inertia ixx="2.47658546104817E-06" ixy="8.47681697659654E-08" ixz="9.59227613055768E-09" iyy="1.67600614811845E-06" iyz="-1.08403243745279E-07" izz="2.20417319709459E-06" />
+    </inertial>
+    <visual name="torso_l31_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/torso_l31_simplified.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="torso_31" type="revolute">
+    <origin xyz="0.021 0.0295 0.058" rpy="0 0 0" />
+    <parent link="torso_l3" />
+    <child link="torso_l31" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.244" upper="0.506" effort="75" velocity="20" />
+  </joint>
+  <link name="torso_l32">
+    <inertial>
+      <origin xyz="-0.00156122434038464 -6.13617809331335E-05 -0.0324636116164315" rpy="0 0 0" />
+      <mass value="0.0203787627746497" />
+      <inertia ixx="1.0313854145288E-05" ixy="-1.6284032444499E-09" ixz="-4.21447499735022E-07" iyy="1.03315959881215E-05" iyz="-3.69492039120532E-08" izz="4.09320531919181E-07" />
+    </inertial>
+    <visual name="torso_l32_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/torso_l32_simplified.STL" />
+      </geometry>
+      <material name="ehr_gunmetal" />
+    </visual>
+  </link>
+  <joint name="torso_32" type="revolute">
+    <origin xyz="0.01575 -0.018531 -0.0041945" rpy="0.062125 0 0" />
+    <parent link="torso_l31" />
+    <child link="torso_l32" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.244" upper="0.506" effort="75" velocity="20" />
+  </joint>
+  <link name="torso_l33">
+    <inertial>
+      <origin xyz="0.00901727181284673 0.0112687783236041 -0.00265763808350084" rpy="0 0 0" />
+      <mass value="0.0224588523950812" />
+      <inertia ixx="2.47658546694958E-06" ixy="-8.06362525876463E-08" ixz="2.78468972833097E-08" iyy="1.68968913777214E-06" iyz="1.37080041339409E-07" izz="2.19049022702971E-06" />
+    </inertial>
+    <visual name="torso_l33_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/torso_l33_simplified.STL" />
+      </geometry>
+      <material name="ehr_silver" />
+    </visual>
+  </link>
+  <joint name="torso_33" type="revolute">
+    <origin xyz="0.021 -0.0295 0.058" rpy="0 0 0" />
+    <parent link="torso_l3" />
+    <child link="torso_l33" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.244" upper="0.506" effort="75" velocity="20" />
+  </joint>
+  <link name="torso_l34">
+    <inertial>
+      <origin xyz="-0.00156122956648019 -6.13146989623115E-05 -0.0324636210578399" rpy="0 0 0" />
+      <mass value="0.020378744838964" />
+      <inertia ixx="1.03138519111254E-05" ixy="-1.62752918627506E-09" ixz="-4.21448106302693E-07" iyy="1.0331593227609E-05" iyz="-3.69241651976778E-08" izz="4.09322612150033E-07" />
+    </inertial>
+    <visual name="torso_l34_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/torso_l34_simplified.STL" />
+      </geometry>
+      <material name="ehr_gunmetal" />
+    </visual>
+  </link>
+  <joint name="torso_34" type="revolute">
+    <origin xyz="0.01575 0.018531 -0.0041945" rpy="-0.062125 0 0" />
+    <parent link="torso_l33" />
+    <child link="torso_l34" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.244" upper="0.506" effort="75" velocity="20" />
+  </joint>
+  <link name="gemini336l_l1">
+    <inertial>
+      <origin xyz="0.0475 2.22044604925031E-16 -0.0138510407355114" rpy="0 0 0" />
+      <mass value="0.134997677273584" />
+      <inertia ixx="1.73282759468445E-05" ixy="-3.97499382340437E-20" ixz="1.99340059362798E-19" iyy="0.00015970967293052" iyz="1.35525271560688E-20" izz="0.00016028458750089" />
+    </inertial>
+    <visual name="gemini336l_l1_vis_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ehr21_half_description/meshes/gemini336l_l1_simplified.STL" />
+      </geometry>
+      <material name="ehr_dark" />
+    </visual>
+  </link>
+  <joint name="gemini336l_1" type="fixed">
+    <origin xyz="0.11563534953169 0.025499963241313 0.102948193684413" rpy="-1.91986217719379 0 -1.57079632683666" />
+    <parent link="neck_l2" />
+    <child link="gemini336l_l1" />
+  </joint>
+</robot>

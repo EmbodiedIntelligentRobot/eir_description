@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>eqr12w_description</name>
+  <version>1.0.0</version>
+  <description>URDF and MuJoCo resources for the EQR12W wheeled quadruped.</description>
+  <maintainer email="73673170+hiyoung1999@users.noreply.github.com">EmbodiedIntelligentRobot</maintainer>
+  <license>BSD-3-Clause</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+    <architecture_independent />
+  </export>
+</package>

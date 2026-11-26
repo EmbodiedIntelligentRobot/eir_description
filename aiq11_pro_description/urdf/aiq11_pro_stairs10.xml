@@ -1,0 +1,22 @@
+<mujoco model="aiq11_pro">
+  <!-- Source PRO robot unchanged (attached), on a 10-riser 0.15 m stair course with a 2 m landing.
+       Physics options copy aiq11_pro.xml; only the terrain differs. -->
+  <compiler angle="radian"/>
+  <option timestep="0.0005" iterations="50" solver="Newton" gravity="0 0 -9.81"/>
+  <size njmax="500" nconmax="100"/>
+  <visual>
+    <quality shadowsize="4096"/>
+    <map znear="0.05"/>
+    <global offwidth="3840" offheight="3840" cameraid="0"/>
+  </visual>
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="512"/>
+    <model name="pro_source" file="aiq11_pro.xml"/>
+  </asset>
+  <include file="terrains/stairs_10x15cm_landing2m.xml"/>
+  <worldbody>
+    <light directional="true" diffuse=".4 .4 .4" specular="0.1 0.1 0.1" pos="0 0 5.0" dir="0 0 -1" castshadow="false"/>
+    <light directional="true" diffuse=".6 .6 .6" specular="0.2 0.2 0.2" pos="0 0 4" dir="0 0 -1"/>
+    <attach model="pro_source" body="base_link" prefix=""/>
+  </worldbody>
+</mujoco>

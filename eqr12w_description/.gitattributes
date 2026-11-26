@@ -1,0 +1,6 @@
+*.urdf text eol=lf
+*.xml text eol=lf
+*.csv text eol=lf
+*.md text eol=lf
+CMakeLists.txt text eol=lf
+meshes/*.STL -text

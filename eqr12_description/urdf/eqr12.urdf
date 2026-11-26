@@ -1,0 +1,1123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com)
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="eqr12">
+  <!-- Leg joints 1/2/3 are A/H/K, all HY-N8513-X32-IP67 with 32:1 reduction.
+       Limits use hardware peaks: 180 Nm and 120 RPM. -->
+  <link
+    name="base_link">
+    <!-- base_link mass properties: COM tensor, SI units. -->
+    <inertial>
+      <origin
+        xyz="0.00316241 0.00419948 -0.04981856"
+        rpy="0 0 0" />
+      <mass
+        value="20.64631829" />
+      <inertia
+        ixx="0.16008971"
+        ixy="0.00031818"
+        ixz="-0.00152430"
+        iyy="0.47665242"
+        iyz="0.00233940"
+        izz="0.55795957" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eqr12_description/meshes/base_link_simplified.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="base_link_body_collision">
+      <origin xyz="0 0 -0.036198207" rpy="0 0 0" />
+      <geometry>
+        <box size="0.32 0.254 0.182" />
+      </geometry>
+    </collision>
+    <collision name="base_link_front_mount_collision">
+      <origin xyz="0.19875 0 -0.040198207" rpy="0 0 0" />
+      <geometry>
+        <box size="0.0915 0.25 0.122" />
+      </geometry>
+    </collision>
+    <collision name="base_link_front_top_collision">
+      <origin xyz="0.199 0 0.028801793" rpy="0 0 0" />
+      <geometry>
+        <box size="0.076 0.07 0.029" />
+      </geometry>
+    </collision>
+    <collision name="base_link_front_shoulder_collision">
+      <origin xyz="0.1675 0 0.031301793" rpy="0 0 0" />
+      <geometry>
+        <box size="0.019 0.184 0.021" />
+      </geometry>
+    </collision>
+    <collision name="base_link_front_left_cooler_collision">
+      <origin xyz="0.201 0.13825 -0.040198207" rpy="0 0 0" />
+      <geometry>
+        <box size="0.068 0.0265 0.08" />
+      </geometry>
+    </collision>
+    <collision name="base_link_front_right_cooler_collision">
+      <origin xyz="0.201 -0.13825 -0.040198207" rpy="0 0 0" />
+      <geometry>
+        <box size="0.068 0.0265 0.08" />
+      </geometry>
+    </collision>
+    <collision name="base_link_rear_mount_collision">
+      <origin xyz="-0.19875 0 -0.040198207" rpy="0 0 0" />
+      <geometry>
+        <box size="0.0915 0.25 0.122" />
+      </geometry>
+    </collision>
+    <collision name="base_link_rear_top_collision">
+      <origin xyz="-0.199 0 0.028801793" rpy="0 0 0" />
+      <geometry>
+        <box size="0.076 0.07 0.029" />
+      </geometry>
+    </collision>
+    <collision name="base_link_rear_shoulder_collision">
+      <origin xyz="-0.1675 0 0.031301793" rpy="0 0 0" />
+      <geometry>
+        <box size="0.019 0.184 0.021" />
+      </geometry>
+    </collision>
+    <collision name="base_link_rear_left_cooler_collision">
+      <origin xyz="-0.201 0.13825 -0.040198207" rpy="0 0 0" />
+      <geometry>
+        <box size="0.068 0.0265 0.08" />
+      </geometry>
+    </collision>
+    <collision name="base_link_rear_right_cooler_collision">
+      <origin xyz="-0.201 -0.13825 -0.040198207" rpy="0 0 0" />
+      <geometry>
+        <box size="0.068 0.0265 0.08" />
+      </geometry>
+    </collision>
+    <collision name="base_link_left_bottom_rail_collision">
+      <origin xyz="0 0.12175 -0.126198207" rpy="0 0 0" />
+      <geometry>
+        <box size="0.324 0.0195 0.01" />
+      </geometry>
+    </collision>
+    <collision name="base_link_front_left_support_collision">
+      <origin xyz="0.1305 0.10575 -0.132198207" rpy="0 0 0" />
+      <geometry>
+        <box size="0.063 0.0515 0.022" />
+      </geometry>
+    </collision>
+    <collision name="base_link_rear_left_support_collision">
+      <origin xyz="-0.1305 0.10575 -0.132198207" rpy="0 0 0" />
+      <geometry>
+        <box size="0.063 0.0515 0.022" />
+      </geometry>
+    </collision>
+    <collision name="base_link_right_bottom_rail_collision">
+      <origin xyz="0 -0.12175 -0.126198207" rpy="0 0 0" />
+      <geometry>
+        <box size="0.324 0.0195 0.01" />
+      </geometry>
+    </collision>
+    <collision name="base_link_front_right_support_collision">
+      <origin xyz="0.1305 -0.10575 -0.132198207" rpy="0 0 0" />
+      <geometry>
+        <box size="0.063 0.0515 0.022" />
+      </geometry>
+    </collision>
+    <collision name="base_link_rear_right_support_collision">
+      <origin xyz="-0.1305 -0.10575 -0.132198207" rpy="0 0 0" />
+      <geometry>
+        <box size="0.063 0.0515 0.022" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="fl_leg_l1">
+    <inertial>
+      <origin
+        xyz="0.060233 -0.016827 -0.000112"
+        rpy="0 0 0" />
+      <mass
+        value="1.718430" />
+      <inertia
+        ixx="0.002332355174"
+        ixy="0.000032289991"
+        ixz="0.000001834830"
+        iyy="0.002889572348"
+        iyz="-0.000006688923"
+        izz="0.002771874207" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eqr12_description/meshes/fl_leg_l1_simplified.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="fl_leg_l1_motor_collision">
+      <origin xyz="0.066 -0.0035 0" rpy="1.57079632679 0 0" />
+      <geometry>
+        <cylinder radius="0.054" length="0.039" />
+      </geometry>
+    </collision>
+    <collision name="fl_leg_l1_inner_collision">
+      <origin xyz="0.066 -0.0425 0" rpy="1.57079632679 0 0" />
+      <geometry>
+        <cylinder radius="0.036" length="0.039" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fl_leg_1"
+    type="revolute">
+    <origin
+      xyz="0.2445 0.075 -0.040198"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="fl_leg_l1" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.785"
+      upper="0.785"
+      effort="180"
+      velocity="12.5663706143592" />
+  </joint>
+  <link
+    name="fl_leg_l2">
+    <inertial>
+      <origin
+        xyz="-0.043334 0.072982 0.006617"
+        rpy="0 0 0" />
+      <mass
+        value="3.132014" />
+      <inertia
+        ixx="0.007120612721"
+        ixy="0.004948110119"
+        ixz="0.001810757609"
+        iyy="0.029009556497"
+        iyz="-0.000824056373"
+        izz="0.031497666730" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eqr12_description/meshes/fl_leg_l2_simplified.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision name="fl_leg_l2_motor_collision">
+      <origin xyz="0 0.065 0" rpy="1.57079632679 0 0" />
+      <geometry>
+        <cylinder radius="0.059" length="0.136" />
+      </geometry>
+    </collision>
+    <collision name="fl_leg_l2_beam_collision">
+      <origin xyz="-0.175 0.1095 0.023" rpy="0 -0.1 0" />
+      <geometry>
+        <box size="0.3 0.047 0.07" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fl_leg_2"
+    type="revolute">
+    <origin
+      xyz="0.066 0.021 0"
+      rpy="0 0 0" />
+    <parent
+      link="fl_leg_l1" />
+    <child
+      link="fl_leg_l2" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.935"
+      upper="1.475"
+      effort="180"
+      velocity="12.5663706143592" />
+  </joint>
+  <link
+    name="fl_leg_l3">
+    <inertial>
+      <origin
+        xyz="0.138933 0.000015 -0.041088"
+        rpy="0 0 0" />
+      <mass
+        value="0.541561" />
+      <inertia
+        ixx="0.001021103512"
+        ixy="-0.000015746772"
+        ixz="0.002333114521"
+        iyy="0.007973820743"
+        iyz="0.000004732854"
+        izz="0.007036785690" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eqr12_description/meshes/fl_leg_l3_simplified.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="fl_leg_l3_knee_collision">
+      <origin xyz="-0.02 0 0.02" rpy="0 0 0" />
+      <geometry>
+        <box size="0.042 0.03 0.034" />
+      </geometry>
+    </collision>
+    <collision name="fl_leg_l3_upper_collision">
+      <origin xyz="0.025 0 -0.01" rpy="0 0.26 0" />
+      <geometry>
+        <box size="0.07 0.03 0.028" />
+      </geometry>
+    </collision>
+    <collision name="fl_leg_l3_middle_collision">
+      <origin xyz="0.11 0 -0.02" rpy="0 0 0" />
+      <geometry>
+        <box size="0.1 0.037 0.032" />
+      </geometry>
+    </collision>
+    <collision name="fl_leg_l3_lower_collision">
+      <origin xyz="0.215 0 -0.066" rpy="0 0.6 0" />
+      <geometry>
+        <box size="0.15 0.036 0.032" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fl_leg_3"
+    type="revolute">
+    <origin
+      xyz="-0.3 0.1105 0"
+      rpy="0 0 0" />
+    <parent
+      link="fl_leg_l2" />
+    <child
+      link="fl_leg_l3" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-0.035"
+      upper="1.736"
+      effort="180"
+      velocity="12.5663706143592" />
+  </joint>
+  <link
+    name="fl_leg_lee">
+    <inertial>
+      <origin
+        xyz="0.006048 0.000453 -0.012464"
+        rpy="0 0 0" />
+      <mass
+        value="0.108850" />
+      <inertia
+        ixx="0.000030854279"
+        ixy="0.000000100466"
+        ixz="-0.000006988171"
+        iyy="0.000034673223"
+        iyz="-0.000000088596"
+        izz="0.000041887205" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eqr12_description/meshes/fl_leg_lee_simplified.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="fl_leg_lee_foot_collision">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.035" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fl_leg_ee"
+    type="fixed">
+    <origin
+      xyz="0.27875 0 -0.11092"
+      rpy="0 0 0" />
+    <parent
+      link="fl_leg_l3" />
+    <child
+      link="fl_leg_lee" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="fr_leg_l1">
+    <inertial>
+      <origin
+        xyz="0.060233 0.016827 0.000112"
+        rpy="0 0 0" />
+      <mass
+        value="1.718430" />
+      <inertia
+        ixx="0.002332355174"
+        ixy="-0.000032289991"
+        ixz="-0.000001834830"
+        iyy="0.002889572348"
+        iyz="-0.000006688923"
+        izz="0.002771874207" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eqr12_description/meshes/fr_leg_l1_simplified.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="fr_leg_l1_motor_collision">
+      <origin xyz="0.066 0.0035 0" rpy="1.57079632679 0 0" />
+      <geometry>
+        <cylinder radius="0.054" length="0.039" />
+      </geometry>
+    </collision>
+    <collision name="fr_leg_l1_inner_collision">
+      <origin xyz="0.066 0.0425 0" rpy="1.57079632679 0 0" />
+      <geometry>
+        <cylinder radius="0.036" length="0.039" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fr_leg_1"
+    type="revolute">
+    <origin
+      xyz="0.2445 -0.075 -0.040198"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="fr_leg_l1" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.785"
+      upper="0.785"
+      effort="180"
+      velocity="12.5663706143592" />
+  </joint>
+  <link
+    name="fr_leg_l2">
+    <inertial>
+      <origin
+        xyz="-0.043321 -0.072982 0.006739"
+        rpy="0 0 0" />
+      <mass
+        value="3.131994" />
+      <inertia
+        ixx="0.007115110648"
+        ixy="-0.004949925226"
+        ixz="0.001792843675"
+        iyy="0.029007255995"
+        iyz="0.000804832727"
+        izz="0.031500776880" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eqr12_description/meshes/fr_leg_l2_simplified.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="fr_leg_l2_motor_collision">
+      <origin xyz="0 -0.065 0" rpy="1.57079632679 0 0" />
+      <geometry>
+        <cylinder radius="0.059" length="0.136" />
+      </geometry>
+    </collision>
+    <collision name="fr_leg_l2_beam_collision">
+      <origin xyz="-0.175 -0.1095 0.023" rpy="0 -0.1 0" />
+      <geometry>
+        <box size="0.3 0.047 0.07" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fr_leg_2"
+    type="revolute">
+    <origin
+      xyz="0.066 -0.021 0"
+      rpy="0 0 0" />
+    <parent
+      link="fr_leg_l1" />
+    <child
+      link="fr_leg_l2" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.935"
+      upper="1.475"
+      effort="180"
+      velocity="12.5663706143592" />
+  </joint>
+  <link
+    name="fr_leg_l3">
+    <inertial>
+      <origin
+        xyz="0.138929 -0.000015 -0.041087"
+        rpy="0 0 0" />
+      <mass
+        value="0.541592" />
+      <inertia
+        ixx="0.001021112546"
+        ixy="0.000015713620"
+        ixz="0.002333265600"
+        iyy="0.007974158074"
+        iyz="-0.000004716320"
+        izz="0.007037119332" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eqr12_description/meshes/fr_leg_l3_simplified.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="fr_leg_l3_knee_collision">
+      <origin xyz="-0.02 0 0.02" rpy="0 0 0" />
+      <geometry>
+        <box size="0.042 0.03 0.034" />
+      </geometry>
+    </collision>
+    <collision name="fr_leg_l3_upper_collision">
+      <origin xyz="0.025 0 -0.01" rpy="0 0.26 0" />
+      <geometry>
+        <box size="0.07 0.03 0.028" />
+      </geometry>
+    </collision>
+    <collision name="fr_leg_l3_middle_collision">
+      <origin xyz="0.11 0 -0.02" rpy="0 0 0" />
+      <geometry>
+        <box size="0.1 0.037 0.032" />
+      </geometry>
+    </collision>
+    <collision name="fr_leg_l3_lower_collision">
+      <origin xyz="0.215 0 -0.066" rpy="0 0.6 0" />
+      <geometry>
+        <box size="0.15 0.036 0.032" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fr_leg_3"
+    type="revolute">
+    <origin
+      xyz="-0.3 -0.1105 0"
+      rpy="0 0 0" />
+    <parent
+      link="fr_leg_l2" />
+    <child
+      link="fr_leg_l3" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-0.035"
+      upper="1.736"
+      effort="180"
+      velocity="12.5663706143592" />
+  </joint>
+  <link
+    name="fr_leg_lee">
+    <inertial>
+      <origin
+        xyz="0.006043 -0.000438 -0.012467"
+        rpy="0 0 0" />
+      <mass
+        value="0.108850" />
+      <inertia
+        ixx="0.000030862642"
+        ixy="-0.000000007370"
+        ixz="-0.000006994765"
+        iyy="0.000034673223"
+        iyz="0.000000133748"
+        izz="0.000041878841" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eqr12_description/meshes/fr_leg_lee_simplified.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="fr_leg_lee_foot_collision">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.035" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fr_leg_ee"
+    type="fixed">
+    <origin
+      xyz="0.27875 1.1663E-05 -0.11092"
+      rpy="0 0 0" />
+    <parent
+      link="fr_leg_l3" />
+    <child
+      link="fr_leg_lee" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="hl_leg_l1">
+    <inertial>
+      <origin
+        xyz="-0.060233 -0.016827 0.000112"
+        rpy="0 0 0" />
+      <mass
+        value="1.718430" />
+      <inertia
+        ixx="0.002332355174"
+        ixy="-0.000032289991"
+        ixz="0.000001834830"
+        iyy="0.002889572348"
+        iyz="0.000006688923"
+        izz="0.002771874207" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eqr12_description/meshes/hl_leg_l1_simplified.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="hl_leg_l1_motor_collision">
+      <origin xyz="-0.066 -0.0035 0" rpy="1.57079632679 0 0" />
+      <geometry>
+        <cylinder radius="0.054" length="0.039" />
+      </geometry>
+    </collision>
+    <collision name="hl_leg_l1_inner_collision">
+      <origin xyz="-0.066 -0.0425 0" rpy="1.57079632679 0 0" />
+      <geometry>
+        <cylinder radius="0.036" length="0.039" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="hl_leg_1"
+    type="revolute">
+    <origin
+      xyz="-0.2445 0.075 -0.040198"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="hl_leg_l1" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.785"
+      upper="0.785"
+      effort="180"
+      velocity="12.5663706143592" />
+  </joint>
+  <link
+    name="hl_leg_l2">
+    <inertial>
+      <origin
+        xyz="-0.043432 0.072982 0.006898"
+        rpy="0 0 0" />
+      <mass
+        value="3.132014" />
+      <inertia
+        ixx="0.007108704172"
+        ixy="0.004928566020"
+        ixz="0.001770452747"
+        iyy="0.028970935605"
+        iyz="-0.000768122480"
+        izz="0.031470954387" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eqr12_description/meshes/hl_leg_l2_simplified.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="hl_leg_l2_motor_collision">
+      <origin xyz="0 0.065 0" rpy="1.57079632679 0 0" />
+      <geometry>
+        <cylinder radius="0.059" length="0.136" />
+      </geometry>
+    </collision>
+    <collision name="hl_leg_l2_beam_collision">
+      <origin xyz="-0.175 0.1095 0.023" rpy="0 -0.1 0" />
+      <geometry>
+        <box size="0.3 0.047 0.07" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="hl_leg_2"
+    type="revolute">
+    <origin
+      xyz="-0.066 0.021 0"
+      rpy="0 0 0" />
+    <parent
+      link="hl_leg_l1" />
+    <child
+      link="hl_leg_l2" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.935"
+      upper="1.475"
+      effort="180"
+      velocity="12.5663706143592" />
+  </joint>
+  <link
+    name="hl_leg_l3">
+    <inertial>
+      <origin
+        xyz="0.138933 0.000015 -0.041088"
+        rpy="0 0 0" />
+      <mass
+        value="0.541561" />
+      <inertia
+        ixx="0.001021103512"
+        ixy="-0.000015746772"
+        ixz="0.002333114521"
+        iyy="0.007973820743"
+        iyz="0.000004732854"
+        izz="0.007036785690" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eqr12_description/meshes/hl_leg_l3_simplified.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="hl_leg_l3_knee_collision">
+      <origin xyz="-0.02 0 0.02" rpy="0 0 0" />
+      <geometry>
+        <box size="0.042 0.03 0.034" />
+      </geometry>
+    </collision>
+    <collision name="hl_leg_l3_upper_collision">
+      <origin xyz="0.025 0 -0.01" rpy="0 0.26 0" />
+      <geometry>
+        <box size="0.07 0.03 0.028" />
+      </geometry>
+    </collision>
+    <collision name="hl_leg_l3_middle_collision">
+      <origin xyz="0.11 0 -0.02" rpy="0 0 0" />
+      <geometry>
+        <box size="0.1 0.037 0.032" />
+      </geometry>
+    </collision>
+    <collision name="hl_leg_l3_lower_collision">
+      <origin xyz="0.215 0 -0.066" rpy="0 0.6 0" />
+      <geometry>
+        <box size="0.15 0.036 0.032" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="hl_leg_3"
+    type="revolute">
+    <origin
+      xyz="-0.3 0.1105 0"
+      rpy="0 0 0" />
+    <parent
+      link="hl_leg_l2" />
+    <child
+      link="hl_leg_l3" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-0.035"
+      upper="1.736"
+      effort="180"
+      velocity="12.5663706143592" />
+  </joint>
+  <link
+    name="hl_leg_lee">
+    <inertial>
+      <origin
+        xyz="0.006041 0.000438 -0.012468"
+        rpy="0 0 0" />
+      <mass
+        value="0.108850" />
+      <inertia
+        ixx="0.000030846278"
+        ixy="0.000000100415"
+        ixz="-0.000006981848"
+        iyy="0.000034673223"
+        iyz="-0.000000088654"
+        izz="0.000041895206" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eqr12_description/meshes/hl_leg_lee_simplified.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="hl_leg_lee_foot_collision">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.035" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="hl_leg_ee"
+    type="fixed">
+    <origin
+      xyz="0.27875 0 -0.11092"
+      rpy="0 0 0" />
+    <parent
+      link="hl_leg_l3" />
+    <child
+      link="hl_leg_lee" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="hr_leg_l1">
+    <inertial>
+      <origin
+        xyz="-0.060233 0.016827 -0.000112"
+        rpy="0 0 0" />
+      <mass
+        value="1.718430" />
+      <inertia
+        ixx="0.002332355174"
+        ixy="0.000032289991"
+        ixz="-0.000001834830"
+        iyy="0.002889572348"
+        iyz="0.000006688923"
+        izz="0.002771874207" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eqr12_description/meshes/hr_leg_l1_simplified.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="hr_leg_l1_motor_collision">
+      <origin xyz="-0.066 0.0035 0" rpy="1.57079632679 0 0" />
+      <geometry>
+        <cylinder radius="0.054" length="0.039" />
+      </geometry>
+    </collision>
+    <collision name="hr_leg_l1_inner_collision">
+      <origin xyz="-0.066 0.0425 0" rpy="1.57079632679 0 0" />
+      <geometry>
+        <cylinder radius="0.036" length="0.039" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="hr_leg_1"
+    type="revolute">
+    <origin
+      xyz="-0.2445 -0.075 -0.040198"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="hr_leg_l1" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.785"
+      upper="0.785"
+      effort="180"
+      velocity="12.5663706143592" />
+  </joint>
+  <link
+    name="hr_leg_l2">
+    <inertial>
+      <origin
+        xyz="-0.043419 -0.072982 0.007020"
+        rpy="0 0 0" />
+      <mass
+        value="3.131994" />
+      <inertia
+        ixx="0.007102987357"
+        ixy="-0.004930382195"
+        ixz="0.001752512521"
+        iyy="0.028968429537"
+        iyz="0.000748898780"
+        izz="0.031474073714" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eqr12_description/meshes/hr_leg_l2_simplified.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="hr_leg_l2_motor_collision">
+      <origin xyz="0 -0.065 0" rpy="1.57079632679 0 0" />
+      <geometry>
+        <cylinder radius="0.059" length="0.136" />
+      </geometry>
+    </collision>
+    <collision name="hr_leg_l2_beam_collision">
+      <origin xyz="-0.175 -0.1095 0.023" rpy="0 -0.1 0" />
+      <geometry>
+        <box size="0.3 0.047 0.07" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="hr_leg_2"
+    type="revolute">
+    <origin
+      xyz="-0.066 -0.021 0"
+      rpy="0 0 0" />
+    <parent
+      link="hr_leg_l1" />
+    <child
+      link="hr_leg_l2" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.935"
+      upper="1.475"
+      effort="180"
+      velocity="12.5663706143592" />
+  </joint>
+  <link
+    name="hr_leg_l3">
+    <inertial>
+      <origin
+        xyz="0.138929 -0.000015 -0.041087"
+        rpy="0 0 0" />
+      <mass
+        value="0.541592" />
+      <inertia
+        ixx="0.001021112546"
+        ixy="0.000015713620"
+        ixz="0.002333265600"
+        iyy="0.007974158074"
+        iyz="-0.000004716320"
+        izz="0.007037119332" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eqr12_description/meshes/hr_leg_l3_simplified.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="hr_leg_l3_knee_collision">
+      <origin xyz="-0.02 0 0.02" rpy="0 0 0" />
+      <geometry>
+        <box size="0.042 0.03 0.034" />
+      </geometry>
+    </collision>
+    <collision name="hr_leg_l3_upper_collision">
+      <origin xyz="0.025 0 -0.01" rpy="0 0.26 0" />
+      <geometry>
+        <box size="0.07 0.03 0.028" />
+      </geometry>
+    </collision>
+    <collision name="hr_leg_l3_middle_collision">
+      <origin xyz="0.11 0 -0.02" rpy="0 0 0" />
+      <geometry>
+        <box size="0.1 0.037 0.032" />
+      </geometry>
+    </collision>
+    <collision name="hr_leg_l3_lower_collision">
+      <origin xyz="0.215 0 -0.066" rpy="0 0.6 0" />
+      <geometry>
+        <box size="0.15 0.036 0.032" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="hr_leg_3"
+    type="revolute">
+    <origin
+      xyz="-0.3 -0.1105 0"
+      rpy="0 0 0" />
+    <parent
+      link="hr_leg_l2" />
+    <child
+      link="hr_leg_l3" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-0.035"
+      upper="1.736"
+      effort="180"
+      velocity="12.5663706143592" />
+  </joint>
+  <link
+    name="hr_leg_lee">
+    <inertial>
+      <origin
+        xyz="0.006035 -0.000438 -0.012471"
+        rpy="0 0 0" />
+      <mass
+        value="0.108850" />
+      <inertia
+        ixx="0.000030853506"
+        ixy="-0.000000007283"
+        ixz="-0.000006987561"
+        iyy="0.000034673223"
+        iyz="0.000000133753"
+        izz="0.000041887977" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eqr12_description/meshes/hr_leg_lee_simplified.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="hr_leg_lee_foot_collision">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.035" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="hr_leg_ee"
+    type="fixed">
+    <origin
+      xyz="0.27875 0 -0.11092"
+      rpy="0 0 0" />
+    <parent
+      link="hr_leg_l3" />
+    <child
+      link="hr_leg_lee" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>

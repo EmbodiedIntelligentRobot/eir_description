@@ -1,0 +1,1158 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="eqr11w">
+
+  <mujoco>
+    <compiler meshdir="../meshes" balanceinertia="true" discardvisual="false" strippath="true"/>
+  </mujoco>
+
+  <material name="eqr_red"><color rgba="0.72 0.008 0.005 1"/></material>
+  <material name="eqr_white"><color rgba="0.96 0.96 0.95 1"/></material>
+  <material name="eqr_silver"><color rgba="0.73 0.75 0.77 1"/></material>
+  <material name="eqr_glass"><color rgba="0.012 0.019 0.025 1"/></material>
+  <material name="eqr_panel"><color rgba="0.36 0.37 0.35 1"/></material>
+  <material name="eqr_rubber"><color rgba="0.035 0.038 0.042 1"/></material>
+  <material name="eqr_motor"><color rgba="0.13 0.135 0.14 1"/></material>
+  <material name="eqr_dark"><color rgba="0.055 0.062 0.07 1"/></material>
+  <material name="eqr_wheel_cover"><color rgba="0.66 0.68 0.69 1"/></material>
+  <material name="eqr_shell"><color rgba="0.60 0.62 0.64 1"/></material>
+  <!-- <link name="world"></link>
+
+  <joint name="floating_base_joint" type="floating">
+    <parent link="world" />
+    <child link="base_link" />
+  </joint> -->
+
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.002093 0.006495 -0.05579" rpy="0 0 0"/>
+      <mass value="24.857778"/>
+      <inertia ixx="0.212802461343" ixy="-0.000962274239" ixz="-0.002887972269" iyy="0.645705004737" iyz="0.0029617276" izz="0.738140310111"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/base_link_vis_dark.STL"/>
+      </geometry>
+      <material name="eqr_dark"/></visual>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/base_link_vis_glass.STL"/>
+      </geometry>
+      <material name="eqr_glass"/></visual>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/base_link_vis_motor.STL"/>
+      </geometry>
+      <material name="eqr_motor"/></visual>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/base_link_vis_panel.STL"/>
+      </geometry>
+      <material name="eqr_panel"/></visual>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/base_link_vis_red.STL"/>
+      </geometry>
+      <material name="eqr_red"/></visual>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/base_link_vis_shell.STL"/>
+      </geometry>
+      <material name="eqr_shell"/></visual>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/base_link_vis_silver.STL"/>
+      </geometry>
+      <material name="eqr_silver"/></visual>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/base_link_vis_white.STL"/>
+      </geometry>
+      <material name="eqr_white"/></visual>
+
+
+
+
+
+    <collision>
+      <origin xyz="0 0 -0.05" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.25 0.28 0.16"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.13 0.075 -0.135" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.01 0.015"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.13 0.075 -0.135" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.01 0.015"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.13 -0.075 -0.135" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.01 0.015"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.13 -0.075 -0.135" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.01 0.015"/>
+      </geometry>
+    </collision>
+    <collision name="base_link_collision_simple_base_rear_roof_extension">
+      <origin xyz="-0.2225001 0 0.0318751" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/base_link_collision_simple_base_rear_roof_extension.STL"/>
+      </geometry>
+    </collision>
+    <collision name="base_link_collision_simple_base_front_roof_extension">
+      <origin xyz="0.2225001 0 0.0318751" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/base_link_collision_simple_base_front_roof_extension.STL"/>
+      </geometry>
+    </collision>
+    <collision name="base_link_collision_simple_base_rear_nose_extension">
+      <origin xyz="-0.39078295 7.255e-05 -0.0413072" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/base_link_collision_simple_base_rear_nose_extension.STL"/>
+      </geometry>
+    </collision>
+    <collision name="base_link_collision_simple_base_front_nose_extension">
+      <origin xyz="0.3907171 -7.255e-05 -0.0413072" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/base_link_collision_simple_base_front_nose_extension.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- 30kg 负载（与 eqr11.xml 中注释一致；需要时取消注释）
+  <link
+    name="load">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="30.0" />
+      <inertia
+        ixx="0.2"
+        ixy="0"
+        ixz="0"
+        iyy="0.2"
+        iyz="0"
+        izz="0.2" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box
+          size="0.2 0.2 0.2" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.9 0.3 0.3 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box
+          size="0.2 0.2 0.2" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="load_joint"
+    type="fixed">
+    <origin
+      xyz="0.0 0.0 0.15"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="load" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  -->
+
+  <link name="fl_leg_l1">
+    <inertial>
+      <origin xyz="0.071439 0.008782 0.000578" rpy="0 0 0"/>
+      <mass value="1.560736"/>
+      <inertia ixx="0.001935830258" ixy="-0.000033375763" ixz="-0.000025551812" iyy="0.003350254182" iyz="-0.000027381793" izz="0.002145212964"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/fl_leg_l1_simplified.STL"/>
+      </geometry>
+      <material name="eqr_motor"/></visual>
+
+    <collision>
+      <origin xyz="0.072 0.005 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.065" length="0.045"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="fl_leg_1" type="revolute">
+    <origin xyz="0.21443 0.086 -0.061" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="fl_leg_l1"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-0.785" upper="0.785" effort="130" velocity="20"/>
+  </joint>
+  <link name="fl_leg_l2">
+    <inertial>
+      <origin xyz="-0.043538 0.11179 0.009856" rpy="0 0 0"/>
+      <mass value="3.707999"/>
+      <inertia ixx="0.007728873958" ixy="0.004352335022" ixz="0.002727450492" iyy="0.026045210511" iyz="-0.001014554208" izz="0.026419770614"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/fl_leg_l2_vis_motor.STL"/>
+      </geometry>
+      <material name="eqr_motor"/></visual>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/fl_leg_l2_vis_shell.STL"/>
+      </geometry>
+      <material name="eqr_shell"/></visual>
+
+
+    <collision>
+      <origin xyz="0 0.09 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.065" length="0.12"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.13 0.13 0.03" rpy="0.0 0 0"/>
+      <geometry>
+        <box size="0.11 0.05 0.05"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="fl_leg_2" type="revolute">
+    <origin xyz="0.0765 0 0" rpy="0 0 0"/>
+    <parent link="fl_leg_l1"/>
+    <child link="fl_leg_l2"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-3.988" upper="1.457" effort="150" velocity="20"/>
+  </joint>
+  <link name="fl_leg_l3">
+    <inertial>
+      <origin xyz="0.105001 0.000066 -0.04033" rpy="0 0 0"/>
+      <mass value="0.506512"/>
+      <inertia ixx="0.001036701807" ixy="-0.000000682918" ixz="0.002138774436" iyy="0.006419212339" iyz="-0.00000057449" izz="0.005453794636"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/fl_leg_l3_simplified.STL"/>
+      </geometry>
+      <material name="eqr_dark"/></visual>
+
+
+
+
+    <collision>
+      <origin xyz="0.1 0 -0.02" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.08 0.02 0.025"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.18 0 -0.05" rpy="0 0.70 0"/>
+      <geometry>
+        <box size="0.08 0.02 0.025"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.025 0 -0.01" rpy="0 0.26 0"/>
+      <geometry>
+        <box size="0.063 0.025 0.025"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.025 0 0.02" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.04 0.02 0.025"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="fl_leg_3" type="revolute">
+    <origin xyz="-0.25 0.1365 0" rpy="0 0 0"/>
+    <parent link="fl_leg_l2"/>
+    <child link="fl_leg_l3"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="0" upper="1.745" effort="150" velocity="20"/>
+  </joint>
+  <link name="fl_foot_l0">
+    <inertial>
+      <origin xyz="0.000039 0.032546 -0.000085" rpy="0 0 0"/>
+      <mass value="0.737688"/>
+      <inertia ixx="0.000472516875" ixy="0.000000003963" ixz="-0.000004427452" iyy="0.000548121796" iyz="-0.000000006627" izz="0.000480171115"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/fl_foot_l0_simplified.STL"/>
+      </geometry>
+      <material name="eqr_dark"/></visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/fl_foot_l0_collision.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="fl_foot" type="fixed">
+    <origin xyz="0.24424 0 -0.11649" rpy="0 0 0"/>
+    <parent link="fl_leg_l3"/>
+    <child link="fl_foot_l0"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="fl_wheel_l0">
+    <inertial>
+      <origin xyz="0 0.002161 0.000001" rpy="0 0 0"/>
+      <mass value="0.773801"/>
+      <inertia ixx="0.002822731264" ixy="0.00000000041" ixz="-0.000000004617" iyy="0.005380918413" iyz="-0.000000006649" izz="0.002822720937"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 -0.585 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/fl_wheel_l0_vis_dark.STL"/>
+      </geometry>
+      <material name="eqr_dark"/></visual>
+    <visual>
+      <origin xyz="0 -0.585 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/fl_wheel_l0_vis_rubber.STL"/>
+      </geometry>
+      <material name="eqr_rubber"/></visual>
+    <visual>
+      <origin xyz="0 -0.585 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/fl_wheel_l0_vis_silver.STL"/>
+      </geometry>
+      <material name="eqr_wheel_cover"/></visual>
+    <collision>
+      <origin xyz="0 -0.585 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/fl_wheel_l0_collision.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="fl_wheel" type="continuous">
+    <origin xyz="0 0.069 0" rpy="0 0 0"/>
+    <parent link="fl_foot_l0"/>
+    <child link="fl_wheel_l0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+  <link name="fr_leg_l1">
+    <inertial>
+      <origin xyz="0.071373 -0.008813 0.000548" rpy="0 0 0"/>
+      <mass value="1.562407"/>
+      <inertia ixx="0.001937378815" ixy="0.000029800503" ixz="-0.000026148748" iyy="0.003358179927" iyz="0.000028112254" izz="0.002154481139"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/fr_leg_l1_simplified.STL"/>
+      </geometry>
+      <material name="eqr_motor"/></visual>
+
+    <collision>
+      <origin xyz="0.072 -0.005 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.065" length="0.045"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="fr_leg_1" type="revolute">
+    <origin xyz="0.21443 -0.086 -0.061" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="fr_leg_l1"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-0.785" upper="0.785" effort="130" velocity="20"/>
+  </joint>
+  <link name="fr_leg_l2">
+    <inertial>
+      <origin xyz="-0.039522 -0.111296 0.010119" rpy="0 0 0"/>
+      <mass value="3.658832"/>
+      <inertia ixx="0.007782502463" ixy="-0.004012222235" ixz="0.002818400275" iyy="0.023082868682" iyz="0.001035861163" izz="0.023413460872"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/fr_leg_l2_vis_motor.STL"/>
+      </geometry>
+      <material name="eqr_motor"/></visual>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/fr_leg_l2_vis_shell.STL"/>
+      </geometry>
+      <material name="eqr_shell"/></visual>
+
+
+    <collision>
+      <origin xyz="0 -0.09 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.065" length="0.12"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.13 -0.13 0.03" rpy="0.0 0 0"/>
+      <geometry>
+        <box size="0.11 0.05 0.05"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="fr_leg_2" type="revolute">
+    <origin xyz="0.0765 0 0" rpy="0 0 0"/>
+    <parent link="fr_leg_l1"/>
+    <child link="fr_leg_l2"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-3.988" upper="1.457" effort="150" velocity="20"/>
+  </joint>
+  <link name="fr_leg_l3">
+    <inertial>
+      <origin xyz="0.105001 0.000066 -0.04033" rpy="0 0 0"/>
+      <mass value="0.506512"/>
+      <inertia ixx="0.001036701807" ixy="-0.000000682918" ixz="0.002138774436" iyy="0.006419212339" iyz="-0.00000057449" izz="0.005453794636"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/fr_leg_l3_simplified.STL"/>
+      </geometry>
+      <material name="eqr_dark"/></visual>
+
+
+
+
+    <collision>
+      <origin xyz="0.1 0 -0.02" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.08 0.02 0.025"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.18 0 -0.05" rpy="0 0.70 0"/>
+      <geometry>
+        <box size="0.08 0.02 0.025"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.025 0 -0.01" rpy="0 0.26 0"/>
+      <geometry>
+        <box size="0.063 0.025 0.025"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.025 0 0.02" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.04 0.02 0.025"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="fr_leg_3" type="revolute">
+    <origin xyz="-0.25 -0.1365 0" rpy="0 0 0"/>
+    <parent link="fr_leg_l2"/>
+    <child link="fr_leg_l3"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="0" upper="1.745" effort="150" velocity="20"/>
+  </joint>
+  <link name="fr_foot_l0">
+    <inertial>
+      <origin xyz="0.000038 -0.032546 -0.000085" rpy="0 0 0"/>
+      <mass value="0.737688"/>
+      <inertia ixx="0.00047249246" ixy="-0.000000002402" ixz="-0.00000440623" iyy="0.000548121796" iyz="0.000000007338" izz="0.00048019553"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/fr_foot_l0_simplified.STL"/>
+      </geometry>
+      <material name="eqr_dark"/></visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/fr_foot_l0_collision.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="fr_foot" type="fixed">
+    <origin xyz="0.24424 0 -0.11649" rpy="0 0 0"/>
+    <parent link="fr_leg_l3"/>
+    <child link="fr_foot_l0"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="fr_wheel_l0">
+    <inertial>
+      <origin xyz="-0.000001 -0.002161 0" rpy="0 0 0"/>
+      <mass value="0.773801"/>
+      <inertia ixx="0.00282272081" ixy="-0.000000005425" ixz="0.00000000447" iyy="0.005380918413" iyz="0.000000004672" izz="0.002822731392"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/fr_wheel_l0_vis_dark.STL"/>
+      </geometry>
+      <material name="eqr_dark"/></visual>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/fr_wheel_l0_vis_rubber.STL"/>
+      </geometry>
+      <material name="eqr_rubber"/></visual>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/fr_wheel_l0_vis_silver.STL"/>
+      </geometry>
+      <material name="eqr_wheel_cover"/></visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/fr_wheel_l0_collision.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="fr_wheel" type="continuous">
+    <origin xyz="0 -0.069 0" rpy="0 0 0"/>
+    <parent link="fr_foot_l0"/>
+    <child link="fr_wheel_l0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+  <link name="hl_leg_l1">
+    <inertial>
+      <origin xyz="-0.071226 0.008843 0.000673" rpy="0 0 0"/>
+      <mass value="1.564985"/>
+      <inertia ixx="0.001947065787" ixy="0.000025227234" ixz="0.00001285095" iyy="0.003356895475" iyz="-0.000032538479" izz="0.002144966587"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/hl_leg_l1_simplified.STL"/>
+      </geometry>
+      <material name="eqr_motor"/></visual>
+
+    <collision>
+      <origin xyz="-0.072 0.005 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.065" length="0.045"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="hl_leg_1" type="revolute">
+    <origin xyz="-0.21457 0.086 -0.061" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="hl_leg_l1"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-0.785" upper="0.785" effort="130" velocity="20"/>
+  </joint>
+  <link name="hl_leg_l2">
+    <inertial>
+      <origin xyz="-0.043538 0.11179 0.009856" rpy="0 0 0"/>
+      <mass value="3.707999"/>
+      <inertia ixx="0.007728873958" ixy="0.004352335022" ixz="0.002727450492" iyy="0.026045210511" iyz="-0.001014554208" izz="0.026419770614"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/hl_leg_l2_vis_motor.STL"/>
+      </geometry>
+      <material name="eqr_motor"/></visual>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/hl_leg_l2_vis_shell.STL"/>
+      </geometry>
+      <material name="eqr_shell"/></visual>
+
+
+    <collision>
+      <origin xyz="0 0.09 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.065" length="0.12"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.13 0.13 0.03" rpy="0.0 0 0"/>
+      <geometry>
+        <box size="0.11 0.05 0.05"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="hl_leg_2" type="revolute">
+    <origin xyz="-0.0765 0 0" rpy="0 0 0"/>
+    <parent link="hl_leg_l1"/>
+    <child link="hl_leg_l2"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-3.988" upper="1.457" effort="150" velocity="20"/>
+  </joint>
+  <link name="hl_leg_l3">
+    <inertial>
+      <origin xyz="0.105001 0.000066 -0.04033" rpy="0 0 0"/>
+      <mass value="0.506512"/>
+      <inertia ixx="0.001036701807" ixy="-0.000000682918" ixz="0.002138774436" iyy="0.006419212339" iyz="-0.00000057449" izz="0.005453794636"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/hl_leg_l3_simplified.STL"/>
+      </geometry>
+      <material name="eqr_dark"/></visual>
+
+
+
+
+    <collision>
+      <origin xyz="0.1 0 -0.02" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.08 0.02 0.025"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.18 0 -0.05" rpy="0 0.70 0"/>
+      <geometry>
+        <box size="0.08 0.02 0.025"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.025 0 -0.01" rpy="0 0.26 0"/>
+      <geometry>
+        <box size="0.063 0.025 0.025"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.025 0 0.02" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.04 0.02 0.025"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="hl_leg_3" type="revolute">
+    <origin xyz="-0.25 0.1365 0" rpy="0 0 0"/>
+    <parent link="hl_leg_l2"/>
+    <child link="hl_leg_l3"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="0" upper="1.745" effort="150" velocity="20"/>
+  </joint>
+  <link name="hl_foot_l0">
+    <inertial>
+      <origin xyz="0.000039 0.032546 -0.000085" rpy="0 0 0"/>
+      <mass value="0.737688"/>
+      <inertia ixx="0.000472516875" ixy="0.000000003963" ixz="-0.000004427452" iyy="0.000548121796" iyz="-0.000000006627" izz="0.000480171115"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/hl_foot_l0_simplified.STL"/>
+      </geometry>
+      <material name="eqr_dark"/></visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/hl_foot_l0_collision.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="hl_foot" type="fixed">
+    <origin xyz="0.244236 0 -0.116495" rpy="0 0 0"/>
+    <parent link="hl_leg_l3"/>
+    <child link="hl_foot_l0"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="hl_wheel_l0">
+    <inertial>
+      <origin xyz="0 0.002161 0.000001" rpy="0 0 0"/>
+      <mass value="0.773801"/>
+      <inertia ixx="0.002822731264" ixy="0.00000000041" ixz="-0.000000004617" iyy="0.005380918413" iyz="-0.000000006649" izz="0.002822720937"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/hl_wheel_l0_vis_dark.STL"/>
+      </geometry>
+      <material name="eqr_dark"/></visual>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/hl_wheel_l0_vis_rubber.STL"/>
+      </geometry>
+      <material name="eqr_rubber"/></visual>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/hl_wheel_l0_vis_silver.STL"/>
+      </geometry>
+      <material name="eqr_wheel_cover"/></visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/hl_wheel_l0_collision.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="hl_wheel" type="continuous">
+    <origin xyz="0 0.069 0" rpy="0 0 0"/>
+    <parent link="hl_foot_l0"/>
+    <child link="hl_wheel_l0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+  <link name="hr_leg_l1">
+    <inertial>
+      <origin xyz="-0.071226 -0.008913 0.00088" rpy="0 0 0"/>
+      <mass value="1.564985"/>
+      <inertia ixx="0.001940051089" ixy="-0.000030093307" ixz="0.000010854989" iyy="0.003356392858" iyz="0.000023745689" izz="0.002138454506"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/hr_leg_l1_simplified.STL"/>
+      </geometry>
+      <material name="eqr_motor"/></visual>
+
+    <collision>
+      <origin xyz="-0.072 -0.005 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.065" length="0.045"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="hr_leg_1" type="revolute">
+    <origin xyz="-0.21457 -0.086 -0.061" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="hr_leg_l1"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-0.785" upper="0.785" effort="130" velocity="20"/>
+  </joint>
+  <link name="hr_leg_l2">
+    <inertial>
+      <origin xyz="-0.039522 -0.111296 0.010119" rpy="0 0 0"/>
+      <mass value="3.658832"/>
+      <inertia ixx="0.007782502463" ixy="-0.004012222235" ixz="0.002818400275" iyy="0.023082868682" iyz="0.001035861163" izz="0.023413460872"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/hr_leg_l2_vis_motor.STL"/>
+      </geometry>
+      <material name="eqr_motor"/></visual>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/hr_leg_l2_vis_shell.STL"/>
+      </geometry>
+      <material name="eqr_shell"/></visual>
+
+
+    <collision>
+      <origin xyz="0 -0.09 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.065" length="0.12"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.13 -0.13 0.03" rpy="0.0 0 0"/>
+      <geometry>
+        <box size="0.11 0.05 0.05"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="hr_leg_2" type="revolute">
+    <origin xyz="-0.0765 0 0" rpy="0 0 0"/>
+    <parent link="hr_leg_l1"/>
+    <child link="hr_leg_l2"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-3.988" upper="1.457" effort="150" velocity="20"/>
+  </joint>
+  <link name="hr_leg_l3">
+    <inertial>
+      <origin xyz="0.105001 0.000066 -0.04033" rpy="0 0 0"/>
+      <mass value="0.506512"/>
+      <inertia ixx="0.001036701807" ixy="-0.000000682918" ixz="0.002138774436" iyy="0.006419212339" iyz="-0.00000057449" izz="0.005453794636"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/hr_leg_l3_simplified.STL"/>
+      </geometry>
+      <material name="eqr_dark"/></visual>
+
+
+
+
+    <collision>
+      <origin xyz="0.1 0 -0.02" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.08 0.02 0.025"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.18 0 -0.05" rpy="0 0.70 0"/>
+      <geometry>
+        <box size="0.08 0.02 0.025"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.025 0 -0.01" rpy="0 0.26 0"/>
+      <geometry>
+        <box size="0.063 0.025 0.025"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.025 0 0.02" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.04 0.02 0.025"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="hr_leg_3" type="revolute">
+    <origin xyz="-0.25 -0.1365 0" rpy="0 0 0"/>
+    <parent link="hr_leg_l2"/>
+    <child link="hr_leg_l3"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="0" upper="1.745" effort="150" velocity="20"/>
+  </joint>
+  <link name="hr_foot_l0">
+    <inertial>
+      <origin xyz="0.000038 -0.032546 -0.000085" rpy="0 0 0"/>
+      <mass value="0.737688"/>
+      <inertia ixx="0.00047249246" ixy="-0.000000002402" ixz="-0.00000440623" iyy="0.000548121796" iyz="0.000000007338" izz="0.00048019553"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/hr_foot_l0_simplified.STL"/>
+      </geometry>
+      <material name="eqr_dark"/></visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/hr_foot_l0_collision.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="hr_foot" type="fixed">
+    <origin xyz="0.244236 0 -0.116495" rpy="0 0 0"/>
+    <parent link="hr_leg_l3"/>
+    <child link="hr_foot_l0"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="hr_wheel_l0">
+    <inertial>
+      <origin xyz="-0.000001 -0.002161 0" rpy="0 0 0"/>
+      <mass value="0.773801"/>
+      <inertia ixx="0.00282272081" ixy="-0.000000005425" ixz="0.00000000447" iyy="0.005380918413" iyz="0.000000004672" izz="0.002822731392"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/hr_wheel_l0_vis_dark.STL"/>
+      </geometry>
+      <material name="eqr_dark"/></visual>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/hr_wheel_l0_vis_rubber.STL"/>
+      </geometry>
+      <material name="eqr_rubber"/></visual>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/hr_wheel_l0_vis_silver.STL"/>
+      </geometry>
+      <material name="eqr_wheel_cover"/></visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/hr_wheel_l0_collision.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="hr_wheel" type="continuous">
+    <origin xyz="0 -0.069 0" rpy="0 0 0"/>
+    <parent link="hr_foot_l0"/>
+    <child link="hr_wheel_l0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+  <link name="lidar_l1">
+    <inertial>
+      <origin xyz="-0.571851 -0.000007 -0.459221" rpy="0 0 0"/>
+      <mass value="0.252636"/>
+      <inertia ixx="0.000136618121" ixy="0.000000019323" ixz="-0.000013986279" iyy="0.000115064496" iyz="-0.000000015564" izz="0.000089316077"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/lidar_l1_simplified.STL"/>
+      </geometry>
+      <material name="eqr_glass"/></visual>
+    <!--
+<collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eqr11w_description/meshes/lidar_l1_simplified.STL" />
+      </geometry>
+    </collision>
+    -->
+  </link>
+  <joint name="lidar_1" type="fixed">
+    <origin xyz="0.36107 0 -0.026671" rpy="0 0.69813 0"/>
+    <parent link="base_link"/>
+    <child link="lidar_l1"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="lidar_l2">
+    <inertial>
+      <origin xyz="-0.571851 -0.000007 -0.459221" rpy="0 0 0"/>
+      <mass value="0.252636"/>
+      <inertia ixx="0.000136618121" ixy="0.000000019323" ixz="-0.000013986279" iyy="0.000115064496" iyz="-0.000000015564" izz="0.000089316077"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/lidar_l2_simplified.STL"/>
+      </geometry>
+      <material name="eqr_glass"/></visual>
+    <!--
+<collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eqr11w_description/meshes/lidar_l2_simplified.STL" />
+      </geometry>
+    </collision>
+    -->
+  </link>
+  <joint name="lidar_2" type="fixed">
+    <origin xyz="-0.3612 0 -0.026671" rpy="0 0.69813 -3.1416"/>
+    <parent link="base_link"/>
+    <child link="lidar_l2"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="gemini_335le_l1">
+    <inertial>
+      <origin xyz="0.048884 0.000949 -0.031901" rpy="0 0 0"/>
+      <mass value="0.289311"/>
+      <inertia ixx="0.000084529133" ixy="0.000001612614" ixz="0.000003583526" iyy="0.000450388787" iyz="0.000000745032" izz="0.000420673024"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/gemini_335le_l1_simplified.STL"/>
+      </geometry>
+      <material name="eqr_glass"/>
+    </visual>
+    <!--
+<collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eqr11w_description/meshes/gemini_335le_l1_simplified.STL" />
+      </geometry>
+    </collision>
+    -->
+  </link>
+  <joint name="gemini_335le_1" type="fixed">
+    <origin xyz="0.42493 0.0475 -0.097878" rpy="-2.2689 0 -1.5708"/>
+    <parent link="base_link"/>
+    <child link="gemini_335le_l1"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="gemini_335le_l1_rgb_camera_link"/>
+  <joint name="gemini_335le_l1_to_rgb_camera" type="fixed">
+    <origin xyz="0.02375 0 0" rpy="0 0 0"/>
+    <parent link="gemini_335le_l1"/>
+    <child link="gemini_335le_l1_rgb_camera_link"/>
+  </joint>
+  <link name="gemini_335le_l1_depth_camera_link"/>
+  <joint name="gemini_335le_l1_to_depth_camera" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="gemini_335le_l1"/>
+    <child link="gemini_335le_l1_depth_camera_link"/>
+  </joint>
+  <link name="gemini_335le_l1_laser_emitter_link"/>
+  <joint name="gemini_335le_l1_to_laser_emitter" type="fixed">
+    <origin xyz="0.0475 0 0" rpy="0 0 0"/>
+    <parent link="gemini_335le_l1"/>
+    <child link="gemini_335le_l1_laser_emitter_link"/>
+  </joint>
+  <link name="gemini_335le_l2">
+    <inertial>
+      <origin xyz="0.048884 0.010151 -0.030257" rpy="0 0 0"/>
+      <mass value="0.289311"/>
+      <inertia ixx="0.000084529133" ixy="0.000000505152" ixz="0.000003897051" iyy="0.000447480962" iyz="0.000008860468" izz="0.00042358085"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/gemini_335le_l2_simplified.STL"/>
+      </geometry>
+      <material name="eqr_glass"/>
+    </visual>
+    <!--
+<collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eqr11w_description/meshes/gemini_335le_l2_simplified.STL" />
+      </geometry>
+    </collision>
+    -->
+  </link>
+  <joint name="gemini_335le_2" type="fixed">
+    <origin xyz="-0.42506 -0.0475 -0.097878" rpy="-2.5629 0 1.5708"/>
+    <parent link="base_link"/>
+    <child link="gemini_335le_l2"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="gemini_335le_l2_rgb_camera_link"/>
+  <joint name="gemini_335le_l2_to_rgb_camera" type="fixed">
+    <origin xyz="0.02375 0 0" rpy="0 0 0"/>
+    <parent link="gemini_335le_l2"/>
+    <child link="gemini_335le_l2_rgb_camera_link"/>
+  </joint>
+  <link name="gemini_335le_l2_depth_camera_link"/>
+  <joint name="gemini_335le_l2_to_depth_camera" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="gemini_335le_l2"/>
+    <child link="gemini_335le_l2_depth_camera_link"/>
+  </joint>
+  <link name="gemini_335le_l2_laser_emitter_link"/>
+  <joint name="gemini_335le_l2_to_laser_emitter" type="fixed">
+    <origin xyz="0.0475 0 0" rpy="0 0 0"/>
+    <parent link="gemini_335le_l2"/>
+    <child link="gemini_335le_l2_laser_emitter_link"/>
+  </joint>
+  <link name="gemini_336_l1">
+    <inertial>
+      <origin xyz="0.010987 -0.000043 -0.010863" rpy="0 0 0"/>
+      <mass value="0.216358"/>
+      <inertia ixx="0.00003592931" ixy="-0.000000028284" ixz="0.000000027097" iyy="0.000154538688" iyz="-0.000000093453" izz="0.000140982239"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/gemini_336_l1_simplified.STL"/>
+      </geometry>
+      <material name="eqr_glass"/></visual>
+    <!--
+<collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eqr11w_description/meshes/gemini_336_l1_simplified.STL" />
+      </geometry>
+    </collision>
+    -->
+  </link>
+  <joint name="gemini_336_1" type="fixed">
+    <origin xyz="-0.081566 -0.15201 -0.0051119" rpy="-2.0944 0 3.1416"/>
+    <parent link="base_link"/>
+    <child link="gemini_336_l1"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="gemini_336_l1_rgb_camera_link"/>
+  <joint name="gemini_336_l1_to_rgb_camera" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="gemini_336_l1"/>
+    <child link="gemini_336_l1_rgb_camera_link"/>
+  </joint>
+  <link name="gemini_336_l1_depth_camera_link"/>
+  <joint name="gemini_336_l1_to_depth_camera" type="fixed">
+    <origin xyz="-0.014 0 0" rpy="0 0 0"/>
+    <parent link="gemini_336_l1"/>
+    <child link="gemini_336_l1_depth_camera_link"/>
+  </joint>
+  <link name="gemini_336_l1_laser_emitter_link"/>
+  <joint name="gemini_336_l1_to_laser_emitter" type="fixed">
+    <origin xyz="0.011 0 0" rpy="0 0 0"/>
+    <parent link="gemini_336_l1"/>
+    <child link="gemini_336_l1_laser_emitter_link"/>
+  </joint>
+  <link name="gemini_336_l2">
+    <inertial>
+      <origin xyz="0.010987 -0.000048 -0.010863" rpy="0 0 0"/>
+      <mass value="0.216358"/>
+      <inertia ixx="0.000035929288" ixy="-0.000000023992" ixz="0.000000027982" iyy="0.000154538697" iyz="-0.000000075547" izz="0.000140982226"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://eqr11w_description/meshes/gemini_336_l2_simplified.STL"/>
+      </geometry>
+      <material name="eqr_glass"/></visual>
+    <!--
+<collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eqr11w_description/meshes/gemini_336_l2_simplified.STL" />
+      </geometry>
+    </collision>
+    -->
+  </link>
+  <joint name="gemini_336_2" type="fixed">
+    <origin xyz="-0.103566 0.152009 -0.00511186" rpy="-2.09439510239321 0 0"/>
+    <parent link="base_link"/>
+    <child link="gemini_336_l2"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="gemini_336_l2_rgb_camera_link"/>
+  <joint name="gemini_336_l2_to_rgb_camera" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="gemini_336_l2"/>
+    <child link="gemini_336_l2_rgb_camera_link"/>
+  </joint>
+  <link name="gemini_336_l2_depth_camera_link"/>
+  <joint name="gemini_336_l2_to_depth_camera" type="fixed">
+    <origin xyz="-0.014 0 0" rpy="0 0 0"/>
+    <parent link="gemini_336_l2"/>
+    <child link="gemini_336_l2_depth_camera_link"/>
+  </joint>
+  <link name="gemini_336_l2_laser_emitter_link"/>
+  <joint name="gemini_336_l2_to_laser_emitter" type="fixed">
+    <origin xyz="0.011 0 0" rpy="0 0 0"/>
+    <parent link="gemini_336_l2"/>
+    <child link="gemini_336_l2_laser_emitter_link"/>
+  </joint>
+</robot>

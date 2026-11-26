@@ -1,0 +1,806 @@
+<mujoco model="aiq11_pro">
+  <!-- joint damping 是被动黏滞阻尼 B（-B*dq），不是 PD 的 Kd。腿部参数来源及须配合的驱动参数见仓库根 README.md。 -->
+  <compiler angle="radian" meshdir="../meshes/" texturedir="../meshes/"/>
+  <option timestep="0.0005" iterations="50" solver="Newton" gravity="0 0 -9.81">
+    <!-- <option sensornoise="enable"/> -->
+  </option>
+  <size njmax="500" nconmax="100"/>
+  <visual>
+    <quality shadowsize="4096"/>
+    <map znear="0.05"/>
+  </visual>
+  <default>
+    <joint limited="true" damping="0.01" frictionloss="0.01" armature="0.01"/>
+    <motor ctrllimited="true"/>
+    <geom condim="3" contype="1" conaffinity="15" solref="0.001 2" friction="0.9 0.2 0.2"/>
+    <equality solref="0.0005 2"/>
+    <default class="visualgeom">
+      <geom material="visualgeom" condim="3" contype="0" conaffinity="0"/>
+    </default>
+    <default class="obstacle">
+      <geom material="obstacle" condim="3" contype="1" conaffinity="15"/>
+    </default>
+    <default class="fake_joint_param">
+      <joint damping="0.1" frictionloss="0.01" armature="0.0"/>
+    </default>
+    <!-- ==================== 腰部电机 ==================== -->
+    <!-- torso_1: ENCOS_P2_36_4315 (转子惯量25kgmm², 总减速比36×1.33=47.88; armature=25e-6×47.88²) -->
+    <default class="4315-P2-36_torso-1">
+      <joint damping="0.15" frictionloss="0.30" armature="0.05731236"/>
+    </default>
+    <!-- torso_2: ENCOS_P2_36_4315 (转子惯量25kgmm², 减速比36) -->
+    <default class="4315-P2-36_torso-2">
+      <joint damping="0.15" frictionloss="0.30" armature="0.0324"/>
+    </default>
+    <!-- torso_3: ENCOS_P2_36_4315 (转子惯量25kgmm², 减速比36) -->
+    <default class="4315-P2-36_torso-3">
+      <joint damping="0.15" frictionloss="0.30" armature="0.0324"/>
+    </default>
+    <!-- ==================== 腿部电机 ==================== -->
+    <!-- 腿部参数: 2026-10-26/27 AIQ11 SPORT 双腿台架重测，按 PRO MJCF 质量辨识。
+             leg_1-4 取左右平均；串联踝 leg_5/6 为左腿 exact 后端拟合的关节侧等效值
+             (右踝有外部阻力，未采用)。须配合 README 的驱动参数使用。 -->
+    <!-- leg_1: ENCOS_P1_18H_8116 (转子惯量197kgmm², 减速比18) -->
+    <default class="8116-P1-18H_leg-1">
+      <joint damping="0" frictionloss="0.865" armature="0.098"/>
+    </default>
+    <!-- leg_2: ENCOS_P1_18H_8116 (转子惯量197kgmm², 减速比18) -->
+    <default class="8116-P1-18H_leg-2">
+      <joint damping="0.01" frictionloss="0.73" armature="0.094"/>
+    </default>
+    <!-- leg_3: ENCOS_P1_18H_8112 -->
+    <default class="8112-P1-18H_leg-3">
+      <joint damping="0" frictionloss="0.58" armature="0.062"/>
+    </default>
+    <!-- leg_4: ENCOS_P1_18H_8116  -->
+    <default class="8116-P1-18H_leg-4">
+      <joint damping="0.27" frictionloss="1.675" armature="0.2915"/>
+    </default>
+    <!-- leg_5: ENCOS_P2_36_4315  -->
+    <default class="4315-P2-36_leg-5">
+      <joint damping="2.2" frictionloss="1.6" armature="0.03"/>
+    </default>
+    <!-- leg_6: ENCOS_P2_36_4315  -->
+    <default class="4315-P2-36_leg-6">
+      <joint damping="0.6" frictionloss="0.05" armature="0.003"/>
+    </default>
+    <!-- ==================== 手臂电机 ==================== -->
+    <!-- arm_1: ENCOS_P2_3025H_6408 -->
+    <default class="6408-P2-30.25H_arm-1">
+      <joint damping="0.15" frictionloss="0.25" armature="0.0576489"/>
+    </default>
+    <!-- arm_2: ENCOS_P2_36H_4310 -->
+    <default class="4310-P2-36H_arm-2">
+      <joint damping="0.1" frictionloss="0.15" armature="0.023328"/>
+    </default>
+    <!-- arm_3: ENCOS_P2_36H_4310 -->
+    <default class="4310-P2-36H_arm-3">
+      <joint damping="0.1" frictionloss="0.15" armature="0.023328"/>
+    </default>
+    <!-- arm_4: ENCOS_P2_36H_4310 -->
+    <default class="4310-P2-36H_arm-4">
+      <joint damping="0.1" frictionloss="0.15" armature="0.023328"/>
+    </default>
+    <!-- arm_5: ENCOS_P2_36H_4310 -->
+    <default class="4310-P2-36H_arm-5">
+      <joint damping="0.1" frictionloss="0.15" armature="0.023328"/>
+    </default>
+    <!-- arm_6: ENCOS_P2_36_2806  -->
+    <default class="2806-P2-36_arm-6">
+      <joint damping="0.05" frictionloss="0.03" armature="0.00552"/>
+    </default>
+    <!-- arm_7: ENCOS_P2_36_2806  -->
+    <default class="2806-P2-36_arm-7">
+      <joint damping="0.05" frictionloss="0.03" armature="0.00552"/>
+    </default>
+    <!-- ==================== 颈部电机 ==================== -->
+    <!-- neck_1: ENCOS_P2_36_2806  -->
+    <default class="2806-P2-36_neck-1">
+      <joint damping="0.05" frictionloss="0.03" armature="0.00552"/>
+    </default>
+    <!-- neck_2: ENCOS_P2_36_2806  -->
+    <default class="2806-P2-36_neck-2">
+      <joint damping="0.05" frictionloss="0.03" armature="0.00552"/>
+    </default>
+    <!-- neck_3: ENCOS_P2_36_2806  -->
+    <default class="2806-P2-36_neck-3">
+      <joint damping="0.05" frictionloss="0.03" armature="0.00552"/>
+    </default>
+    <default class="HLS3915M_finger">
+      <joint damping="0.06" frictionloss="0.005" armature="0.02"/>
+    </default>
+  </default>
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="512"/>
+    <texture name="texplane" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2" width="512" height="512" mark="cross" markrgb=".8 .8 .8"/>
+    <texture name="texplane2" type="2d" builtin="checker" rgb1="1 0.3137 0.1843" rgb2="0.0 0.30196 0.38039" width="512" height="512" mark="cross" markrgb=".8 .8 .8"/>
+    <material name="matplane" reflectance="0." texture="texplane" texrepeat="1 1" texuniform="true"/>
+    <material name="matplane2" reflectance="0.1" texture="texplane2" texrepeat="1 1" texuniform="true"/>
+    <material name="sofa_fabric" rgba="0.94 0.92 0.86 1" specular="0.15" shininess="0.05"/>
+
+    <texture name="aiq_face_tex" type="2d" file="neck_l3_vis_face.png"/>
+    <texture name="aiq_face_tex_angry" type="2d" file="faces/face_01_angry.png"/>
+    <texture name="aiq_face_tex_cute" type="2d" file="faces/face_02_cute.png"/>
+    <texture name="aiq_face_tex_worried" type="2d" file="faces/face_03_worried.png"/>
+    <texture name="aiq_face_tex_skeptical" type="2d" file="faces/face_04_skeptical.png"/>
+    <texture name="aiq_face_tex_glance" type="2d" file="faces/face_05_glance.png"/>
+    <texture name="aiq_face_tex_sleepy" type="2d" file="faces/face_06_sleepy.png"/>
+    <texture name="aiq_face_tex_happy" type="2d" file="faces/face_07_happy.png"/>
+    <texture name="aiq_face_tex_laugh" type="2d" file="faces/face_08_laugh.png"/>
+    <texture name="aiq_face_tex_surprised" type="2d" file="faces/face_09_surprised.png"/>
+    <texture name="aiq_face_tex_nervous" type="2d" file="faces/face_10_nervous.png"/>
+    <texture name="aiq_face_tex_curious" type="2d" file="faces/face_11_curious.png"/>
+    <texture name="aiq_face_tex_squint" type="2d" file="faces/face_12_squint.png"/>
+    <texture name="aiq_face_tex_sad" type="2d" file="faces/face_13_sad.png"/>
+    <texture name="aiq_face_tex_blink" type="2d" file="faces/face_14_blink.png"/>
+    <material name="aiq_white" rgba="0.94 0.94 0.93 1" specular="0.25" shininess="0.25"/>
+    <material name="aiq_face" texture="aiq_face_tex" emission="0.22" specular="0.14" shininess="0.22"/>
+    <material name="aiq_face_angry" texture="aiq_face_tex_angry" emission="0.22" specular="0.14" shininess="0.22"/>
+    <material name="aiq_face_cute" texture="aiq_face_tex_cute" emission="0.22" specular="0.14" shininess="0.22"/>
+    <material name="aiq_face_worried" texture="aiq_face_tex_worried" emission="0.22" specular="0.14" shininess="0.22"/>
+    <material name="aiq_face_skeptical" texture="aiq_face_tex_skeptical" emission="0.22" specular="0.14" shininess="0.22"/>
+    <material name="aiq_face_glance" texture="aiq_face_tex_glance" emission="0.22" specular="0.14" shininess="0.22"/>
+    <material name="aiq_face_sleepy" texture="aiq_face_tex_sleepy" emission="0.22" specular="0.14" shininess="0.22"/>
+    <material name="aiq_face_happy" texture="aiq_face_tex_happy" emission="0.22" specular="0.14" shininess="0.22"/>
+    <material name="aiq_face_laugh" texture="aiq_face_tex_laugh" emission="0.22" specular="0.14" shininess="0.22"/>
+    <material name="aiq_face_surprised" texture="aiq_face_tex_surprised" emission="0.22" specular="0.14" shininess="0.22"/>
+    <material name="aiq_face_nervous" texture="aiq_face_tex_nervous" emission="0.22" specular="0.14" shininess="0.22"/>
+    <material name="aiq_face_curious" texture="aiq_face_tex_curious" emission="0.22" specular="0.14" shininess="0.22"/>
+    <material name="aiq_face_squint" texture="aiq_face_tex_squint" emission="0.22" specular="0.14" shininess="0.22"/>
+    <material name="aiq_face_sad" texture="aiq_face_tex_sad" emission="0.22" specular="0.14" shininess="0.22"/>
+    <material name="aiq_face_blink" texture="aiq_face_tex_blink" emission="0.22" specular="0.14" shininess="0.22"/>
+    <material name="aiq_green" rgba="0.50 0.67 0.28 1" specular="0.30" shininess="0.30"/>
+    <material name="aiq_palm_green" rgba="0.33 0.48 0.20 1" specular="0.25" shininess="0.25"/>
+    <material name="aiq_mint" rgba="0.72 0.85 0.68 1" specular="0.15" shininess="0.15"/>
+    <material name="aiq_blue" rgba="0.18 0.28 0.68 1" specular="0.35" shininess="0.35"/>
+    <material name="aiq_sole" rgba="0.72 0.77 0.84 1" specular="0.20" shininess="0.20"/>
+    <material name="aiq_silver" rgba="0.76 0.78 0.80 1" specular="0.60" shininess="0.50" reflectance="0.08"/>
+    <material name="aiq_dark" rgba="0.15 0.16 0.18 1" specular="0.35" shininess="0.35"/>
+    <mesh name="base_link_vis_silver" file="base_link_vis_silver.STL"/>
+    <mesh name="base_link_vis_white" file="base_link_vis_white.STL"/>
+    <mesh name="gemini_336_lb_simplified" file="gemini_336_lb_simplified.STL"/>
+    <mesh name="gemini_336_lf_simplified" file="gemini_336_lf_simplified.STL"/>
+    <mesh name="gemini_336l_l0_simplified" file="gemini_336l_l0_simplified.STL"/>
+    <mesh name="imu_l0_simplified" file="imu_l0_simplified.STL"/>
+    <mesh name="l_arm_l1_vis_green" file="l_arm_l1_vis_green.STL"/>
+    <mesh name="l_arm_l1_vis_silver" file="l_arm_l1_vis_silver.STL"/>
+    <mesh name="l_arm_l2_vis_silver" file="l_arm_l2_vis_silver.STL"/>
+    <mesh name="l_arm_l2_vis_white" file="l_arm_l2_vis_white.STL"/>
+    <mesh name="l_arm_l3_simplified" file="l_arm_l3_simplified.STL"/>
+    <mesh name="l_arm_l4_vis_silver" file="l_arm_l4_vis_silver.STL"/>
+    <mesh name="l_arm_l4_vis_white" file="l_arm_l4_vis_white.STL"/>
+    <mesh name="l_arm_l5_vis_silver" file="l_arm_l5_vis_silver.STL"/>
+    <mesh name="l_arm_l5_vis_white" file="l_arm_l5_vis_white.STL"/>
+    <mesh name="l_arm_l6_simplified" file="l_arm_l6_simplified.STL"/>
+    <mesh name="l_arm_l7_vis_dark" file="l_arm_l7_vis_dark.STL"/>
+    <mesh name="l_arm_l7_vis_palm_green" file="l_arm_l7_vis_palm_green.STL"/>
+    <mesh name="l_arm_l7_vis_silver" file="l_arm_l7_vis_silver.STL"/>
+    <mesh name="l_fg1_l1_simplified" file="l_fg1_l1_simplified.STL"/>
+    <mesh name="l_fg1_l2_vis_mint" file="l_fg1_l2_vis_mint.STL"/>
+    <mesh name="l_fg1_l2_vis_white" file="l_fg1_l2_vis_white.STL"/>
+    <mesh name="l_fg2_l0_vis_dark" file="l_fg2_l0_vis_dark.STL"/>
+    <mesh name="l_fg2_l0_vis_palm_green" file="l_fg2_l0_vis_palm_green.STL"/>
+    <mesh name="l_fg2_l1_simplified" file="l_fg2_l1_simplified.STL"/>
+    <mesh name="l_fg2_l2_vis_mint" file="l_fg2_l2_vis_mint.STL"/>
+    <mesh name="l_fg2_l2_vis_white" file="l_fg2_l2_vis_white.STL"/>
+    <mesh name="l_fg3_l0_vis_dark" file="l_fg3_l0_vis_dark.STL"/>
+    <mesh name="l_fg3_l0_vis_palm_green" file="l_fg3_l0_vis_palm_green.STL"/>
+    <mesh name="l_fg3_l1_simplified" file="l_fg3_l1_simplified.STL"/>
+    <mesh name="l_fg3_l2_vis_mint" file="l_fg3_l2_vis_mint.STL"/>
+    <mesh name="l_fg3_l2_vis_white" file="l_fg3_l2_vis_white.STL"/>
+    <mesh name="l_foot_l0_vis_blue" file="l_foot_l0_vis_blue.STL"/>
+    <mesh name="l_foot_l0_vis_sole" file="l_foot_l0_vis_sole.STL"/>
+    <mesh name="l_leg_l1_vis_silver" file="l_leg_l1_vis_silver.STL"/>
+    <mesh name="l_leg_l1_vis_white" file="l_leg_l1_vis_white.STL"/>
+    <mesh name="l_leg_l2_vis_dark" file="l_leg_l2_vis_dark.STL"/>
+    <mesh name="l_leg_l2_vis_silver" file="l_leg_l2_vis_silver.STL"/>
+    <mesh name="l_leg_l2_vis_white" file="l_leg_l2_vis_white.STL"/>
+    <mesh name="l_leg_l3_vis_silver" file="l_leg_l3_vis_silver.STL"/>
+    <mesh name="l_leg_l3_vis_white" file="l_leg_l3_vis_white.STL"/>
+    <mesh name="l_leg_l4_vis_green" file="l_leg_l4_vis_green.STL"/>
+    <mesh name="l_leg_l4_vis_silver" file="l_leg_l4_vis_silver.STL"/>
+    <mesh name="l_leg_l4_vis_white" file="l_leg_l4_vis_white.STL"/>
+    <mesh name="l_leg_l5_simplified" file="l_leg_l5_simplified.STL"/>
+    <mesh name="l_leg_l6_simplified" file="l_leg_l6_simplified.STL"/>
+    <mesh name="neck_l1_simplified" file="neck_l1_simplified.STL"/>
+    <mesh name="neck_l2_simplified" file="neck_l2_simplified.STL"/>
+    <mesh name="neck_l3_vis_dark" file="neck_l3_vis_dark.STL"/>
+    <mesh name="neck_l3_vis_face" file="neck_l3_vis_face.obj"/>
+    <mesh name="neck_l3_vis_green" file="neck_l3_vis_green.STL"/>
+    <mesh name="neck_l3_vis_white" file="neck_l3_vis_white.STL"/>
+    <mesh name="r_arm_l1_vis_green" file="r_arm_l1_vis_green.STL"/>
+    <mesh name="r_arm_l1_vis_silver" file="r_arm_l1_vis_silver.STL"/>
+    <mesh name="r_arm_l2_vis_silver" file="r_arm_l2_vis_silver.STL"/>
+    <mesh name="r_arm_l2_vis_white" file="r_arm_l2_vis_white.STL"/>
+    <mesh name="r_arm_l3_simplified" file="r_arm_l3_simplified.STL"/>
+    <mesh name="r_arm_l4_vis_silver" file="r_arm_l4_vis_silver.STL"/>
+    <mesh name="r_arm_l4_vis_white" file="r_arm_l4_vis_white.STL"/>
+    <mesh name="r_arm_l5_vis_silver" file="r_arm_l5_vis_silver.STL"/>
+    <mesh name="r_arm_l5_vis_white" file="r_arm_l5_vis_white.STL"/>
+    <mesh name="r_arm_l6_simplified" file="r_arm_l6_simplified.STL"/>
+    <mesh name="r_arm_l7_vis_dark" file="r_arm_l7_vis_dark.STL"/>
+    <mesh name="r_arm_l7_vis_palm_green" file="r_arm_l7_vis_palm_green.STL"/>
+    <mesh name="r_arm_l7_vis_silver" file="r_arm_l7_vis_silver.STL"/>
+    <mesh name="r_fg1_l1_simplified" file="r_fg1_l1_simplified.STL"/>
+    <mesh name="r_fg1_l2_vis_mint" file="r_fg1_l2_vis_mint.STL"/>
+    <mesh name="r_fg1_l2_vis_white" file="r_fg1_l2_vis_white.STL"/>
+    <mesh name="r_fg2_l0_vis_dark" file="r_fg2_l0_vis_dark.STL"/>
+    <mesh name="r_fg2_l0_vis_palm_green" file="r_fg2_l0_vis_palm_green.STL"/>
+    <mesh name="r_fg2_l1_simplified" file="r_fg2_l1_simplified.STL"/>
+    <mesh name="r_fg2_l2_vis_mint" file="r_fg2_l2_vis_mint.STL"/>
+    <mesh name="r_fg2_l2_vis_white" file="r_fg2_l2_vis_white.STL"/>
+    <mesh name="r_fg3_l0_vis_dark" file="r_fg3_l0_vis_dark.STL"/>
+    <mesh name="r_fg3_l0_vis_palm_green" file="r_fg3_l0_vis_palm_green.STL"/>
+    <mesh name="r_fg3_l1_simplified" file="r_fg3_l1_simplified.STL"/>
+    <mesh name="r_fg3_l2_vis_mint" file="r_fg3_l2_vis_mint.STL"/>
+    <mesh name="r_fg3_l2_vis_white" file="r_fg3_l2_vis_white.STL"/>
+    <mesh name="r_foot_l0_vis_blue" file="r_foot_l0_vis_blue.STL"/>
+    <mesh name="r_foot_l0_vis_sole" file="r_foot_l0_vis_sole.STL"/>
+    <mesh name="r_leg_l1_vis_silver" file="r_leg_l1_vis_silver.STL"/>
+    <mesh name="r_leg_l1_vis_white" file="r_leg_l1_vis_white.STL"/>
+    <mesh name="r_leg_l2_vis_dark" file="r_leg_l2_vis_dark.STL"/>
+    <mesh name="r_leg_l2_vis_silver" file="r_leg_l2_vis_silver.STL"/>
+    <mesh name="r_leg_l2_vis_white" file="r_leg_l2_vis_white.STL"/>
+    <mesh name="r_leg_l3_vis_silver" file="r_leg_l3_vis_silver.STL"/>
+    <mesh name="r_leg_l3_vis_white" file="r_leg_l3_vis_white.STL"/>
+    <mesh name="r_leg_l4_vis_green" file="r_leg_l4_vis_green.STL"/>
+    <mesh name="r_leg_l4_vis_silver" file="r_leg_l4_vis_silver.STL"/>
+    <mesh name="r_leg_l4_vis_white" file="r_leg_l4_vis_white.STL"/>
+    <mesh name="r_leg_l5_simplified" file="r_leg_l5_simplified.STL"/>
+    <mesh name="r_leg_l6_simplified" file="r_leg_l6_simplified.STL"/>
+    <mesh name="torso_l1_simplified" file="torso_l1_simplified.STL"/>
+    <mesh name="torso_l2_simplified" file="torso_l2_simplified.STL"/>
+    <mesh name="torso_l3_vis_blue" file="torso_l3_vis_blue.STL"/>
+    <mesh name="torso_l3_vis_dark" file="torso_l3_vis_dark.STL"/>
+    <mesh name="torso_l3_vis_green" file="torso_l3_vis_green.STL"/>
+    <mesh name="torso_l3_vis_white" file="torso_l3_vis_white.STL"/>
+  <mesh name="base_link_convex" content_type="model/stl" file="base_link_convex.STL"/>
+    <mesh name="torso_l3_convex" content_type="model/stl" file="torso_l3_convex.STL"/>
+    </asset>
+  <worldbody>
+    <light directional="true" diffuse=".4 .4 .4" specular="0.1 0.1 0.1" pos="0 0 5.0" dir="0 0 -1" castshadow="false"/>
+    <light directional="true" diffuse=".6 .6 .6" specular="0.2 0.2 0.2" pos="0 0 4" dir="0 0 -1"/>
+    <geom name="ground" type="plane" size="0 0 1" pos="0.001 0 0" quat="1 0 0 0" material="matplane" condim="1" conaffinity="15"/>
+    <!-- Shared whole-body obstacle course (same layout as eqr11). -->
+    <geom name="center1" type="box" pos="20 0 1" size="1 2 1" condim="1" conaffinity="15" group="2"/>
+    <geom name="slope_up" type="box" pos="14.17 0 0.71" size="5 2 0.3" euler="0 -0.2 0" condim="1" conaffinity="15" group="2"/>
+    <geom name="slope_down" type="box" pos="25.84 0 0.71" size="5 2 0.3" euler="0 0.2 0" condim="1" conaffinity="15" group="2"/>
+    <geom name="stair1" type="box" pos="10 10 0.10" size="0.2 2 0.10" condim="1" conaffinity="15" group="2"/>
+    <geom name="stair2" type="box" pos="10.4 10 0.20" size="0.2 2 0.20" condim="1" conaffinity="15" group="2"/>
+    <geom name="stair3" type="box" pos="10.8 10 0.30" size="0.2 2 0.30" condim="1" conaffinity="15" group="2"/>
+    <geom name="stair4" type="box" pos="11.2 10 0.40" size="0.2 2 0.40" condim="1" conaffinity="15" group="2"/>
+    <geom name="stair5" type="box" pos="11.6 10 0.50" size="0.2 2 0.50" condim="1" conaffinity="15" group="2"/>
+    <geom name="center2" type="box" pos="13.8 10 0.50" size="2 2 0.50" condim="1" conaffinity="15" group="2"/>
+    <geom name="stair6" type="box" pos="16 10 0.50" size="0.2 2 0.50" condim="1" conaffinity="15" group="2"/>
+    <geom name="stair7" type="box" pos="16.4 10 0.40" size="0.2 2 0.40" condim="1" conaffinity="15" group="2"/>
+    <geom name="stair8" type="box" pos="16.8 10 0.30" size="0.2 2 0.30" condim="1" conaffinity="15" group="2"/>
+    <geom name="stair9" type="box" pos="17.2 10 0.20" size="0.2 2 0.20" condim="1" conaffinity="15" group="2"/>
+    <geom name="stair10" type="box" pos="17.6 10 0.10" size="0.2 2 0.10" condim="1" conaffinity="15" group="2"/>
+    <!-- 仿真沙发障碍物: 155cm x 72cm x 73cm, 坐高40cm, 坐深57cm -->
+    <body name="sofa" pos="2.0 0 0">
+      <geom name="sofa_seat" class="obstacle" type="box" pos="-0.075 0 0.20" size="0.285 0.655 0.20" material="sofa_fabric"/>
+      <geom name="sofa_back" class="obstacle" type="box" pos="0.285 0 0.565" size="0.075 0.775 0.165" material="sofa_fabric"/>
+      <geom name="sofa_left_arm" class="obstacle" type="box" pos="0 0.715 0.365" size="0.36 0.06 0.365" material="sofa_fabric"/>
+      <geom name="sofa_right_arm" class="obstacle" type="box" pos="0 -0.715 0.365" size="0.36 0.06 0.365" material="sofa_fabric"/>
+      </body>
+    <body name="base_link" pos="0 0 0.95">
+      <inertial pos="-0.0139459507 2.54290181e-05 -0.0376545915" quat="0.678814234 0.67543958 0.203915588 -0.203497033" mass="4.47920471" diaginertia="0.0133134413 0.0175437187 0.0187325405"/>
+      <!-- <joint name="floating_base_joint" type="free"/> -->
+      <joint name="floating_base_joint_x" type="slide" axis="1 0 0" limited="false" damping="0.0" frictionloss="0.0" armature="0.0"/>
+      <joint name="floating_base_joint_y" type="slide" axis="0 1 0" limited="false" damping="0.0" frictionloss="0.0" armature="0.0"/>
+      <joint name="floating_base_joint_z" type="slide" axis="0 0 1" limited="false" damping="0.0" frictionloss="0.0" armature="0.0"/>
+      <joint name="floating_base_joint_ball" type="ball" limited="false" damping="0.0" frictionloss="0.0" armature="0.0"/>
+      <!-- <joint name="floating_base_joint" type="free" limited="false" actuatorfrclimited="false"/> -->
+      <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="base_link_vis_white" material="aiq_white"/>
+      <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="base_link_vis_silver" material="aiq_silver"/>
+      <body name="imu_l0" pos="0.0255 0 0" quat="1 0 0 0">
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="imu_l0_simplified" material="aiq_dark"/>
+        <site name="imu_1" size="0.01" pos="0 0 0"/>
+      </body>
+      <body name="gemini_336_lf" pos="0.092635 0.011 -0.053792" quat="0.298845 -0.640851 0.640853 -0.298846">
+        <!-- 完整惯性张量取自 aiq11_pro.urdf 的 gemini_336_lf，保留非对角项。 -->
+        <inertial pos="0.010921 -4.6141e-05 -0.012369" mass="0.10348" fullinertia="1.1532e-05 6.1265e-05 5.9683e-05 -2.8156e-08 2.9619e-08 -3.3614e-08"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="gemini_336_lf_simplified" material="aiq_dark"/>
+        <site name="gemini_336_lf_rgb_camera_link" size="0.003" pos="0 0 0"/>
+        <site name="gemini_336_lf_depth_camera_link" size="0.003" pos="-0.014 0 0"/>
+        <site name="gemini_336_lf_laser_emitter_link" size="0.003" pos="0.011 0 0"/>
+      </body>
+      <body name="gemini_336_lb" pos="-0.08285 -0.011003 -0.11396" quat="0.298845 -0.640851 -0.640853 0.298846">
+        <!-- 惯量取自 aiq11_pro.urdf 的 gemini_336_lb -->
+        <inertial pos="0 0 0" mass="0.10348" diaginertia="1.1532e-05 6.1265e-05 5.9683e-05"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="gemini_336_lb_simplified" material="aiq_dark"/>
+        <site name="gemini_336_lb_rgb_camera_link" size="0.003" pos="0 0 0"/>
+        <site name="gemini_336_lb_depth_camera_link" size="0.003" pos="-0.014 0 0"/>
+        <site name="gemini_336_lb_laser_emitter_link" size="0.003" pos="0.011 0 0"/>
+      </body>
+      <body name="torso_l1" pos="0 0 0.0475">
+        <inertial pos="0.01448307 -0.00066983 0.01754285" quat="0.999720627 0.00992084519 -0.0211492988 -0.00359884167" mass="0.18065405" diaginertia="8.45770953e-05 0.000118165232 0.000135497672"/>
+        <joint name="torso_1" class="4315-P2-36_torso-1" pos="0 0 0" axis="0 0 1" range="-2.007 2.007" actuatorfrcrange="-75 75"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="torso_l1_simplified" material="aiq_silver"/>
+        <body name="torso_l2" pos="0 0 0.037">
+          <inertial pos="-0.00143332 0.00085984 0.0" quat="0.727739764 0.0 0.0 0.685853363" mass="0.0798308" diaginertia="1.06240686e-05 1.23159314e-05 1.68e-05"/>
+          <joint name="torso_2" class="4315-P2-36_torso-2" pos="0 0 0" axis="1 0 0" range="-0.297 0.297" actuatorfrcrange="-75 75"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="torso_l2_simplified" material="aiq_silver"/>
+          <body name="torso_l3">
+            <inertial pos="-0.00655714 -0.00759234 0.16920259" quat="0.724430901 0.00424423781 0.689068666 0.0191371021" mass="12.3813762" diaginertia="0.0793220994 0.0976636195 0.124992291"/>
+            <joint name="torso_3" class="4315-P2-36_torso-3" pos="0 0 0" axis="0 1 0" range="-0.244 0.506" actuatorfrcrange="-75 75"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="torso_l3_vis_green" material="aiq_green"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="torso_l3_vis_white" material="aiq_white"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="torso_l3_vis_blue" material="aiq_blue"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="torso_l3_vis_dark" material="aiq_dark"/>
+            <body name="gemini_336l_l0" pos="0.1147 0.0475 0.22495" quat="0.499998 -0.5 0.500002 -0.5">
+              <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="gemini_336l_l0_simplified" material="aiq_dark"/>
+              <site name="gemini_336l_l0_depth_camera_link" size="0.003" pos="0 0 0"/>
+              <site name="gemini_336l_l0_rgb_camera_link" size="0.003" pos="0.02375 0 0"/>
+              <site name="gemini_336l_l0_laser_emitter_link" size="0.003" pos="0.0475 0 0"/>
+            </body>
+            <body name="l_arm_l1" pos="0 0.13081 0.27167" quat="0.984807 0.17365 0 0">
+              <inertial pos="-0.0031288 0.04723194 0.00023585" quat="0.579122942 0.49318901 -0.475311694 -0.442108598" mass="0.63304985" diaginertia="0.000505698039 0.000561535901 0.000612886059"/>
+              <joint name="l_arm_1" class="6408-P2-30.25H_arm-1" pos="0 0 0" axis="0 1 0" range="-3.142 1.883" actuatorfrcrange="-70 70"/>
+              <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l1_vis_green" material="aiq_green"/>
+              <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l1_vis_silver" material="aiq_silver"/>
+              <body name="l_arm_l2" pos="0 0.052 0" quat="0.993572 -0.113202 0 0">
+                <inertial pos="-0.00053521 0.0110065 -0.08291059" quat="0.535583644 -0.484988978 0.462650412 0.513702685" mass="0.64551158" diaginertia="0.000458835889 0.000933373487 0.00101311062"/>
+                <joint name="l_arm_2" class="4310-P2-36H_arm-2" pos="0 0 0" axis="1 0 0" range="-0.209 3.281" actuatorfrcrange="-36 36"/>
+                <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l2_vis_white" material="aiq_white"/>
+                <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l2_vis_silver" material="aiq_silver"/>
+                <body name="l_arm_l3" pos="0 0.012 -0.117">
+                  <inertial pos="0.01051434 0.00304077 -0.06504056" quat="0.618403738 -0.505134339 0.444225023 0.406300684" mass="0.58721282" diaginertia="0.000405403595 0.000514322276 0.000518194129"/>
+                  <joint name="l_arm_3" class="4310-P2-36H_arm-3" pos="0 0 0" axis="0 0 1" range="-2.269 2.269" actuatorfrcrange="-36 36"/>
+                  <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l3_simplified" material="aiq_silver"/>
+                  <body name="l_arm_l4" pos="0.0115 0 -0.069">
+                    <inertial pos="-0.01081751 0.0036146 -0.07410281" quat="0.619835757 0.402925368 -0.348480215 0.576208575" mass="0.59154238" diaginertia="0.000378650268 0.000700002812 0.00072101692"/>
+                    <joint name="l_arm_4" class="4310-P2-36H_arm-4" pos="0 0 0" axis="0 1 0" range="-2.356 0.175" actuatorfrcrange="-36 36"/>
+                    <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l4_vis_white" material="aiq_white"/>
+                    <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l4_vis_silver" material="aiq_silver"/>
+                    <body name="l_arm_l5" pos="-0.0115 0 -0.107">
+                      <inertial pos="-0.00023277 0.00022567 -0.03352264" quat="0.714138575 0.00167427065 -0.696492485 -0.0700107834" mass="0.34324948" diaginertia="0.000215661049 0.000247750863 0.000270418088"/>
+                      <joint name="l_arm_5" class="4310-P2-36H_arm-5" pos="0 0 0" axis="0 0 1" range="-2.269 2.269" actuatorfrcrange="-36 36"/>
+                      <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l5_vis_white" material="aiq_white"/>
+                      <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l5_vis_silver" material="aiq_silver"/>
+                      <body name="l_arm_l6" pos="0 0 -0.0905">
+                        <inertial pos="-0.00512501 8.086e-05 -5.463e-05" quat="0.943127974 0.00456335726 0.0323482712 0.330820781" mass="0.19888341" diaginertia="6.66441954e-05 6.73082219e-05 7.09075827e-05"/>
+                        <joint name="l_arm_6" class="2806-P2-36_arm-6" pos="0 0 0" axis="0 1 0" range="-0.785 0.785" actuatorfrcrange="-12 12"/>
+                        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l6_simplified" material="aiq_silver"/>
+                        <body name="l_arm_l7">
+                          <inertial pos="0.0006801 0.0001186 -0.03063408" mass="0.064961" fullinertia="3.09e-05 4.948e-05 4.286e-05 -5.2e-07 6.5e-07 1.3e-07"/>
+                          <body name="l_hand_l0" pos="0 0 -0.08509899999999999" quat="1 0 0 0">
+                            <inertial pos="0.00580801 0.00005221 -0.01130987" mass="0.58650977" fullinertia="0.0004891 0.00104983 0.00104851 -5e-07 4.382e-05 6e-08"/>
+                          </body>
+                          <body name="l_fg1_l1" pos="-0.0235 0 -0.118">
+                            <site name="l_fg1_1" pos="0 0 0" size="0.001" rgba="0 0 0 0" group="4"/>
+                            <body name="l_fg1_l2" pos="-0.04 0 0">
+                              <site name="l_fg1_2" pos="0 0 0" size="0.001" rgba="0 0 0 0" group="4"/>
+                            </body>
+                          </body>
+                          <body name="l_fg2_l0" pos="0.011 -0.023 -0.1045">
+                            <site name="l_fg2_0" pos="0 0 0" size="0.001" rgba="0 0 0 0" group="4"/>
+                            <body name="l_fg2_l1" pos="0.0084987 0.00014835 -0.0125" quat="0.999962 0 0 0.00872639">
+                              <site name="l_fg2_1" pos="0 0 0" size="0.001" rgba="0 0 0 0" group="4"/>
+                              <body name="l_fg2_l2" pos="0.048 0.007675 0">
+                                <site name="l_fg2_2" pos="0 0 0" size="0.001" rgba="0 0 0 0" group="4"/>
+                              </body>
+                            </body>
+                          </body>
+                          <body name="l_fg3_l0" pos="0.011 0.023 -0.1045">
+                            <site name="l_fg3_0" pos="0 0 0" size="0.001" rgba="0 0 0 0" group="4"/>
+                            <body name="l_fg3_l1" pos="0.0084987 -0.00014855 -0.0125" quat="0.999962 0 0 -0.00872639">
+                              <site name="l_fg3_1" pos="0 0 0" size="0.001" rgba="0 0 0 0" group="4"/>
+                              <body name="l_fg3_l2" pos="0.048 -0.0076699 0">
+                                <site name="l_fg3_2" pos="0 0 0" size="0.001" rgba="0 0 0 0" group="4"/>
+                              </body>
+                            </body>
+                          </body>
+                          <joint name="l_arm_7" class="2806-P2-36_arm-7" pos="0 0 0" axis="1 0 0" range="-1.047 1.047" actuatorfrcrange="-12 12"/>
+                          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l7_vis_palm_green" material="aiq_palm_green"/>
+                          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l7_vis_silver" material="aiq_silver"/>
+                          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l7_vis_dark" material="aiq_dark"/>
+                          <geom pos="-0.0235 0 -0.118" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_fg1_l1_simplified" material="aiq_white"/>
+                          <geom pos="-0.0635 0 -0.118" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_fg1_l2_vis_white" material="aiq_white"/>
+                          <geom pos="-0.0635 0 -0.118" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_fg1_l2_vis_mint" material="aiq_mint"/>
+                          <geom pos="0.011 -0.023 -0.1045" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_fg2_l0_vis_palm_green" material="aiq_palm_green"/>
+                          <geom pos="0.011 -0.023 -0.1045" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_fg2_l0_vis_dark" material="aiq_dark"/>
+                          <geom pos="0.0194987 -0.0228517 -0.117" quat="0.999962 0 0 0.00872639" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_fg2_l1_simplified" material="aiq_white"/>
+                          <geom pos="0.0673574 -0.0143401 -0.117" quat="0.999962 0 0 0.00872639" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_fg2_l2_vis_white" material="aiq_white"/>
+                          <geom pos="0.0673574 -0.0143401 -0.117" quat="0.999962 0 0 0.00872639" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_fg2_l2_vis_mint" material="aiq_mint"/>
+                          <geom pos="0.011 0.023 -0.1045" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_fg3_l0_vis_palm_green" material="aiq_palm_green"/>
+                          <geom pos="0.011 0.023 -0.1045" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_fg3_l0_vis_dark" material="aiq_dark"/>
+                          <geom pos="0.0194987 0.0228515 -0.117" quat="0.999962 0 0 -0.00872639" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_fg3_l1_simplified" material="aiq_white"/>
+                          <geom pos="0.0673575 0.014345 -0.117" quat="0.999962 0 0 -0.00872639" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_fg3_l2_vis_white" material="aiq_white"/>
+                          <geom pos="0.0673575 0.014345 -0.117" quat="0.999962 0 0 -0.00872639" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_fg3_l2_vis_mint" material="aiq_mint"/>
+                          <!-- <body name="l_hand_l0" pos="0 0 -0.085099" quat="1 0 0 0">
+                            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.866667 0.909804 1 1" mesh="l_hand_l0_simplified"/>
+                          </body>
+                          <geom size="0.03" pos="0 0 -0.085099" rgba="0.866667 0.909804 1 0"/> -->
+                        <geom size="0.023 0.0275" pos="0 0 -0.055" type="cylinder" rgba="0.866667 0.909804 1 0"/>
+                          <geom size="0.06" pos="0 0 -0.13" quat="0.707388 0 0.706825 0" rgba="0.866667 0.909804 1 0"/>
+                          </body>
+                      <geom size="0.023 0.0225" quat="0.707388 0 0.706825 0" type="cylinder" rgba="0.866667 0.909804 1 0"/>
+                        </body>
+                    <geom size="0.035 0.0175" pos="0 0 -0.038" type="cylinder" rgba="0.866667 0.909804 1 0"/>
+                      </body>
+                  <geom size="0.039 0.024" pos="-0.01 0 -0.087" type="cylinder" rgba="0.866667 0.909804 1 0"/>
+                    </body>
+                <geom size="0.039 0.03" pos="0.0105 0.003 -0.067" quat="0.707105 0.707108 0 0" type="cylinder" rgba="0.866667 0.909804 1 0"/>
+                  </body>
+              <geom size="0.033 0.04" pos="0 0.013 -0.092" type="cylinder" rgba="0.792157 0.819608 0.933333 0"/>
+                </body>
+            <geom size="0.04 0.037" pos="0 0.055 0" quat="3.46618e-07 -0.707107 -1.15539e-07 -0.707107" type="cylinder" rgba="0.866667 0.909804 1 0"/>
+              </body>
+            <body name="r_arm_l1" pos="0 -0.13081 0.27167" quat="0.984807 -0.17365 0 0">
+              <inertial pos="-0.00324362 -0.04689299 0.00045331" quat="0.483713248 0.565343201 0.410729154 0.526982087" mass="0.6388893" diaginertia="0.000512280476 0.00057551464 0.000624844884"/>
+              <joint name="r_arm_1" class="6408-P2-30.25H_arm-1" pos="0 0 0" axis="0 1 0" range="-3.142 1.883" actuatorfrcrange="-70 70"/>
+              <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l1_vis_green" material="aiq_green"/>
+              <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l1_vis_silver" material="aiq_silver"/>
+              <body name="r_arm_l2" pos="0 -0.052 0" quat="0.993572 0.113202 0 0">
+                <inertial pos="-0.00081112 -0.01102751 -0.08276726" quat="0.541944799 0.494713199 0.453390038 -0.505956677" mass="0.64579481" diaginertia="0.000464006598 0.000932392016 0.00101728139"/>
+                <joint name="r_arm_2" class="4310-P2-36H_arm-2" pos="0 0 0" axis="1 0 0" range="-3.281 0.209" actuatorfrcrange="-36 36"/>
+                <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l2_vis_white" material="aiq_white"/>
+                <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l2_vis_silver" material="aiq_silver"/>
+                <body name="r_arm_l3" pos="0 -0.012 -0.117">
+                  <inertial pos="0.01047263 -0.00290562 -0.06505128" quat="0.570084821 -0.559472153 0.452431823 0.396610203" mass="0.59009904" diaginertia="0.000407701665 0.000518525063 0.000520013271"/>
+                  <joint name="r_arm_3" class="4310-P2-36H_arm-3" pos="0 0 0" axis="0 0 1" range="-2.269 2.269" actuatorfrcrange="-36 36"/>
+                  <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l3_simplified" material="aiq_silver"/>
+                  <body name="r_arm_l4" pos="0.0115 0 -0.069">
+                    <inertial pos="-0.01081809 -0.00366806 -0.07410284" quat="0.62010103 -0.402437876 -0.348881403 -0.576021037" mass="0.59153741" diaginertia="0.000378105366 0.000699607816 0.000721176818"/>
+                    <joint name="r_arm_4" class="4310-P2-36H_arm-4" pos="0 0 0" axis="0 1 0" range="-2.356 0.175" actuatorfrcrange="-36 36"/>
+                    <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l4_vis_white" material="aiq_white"/>
+                    <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l4_vis_silver" material="aiq_silver"/>
+                    <body name="r_arm_l5" pos="-0.0115 0 -0.107">
+                      <inertial pos="-0.00023277 0.00022567 -0.03352264" quat="0.714138575 0.00167427065 -0.696492485 -0.0700107834" mass="0.34324948" diaginertia="0.000215661049 0.000247750863 0.000270418088"/>
+                      <joint name="r_arm_5" class="4310-P2-36H_arm-5" pos="0 0 0" axis="0 0 1" range="-2.269 2.269" actuatorfrcrange="-36 36"/>
+                      <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l5_vis_white" material="aiq_white"/>
+                      <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l5_vis_silver" material="aiq_silver"/>
+                      <body name="r_arm_l6" pos="0 0 -0.0905">
+                        <inertial pos="-0.00512501 8.086e-05 -5.463e-05" quat="0.943127974 0.00456335726 0.0323482712 0.330820781" mass="0.19888341" diaginertia="6.66441954e-05 6.73082219e-05 7.09075827e-05"/>
+                        <joint name="r_arm_6" class="2806-P2-36_arm-6" pos="0 0 0" axis="0 1 0" range="-0.785 0.785" actuatorfrcrange="-12 12"/>
+                        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l6_simplified" material="aiq_silver"/>
+                        <body name="r_arm_l7">
+                          <inertial pos="0.00064891 0.00011874 -0.03065215" mass="0.06488602" fullinertia="3.088e-05 4.941e-05 4.281e-05 -5.2e-07 6.799999999999999e-07 1.3e-07"/>
+                          <body name="r_hand_l0" pos="0 0 -0.08509899999999999" quat="1 0 0 0">
+                            <inertial pos="0.00580801 0.00005221 -0.01130987" mass="0.58650977" fullinertia="0.0004891 0.00104983 0.00104851 -5e-07 4.382e-05 6e-08"/>
+                          </body>
+                          <body name="r_fg1_l1" pos="-0.0235 0 -0.118">
+                            <site name="r_fg1_1" pos="0 0 0" size="0.001" rgba="0 0 0 0" group="4"/>
+                            <body name="r_fg1_l2" pos="-0.04 0 0">
+                              <site name="r_fg1_2" pos="0 0 0" size="0.001" rgba="0 0 0 0" group="4"/>
+                            </body>
+                          </body>
+                          <body name="r_fg3_l0" pos="0.011 -0.023 -0.1045" quat="0.999962 0 0 0.00872639">
+                            <site name="r_fg3_0" pos="0 0 0" size="0.001" rgba="0 0 0 0" group="4"/>
+                            <body name="r_fg3_l1" pos="0.0085 0 -0.0125">
+                              <site name="r_fg3_1" pos="0 0 0" size="0.001" rgba="0 0 0 0" group="4"/>
+                              <body name="r_fg3_l2" pos="0.048 0.007675 0">
+                                <site name="r_fg3_2" pos="0 0 0" size="0.001" rgba="0 0 0 0" group="4"/>
+                              </body>
+                            </body>
+                          </body>
+                          <body name="r_fg2_l0" pos="0.011 0.023 -0.1045" quat="0.999962 0 0 -0.00872639">
+                            <site name="r_fg2_0" pos="0 0 0" size="0.001" rgba="0 0 0 0" group="4"/>
+                            <body name="r_fg2_l1" pos="0.0085 0 -0.0125" quat="0.999999 0 0.00107145 0">
+                              <site name="r_fg2_1" pos="0 0 0" size="0.001" rgba="0 0 0 0" group="4"/>
+                              <body name="r_fg2_l2" pos="0.048 -0.0076699 0.00010286" quat="0.999999 0 -0.00107145 0">
+                                <site name="r_fg2_2" pos="0 0 0" size="0.001" rgba="0 0 0 0" group="4"/>
+                              </body>
+                            </body>
+                          </body>
+                          <joint name="r_arm_7" class="2806-P2-36_arm-7" pos="0 0 0" axis="1 0 0" range="-1.047 1.047" actuatorfrcrange="-12 12"/>
+                          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l7_vis_palm_green" material="aiq_palm_green"/>
+                          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l7_vis_silver" material="aiq_silver"/>
+                          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l7_vis_dark" material="aiq_dark"/>
+                          <geom pos="-0.0235 0 -0.118" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_fg1_l1_simplified" material="aiq_white"/>
+                          <geom pos="-0.0635 0 -0.118" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_fg1_l2_vis_white" material="aiq_white"/>
+                          <geom pos="-0.0635 0 -0.118" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_fg1_l2_vis_mint" material="aiq_mint"/>
+                          <geom pos="0.011 -0.023 -0.1045" quat="0.999962 0 0 0.00872639" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_fg2_l0_vis_palm_green" material="aiq_palm_green"/>
+                          <geom pos="0.011 -0.023 -0.1045" quat="0.999962 0 0 0.00872639" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_fg2_l0_vis_dark" material="aiq_dark"/>
+                          <geom pos="0.0194987 -0.0228517 -0.117" quat="0.999962 0 0 0.00872639" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_fg2_l1_simplified" material="aiq_white"/>
+                          <geom pos="0.0673575 -0.0143401 -0.117" quat="0.999962 0 0 0.00872639" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_fg2_l2_vis_white" material="aiq_white"/>
+                          <geom pos="0.0673575 -0.0143401 -0.117" quat="0.999962 0 0 0.00872639" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_fg2_l2_vis_mint" material="aiq_mint"/>
+                          <geom pos="0.011 0.023 -0.1045" quat="0.999962 0 0 -0.00872639" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_fg3_l0_vis_palm_green" material="aiq_palm_green"/>
+                          <geom pos="0.011 0.023 -0.1045" quat="0.999962 0 0 -0.00872639" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_fg3_l0_vis_dark" material="aiq_dark"/>
+                          <geom pos="0.0194987 0.0228517 -0.117" quat="0.999961 9.34989e-06 0.00107141 -0.00872638" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_fg3_l1_simplified" material="aiq_white"/>
+                          <geom pos="0.0673576 0.0143452 -0.117" quat="0.999962 0 0 -0.00872639" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_fg3_l2_vis_white" material="aiq_white"/>
+                          <geom pos="0.0673576 0.0143452 -0.117" quat="0.999962 0 0 -0.00872639" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_fg3_l2_vis_mint" material="aiq_mint"/>
+                          <!-- <body name="r_hand_l0" pos="0 0 -0.085099" quat="0.995849 0 0 0.0910189">
+                            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.866667 0.909804 1 1" mesh="r_hand_l0_simplified"/>
+                          </body>
+                          <geom size="0.03" pos="0 0 -0.085099" quat="0.995849 0 0 0.0910189" rgba="0.866667 0.909804 1 0"/> -->
+                        <geom size="0.023 0.0275" pos="0 0 -0.055" type="cylinder" rgba="0.866667 0.909804 1 0"/>
+                          <geom size="0.06" pos="0 0 -0.13" quat="0.707388 0 0.706825 0" rgba="0.866667 0.909804 1 0"/>
+                          </body>
+                      <geom size="0.023 0.0225" quat="0.707388 0 0.706825 0" type="cylinder" rgba="0.866667 0.909804 1 0"/>
+                        </body>
+                    <geom size="0.035 0.0175" pos="0 0 -0.038" type="cylinder" rgba="0.866667 0.909804 1 0"/>
+                      </body>
+                  <geom size="0.039 0.024" pos="-0.01 0 -0.087" type="cylinder" rgba="0.866667 0.909804 1 0"/>
+                    </body>
+                <geom size="0.039 0.03" pos="0.0105 0.003 -0.067" quat="0.707105 0.707108 0 0" type="cylinder" rgba="0.866667 0.909804 1 0"/>
+                  </body>
+              <geom size="0.033 0.04" pos="0 -0.013 -0.092" type="cylinder" rgba="0.866667 0.909804 1 0"/>
+                </body>
+            <geom size="0.04 0.037" pos="0 -0.055 0" quat="3.46618e-07 -0.707107 -1.15539e-07 -0.707107" type="cylinder" rgba="0.866667 0.909804 1 0"/>
+              </body>
+            <body name="neck_l1" pos="0 0 0.26115">
+              <inertial pos="-0.00983937 0.0 0.03701795" quat="0.842315547 0.0 -0.538984711 0.0" mass="0.45978752" diaginertia="0.000467875268 0.0002264 0.000486984732"/>
+              <joint name="neck_1" class="2806-P2-36_neck-1" pos="0 0 0" axis="0 0 1" range="-1.571 1.571" actuatorfrcrange="-12 12"/>
+              <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="neck_l1_simplified" material="aiq_dark"/>
+              <body name="neck_l2" pos="-0.011 0 0.078">
+                <inertial pos="0.0 0.0 0.0" quat="1.0 0.0 0.0 0.0" mass="0.04878221" diaginertia="2.97e-06 7.59e-06 9.69e-06"/>
+                <joint name="neck_2" class="2806-P2-36_neck-2" pos="0 0 0" axis="1 0 0" range="-0.262 0.262" actuatorfrcrange="-12 12"/>
+                <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="neck_l2_simplified" material="aiq_silver"/>
+                <body name="neck_l3">
+                  <inertial pos="-0.01465272 0.00166977 0.13652788" quat="0.717872113 0.408945926 0.482884545 -0.290250537" mass="2.16543408" diaginertia="0.0125997229 0.0137149985 0.0145957786"/>
+                  <joint name="neck_3" class="2806-P2-36_neck-3" pos="0 0 0" axis="0 1 0" range="-0.436 0.436" actuatorfrcrange="-12 12"/>
+                  <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="neck_l3_vis_white" material="aiq_white"/>
+                  <geom name="neck_l3_vis_face" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="neck_l3_vis_face" material="aiq_face"/>
+                  <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="neck_l3_vis_green" material="aiq_green"/>
+                  <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="neck_l3_vis_dark" material="aiq_dark"/>
+                <geom size="0.12" pos="0 0 0.128" rgba="0.866667 0.909804 1 0"/>
+                  </body>
+              </body>
+            </body>
+          <geom type="mesh" rgba="0.866667 0.909804 1 0" mesh="torso_l3_convex"/>
+            <geom size="0.0075 0.06 0.0075" pos="-0.133 0 0.327" quat="0.992198 0 0.124675 0" type="box" rgba="0.866667 0.909804 1 1"/>
+            </body>
+        </body>
+      </body>
+      <body name="l_leg_l1" pos="0 0.067 -0.0625">
+        <inertial pos="-0.00267396 0.06356556 -0.00029925" quat="0.762661192 -0.173555509 0.593521622 -0.189627202" mass="1.3698193" diaginertia="0.00167639357 0.00176291852 0.0023833779"/>
+        <joint name="l_leg_1" class="8116-P1-18H_leg-1" pos="0 0 0" axis="0 1 0" range="-2.443 1.833" actuatorfrcrange="-130 130"/>
+        <!-- Camera self-occlusion candidate; non-colliding visual mesh in
+             group 2 so the depth ray source can see it. -->
+        <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="l_leg_l1_vis_white" material="aiq_white"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="l_leg_l1_vis_silver" material="aiq_silver"/>
+        <body name="l_leg_l2" pos="0 0.068 0" quat="0.991445 0 -0.130526 0">
+          <inertial pos="0.00147049 0.0003832 -0.08579138" quat="0.560174371 0.547148607 -0.436499868 0.44305862" mass="1.29561896" diaginertia="0.00232309846 0.00290205245 0.00322230909"/>
+          <joint name="l_leg_2" class="8116-P1-18H_leg-2" pos="0 0 0" axis="1 0 0" range="-0.175 1.571" actuatorfrcrange="-130 130"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="l_leg_l2_vis_white" material="aiq_white"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="l_leg_l2_vis_silver" material="aiq_silver"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="l_leg_l2_vis_dark" material="aiq_dark"/>
+          <body name="l_leg_l3" pos="0 0 -0.1315">
+            <inertial pos="-0.04525452 0.0051998 -0.11614021" quat="0.639312308 0.633289875 -0.371754662 0.228083706" mass="2.75624212" diaginertia="0.00434572847 0.0108706064 0.0119981851"/>
+            <joint name="l_leg_3" class="8112-P1-18H_leg-3" pos="0 0 0" axis="0 0 1" range="-1.745 1.745" actuatorfrcrange="-90 90"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="l_leg_l3_vis_white" material="aiq_white"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="l_leg_l3_vis_silver" material="aiq_silver"/>
+            <body name="l_leg_l4" pos="-0.077644 0 -0.15827" quat="0.991445 0 0.130526 0">
+              <inertial pos="-0.00172179 -0.00054754 -0.15250253" quat="0.718199978 0.00416531147 -0.695742604 -0.0106616426" mass="1.96208025" diaginertia="0.00280990122 0.0110410802 0.0116537686"/>
+              <joint name="l_leg_4" class="8116-P1-18H_leg-4" pos="0 0 0" axis="0 1 0" range="-0.349 2.618" actuatorfrcrange="-130 130"/>
+              <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="l_leg_l4_vis_white" material="aiq_white"/>
+              <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="l_leg_l4_vis_silver" material="aiq_silver"/>
+              <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="l_leg_l4_vis_green" material="aiq_green"/>
+              <body name="l_leg_l5" pos="0 0 -0.31">
+                <inertial pos="0.0 -0.00017565 0.0" quat="1.0 0.0 0.0 0.0" mass="0.09504314" diaginertia="1.276e-05 1.016e-05 1.487e-05"/>
+                <joint name="l_leg_5" class="4315-P2-36_leg-5" pos="0 0 0" axis="0 1 0" range="-1.012 0.35" actuatorfrcrange="-75 75"/>
+                <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="l_leg_l5_simplified" material="aiq_silver"/>
+                <body name="l_leg_l6">
+                  <inertial pos="0.0331706889 -8.60575588e-06 -0.0287823312" quat="0.999822046 -0.000289014037 0.0188624501 -1.24111438e-05" mass="0.5208776" diaginertia="0.000340390278 0.00155118862 0.00168081866"/>
+                  <joint name="l_leg_6" class="4315-P2-36_leg-6" pos="0 0 0" axis="1 0 0" range="-0.436 0.436" actuatorfrcrange="-75 75"/>
+                  <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="l_leg_l6_simplified" material="aiq_silver"/>
+                  <body name="l_foot_l0" pos="0 0 -0.027" quat="1 0 0 0">
+                    <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="l_foot_l0_vis_blue" material="aiq_blue"/>
+                  </body>
+                  <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="l_foot_l0_vis_sole" material="aiq_sole" pos="0 0 -0.027" quat="1 0 0 0"/>
+                  <!-- <geom pos="0 0 -0.027" quat="1 0 0 0" type="mesh" group="2" rgba="0.86667 0.9098 1 0" mesh="l_foot_l0_convex"/> -->
+                  <!-- Synced from aiq11_pro.urdf; foot frame offset: 0 0 -0.027 m. -->
+                <geom name="l_foot_front_outer" pos="0.133 0.02 -0.034" type="sphere" size="0.01" group="2" rgba="0.86667 0.9098 1 0"/>
+                  <geom name="l_foot_front_inner" pos="0.133 -0.02 -0.034" type="sphere" size="0.01" group="2" rgba="0.86667 0.9098 1 0"/>
+                  <geom name="l_foot_rear_outer" pos="-0.059 0.02 -0.034" type="sphere" size="0.01" group="2" rgba="0.86667 0.9098 1 0"/>
+                  <geom name="l_foot_rear_inner" pos="-0.059 -0.02 -0.034" type="sphere" size="0.01" group="2" rgba="0.86667 0.9098 1 0"/>
+                  <geom name="l_foot_mid_outer" type="capsule" fromto="0.0833 0.0349 -0.034 -0.0042 0.0205 -0.034" size="0.01" group="2" rgba="0.86667 0.9098 1 0"/>
+                  <geom name="l_foot_mid_inner" type="capsule" fromto="0.0833 -0.0349 -0.034 -0.0042 -0.0205 -0.034" size="0.01" group="2" rgba="0.86667 0.9098 1 0"/>
+                  </body>
+              </body>
+            <geom size="0.04 0.04 0.09" pos="0 0 -0.185" type="box" rgba="0.86667 0.9098 1 0"/>
+              </body>
+          <geom size="0.054 0.07" pos="0 0 -0.015" type="cylinder" rgba="0.75294 0.75294 0.75294 0"/>
+            <geom size="0.058 0.045" pos="-0.0275 0 -0.1" quat="0.707105 0.707108 0 0" type="cylinder" rgba="0.75294 0.75294 0.75294 0"/>
+            <geom size="0.06 0.045" pos="-0.077644 0 -0.15827" quat="0.707105 0.707108 0 0" type="cylinder" rgba="0.75294 0.75294 0.75294 0"/>
+            </body>
+        </body>
+      <geom size="0.054 0.05" pos="0 0.07 0" quat="0.560985 -0.43046 0.43046 -0.560985" type="cylinder" rgba="0.75294 0.75294 0.75294 0"/>
+        </body>
+      <body name="r_leg_l1" pos="0 -0.067 -0.0625">
+        <inertial pos="-0.00263548 -0.06363242 -0.0006539" quat="0.76414333 0.1567856 0.601312243 0.172993737" mass="1.36876886" diaginertia="0.0016772539 0.0017581685 0.0023817476"/>
+        <joint name="r_leg_1" class="8116-P1-18H_leg-1" pos="0 0 0" axis="0 1 0" range="-2.443 1.833" actuatorfrcrange="-130 130"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="r_leg_l1_vis_white" material="aiq_white"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="r_leg_l1_vis_silver" material="aiq_silver"/>
+        <body name="r_leg_l2" pos="0 -0.068 0" quat="0.991445 0 -0.130526 0">
+          <inertial pos="0.00147049 0.0003832 -0.08579138" quat="0.560174371 0.547148607 -0.436499868 0.44305862" mass="1.29561896" diaginertia="0.00232309846 0.00290205245 0.00322230909"/>
+          <joint name="r_leg_2" class="8116-P1-18H_leg-2" pos="0 0 0" axis="1 0 0" range="-1.571 0.175" actuatorfrcrange="-130 130"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="r_leg_l2_vis_white" material="aiq_white"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="r_leg_l2_vis_silver" material="aiq_silver"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="r_leg_l2_vis_dark" material="aiq_dark"/>
+          <body name="r_leg_l3" pos="0 0 -0.1315">
+            <inertial pos="-0.04554188 -0.00523035 -0.11645198" quat="0.642210538 -0.629230255 -0.373852835 -0.2277476" mass="2.754171" diaginertia="0.00432620745 0.0109684659 0.0120831466"/>
+            <joint name="r_leg_3" class="8112-P1-18H_leg-3" pos="0 0 0" axis="0 0 1" range="-1.745 1.745" actuatorfrcrange="-90 90"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="r_leg_l3_vis_white" material="aiq_white"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="r_leg_l3_vis_silver" material="aiq_silver"/>
+            <body name="r_leg_l4" pos="-0.077644 0 -0.15827" quat="0.991445 0 0.130526 0">
+              <inertial pos="-0.00172221 0.00024141 -0.15312779" quat="0.718554 -0.00234253765 -0.695455184 0.00409251288" mass="1.95458086" diaginertia="0.00279609676 0.0108266676 0.0114273957"/>
+              <joint name="r_leg_4" class="8116-P1-18H_leg-4" pos="0 0 0" axis="0 1 0" range="-0.349 2.618" actuatorfrcrange="-130 130"/>
+              <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="r_leg_l4_vis_white" material="aiq_white"/>
+              <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="r_leg_l4_vis_silver" material="aiq_silver"/>
+              <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="r_leg_l4_vis_green" material="aiq_green"/>
+              <body name="r_leg_l5" pos="0 0 -0.31">
+                <inertial pos="0.0 0.00017565 0.0" quat="1.0 0.0 0.0 0.0" mass="0.09504314" diaginertia="1.276e-05 1.016e-05 1.487e-05"/>
+                <joint name="r_leg_5" class="4315-P2-36_leg-5" pos="0 0 0" axis="0 1 0" range="-1.012 0.35" actuatorfrcrange="-75 75"/>
+                <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="r_leg_l5_simplified" material="aiq_silver"/>
+                <body name="r_leg_l6">
+                  <inertial pos="0.0331705263 -8.60575588e-06 -0.0287823312" quat="0.999822046 -0.000289014031 0.0188624576 -1.24111269e-05" mass="0.5208776" diaginertia="0.000340390277 0.00155118866 0.0016808187"/>
+                  <joint name="r_leg_6" class="4315-P2-36_leg-6" pos="0 0 0" axis="1 0 0" range="-0.436 0.436" actuatorfrcrange="-75 75"/>
+                  <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="r_leg_l6_simplified" material="aiq_silver"/>
+                  <body name="r_foot_l0" pos="0 0 -0.027" quat="1 0 0 0">
+                    <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="r_foot_l0_vis_blue" material="aiq_blue"/>
+                  </body>
+                  <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" mesh="r_foot_l0_vis_sole" material="aiq_sole" pos="0 0 -0.027" quat="1 0 0 0"/>
+                  <!-- <geom pos="0 0 -0.027" quat="1 0 0 0" type="mesh" group="2" rgba="1 1 1 0" mesh="r_foot_l0_convex"/> -->
+                  <!-- Synced from aiq11_pro.urdf; foot frame offset: 0 0 -0.027 m. -->
+                <geom name="r_foot_front_outer" pos="0.133 -0.02 -0.034" type="sphere" size="0.01" group="2" rgba="1 1 1 0"/>
+                  <geom name="r_foot_front_inner" pos="0.133 0.02 -0.034" type="sphere" size="0.01" group="2" rgba="1 1 1 0"/>
+                  <geom name="r_foot_rear_outer" pos="-0.059 -0.02 -0.034" type="sphere" size="0.01" group="2" rgba="1 1 1 0"/>
+                  <geom name="r_foot_rear_inner" pos="-0.059 0.02 -0.034" type="sphere" size="0.01" group="2" rgba="1 1 1 0"/>
+                  <geom name="r_foot_mid_outer" type="capsule" fromto="0.0833 -0.0349 -0.034 -0.0042 -0.0205 -0.034" size="0.01" group="2" rgba="1 1 1 0"/>
+                  <geom name="r_foot_mid_inner" type="capsule" fromto="0.0833 0.0349 -0.034 -0.0042 0.0205 -0.034" size="0.01" group="2" rgba="1 1 1 0"/>
+                  </body>
+              </body>
+            <geom size="0.04 0.04 0.09" pos="0 0 -0.185" type="box" rgba="0.86667 0.9098 1 0"/>
+              </body>
+          <geom size="0.054 0.07" pos="0 0 -0.015" type="cylinder" rgba="0.75294 0.75294 0.75294 0"/>
+            <geom size="0.058 0.045" pos="-0.0275 0 -0.1" quat="0.707105 0.707108 0 0" type="cylinder" rgba="0.75294 0.75294 0.75294 0"/>
+            <geom size="0.06 0.045" pos="-0.077644 0 -0.15827" quat="0.707105 0.707108 0 0" type="cylinder" rgba="0.75294 0.75294 0.75294 0"/>
+            </body>
+        </body>
+      <geom size="0.054 0.05" pos="0 -0.07 0" quat="0.560985 -0.43046 0.43046 -0.560985" type="cylinder" rgba="0.75294 0.75294 0.75294 0"/>
+        </body>
+    <geom type="mesh" rgba="0.866667 0.909804 1 0" mesh="base_link_convex"/>
+      </body>
+    <!-- Perception depth validation fixture; non-colliding by design. -->
+    <geom name="perception_validation_cube" type="box" pos="1.0 0 0.1" size="0.1 0.1 0.1" group="2" contype="0" conaffinity="0" rgba="0.95 0.15 0.05 1"/>
+  </worldbody>
+  <actuator>
+    <motor name="l_leg_1" joint="l_leg_1" gear="18" ctrllimited="true" ctrlrange="-7.222222 7.222222"/>
+    <motor name="l_leg_2" joint="l_leg_2" gear="18" ctrllimited="true" ctrlrange="-7.222222 7.222222"/>
+    <motor name="l_leg_3" joint="l_leg_3" gear="18" ctrllimited="true" ctrlrange="-5 5"/>
+    <!-- leg_4电机有减速比为2的齿轮 -->
+    <motor name="l_leg_4" joint="l_leg_4" gear="36" ctrllimited="true" ctrlrange="-3.611111 3.611111"/>
+    <motor name="l_leg_5" joint="l_leg_5" gear="36" ctrllimited="true" ctrlrange="-2.083333 2.083333"/>
+    <motor name="l_leg_6" joint="l_leg_6" gear="36" ctrllimited="true" ctrlrange="-2.083333 2.083333"/>
+    <motor name="r_leg_1" joint="r_leg_1" gear="18" ctrllimited="true" ctrlrange="-7.222222 7.222222"/>
+    <motor name="r_leg_2" joint="r_leg_2" gear="18" ctrllimited="true" ctrlrange="-7.222222 7.222222"/>
+    <motor name="r_leg_3" joint="r_leg_3" gear="18" ctrllimited="true" ctrlrange="-5 5"/>
+    <!-- leg_4电机有减速比为2的齿轮 -->
+    <motor name="r_leg_4" joint="r_leg_4" gear="36" ctrllimited="true" ctrlrange="-3.611111 3.611111"/>
+    <motor name="r_leg_5" joint="r_leg_5" gear="36" ctrllimited="true" ctrlrange="-2.083333 2.083333"/>
+    <motor name="r_leg_6" joint="r_leg_6" gear="36" ctrllimited="true" ctrlrange="-2.083333 2.083333"/>
+    <!-- torso_1电机有减速比为1.33的齿轮 -->
+    <motor name="torso_1" joint="torso_1" gear="47.88" ctrllimited="true" ctrlrange="-1.5664158 1.5664158"/>
+    <motor name="torso_2" joint="torso_2" gear="36" ctrllimited="true" ctrlrange="-2.083333 2.083333"/>
+    <motor name="torso_3" joint="torso_3" gear="36" ctrllimited="true" ctrlrange="-2.083333 2.083333"/>
+    <motor name="l_arm_1" joint="l_arm_1" gear="30.25" ctrllimited="true" ctrlrange="-2.314050 2.314050"/>
+    <motor name="l_arm_2" joint="l_arm_2" gear="36" ctrllimited="true" ctrlrange="-1 1"/>
+    <motor name="l_arm_3" joint="l_arm_3" gear="36" ctrllimited="true" ctrlrange="-1 1"/>
+    <motor name="l_arm_4" joint="l_arm_4" gear="36" ctrllimited="true" ctrlrange="-1 1"/>
+    <motor name="l_arm_5" joint="l_arm_5" gear="36" ctrllimited="true" ctrlrange="-1 1"/>
+    <motor name="l_arm_6" joint="l_arm_6" gear="36" ctrllimited="true" ctrlrange="-0.333333 0.333333"/>
+    <motor name="l_arm_7" joint="l_arm_7" gear="36" ctrllimited="true" ctrlrange="-0.333333 0.333333"/>
+    <motor name="r_arm_1" joint="r_arm_1" gear="30.25" ctrllimited="true" ctrlrange="-2.314050 2.314050"/>
+    <motor name="r_arm_2" joint="r_arm_2" gear="36" ctrllimited="true" ctrlrange="-1 1"/>
+    <motor name="r_arm_3" joint="r_arm_3" gear="36" ctrllimited="true" ctrlrange="-1 1"/>
+    <motor name="r_arm_4" joint="r_arm_4" gear="36" ctrllimited="true" ctrlrange="-1 1"/>
+    <motor name="r_arm_5" joint="r_arm_5" gear="36" ctrllimited="true" ctrlrange="-1 1"/>
+    <motor name="r_arm_6" joint="r_arm_6" gear="36" ctrllimited="true" ctrlrange="-0.333333 0.333333"/>
+    <motor name="r_arm_7" joint="r_arm_7" gear="36" ctrllimited="true" ctrlrange="-0.333333 0.333333"/>
+    <motor name="neck_1" joint="neck_1" gear="36" ctrllimited="true" ctrlrange="-0.333333 0.333333"/>
+    <motor name="neck_2" joint="neck_2" gear="36" ctrllimited="true" ctrlrange="-0.333333 0.333333"/>
+    <motor name="neck_3" joint="neck_3" gear="36" ctrllimited="true" ctrlrange="-0.333333 0.333333"/>
+  </actuator>
+  <sensor>
+    <jointpos name="l_leg_1_p" joint="l_leg_1" noise="5e-3"/>
+    <jointpos name="l_leg_2_p" joint="l_leg_2" noise="5e-3"/>
+    <jointpos name="l_leg_3_p" joint="l_leg_3" noise="5e-3"/>
+    <jointpos name="l_leg_4_p" joint="l_leg_4" noise="5e-3"/>
+    <jointpos name="l_leg_5_p" joint="l_leg_5" noise="5e-3"/>
+    <jointpos name="l_leg_6_p" joint="l_leg_6" noise="5e-3"/>
+    <jointpos name="r_leg_1_p" joint="r_leg_1" noise="5e-3"/>
+    <jointpos name="r_leg_2_p" joint="r_leg_2" noise="5e-3"/>
+    <jointpos name="r_leg_3_p" joint="r_leg_3" noise="5e-3"/>
+    <jointpos name="r_leg_4_p" joint="r_leg_4" noise="5e-3"/>
+    <jointpos name="r_leg_5_p" joint="r_leg_5" noise="5e-3"/>
+    <jointpos name="r_leg_6_p" joint="r_leg_6" noise="5e-3"/>
+    <jointpos name="torso_1_p" joint="torso_1" noise="5e-3"/>
+    <jointpos name="torso_2_p" joint="torso_2" noise="5e-3"/>
+    <jointpos name="torso_3_p" joint="torso_3" noise="5e-3"/>
+    <jointpos name="l_arm_1_p" joint="l_arm_1" noise="5e-3"/>
+    <jointpos name="l_arm_2_p" joint="l_arm_2" noise="5e-3"/>
+    <jointpos name="l_arm_3_p" joint="l_arm_3" noise="5e-3"/>
+    <jointpos name="l_arm_4_p" joint="l_arm_4" noise="5e-3"/>
+    <jointpos name="l_arm_5_p" joint="l_arm_5" noise="5e-3"/>
+    <jointpos name="l_arm_6_p" joint="l_arm_6" noise="5e-3"/>
+    <jointpos name="l_arm_7_p" joint="l_arm_7" noise="5e-3"/>
+    <jointpos name="r_arm_1_p" joint="r_arm_1" noise="5e-3"/>
+    <jointpos name="r_arm_2_p" joint="r_arm_2" noise="5e-3"/>
+    <jointpos name="r_arm_3_p" joint="r_arm_3" noise="5e-3"/>
+    <jointpos name="r_arm_4_p" joint="r_arm_4" noise="5e-3"/>
+    <jointpos name="r_arm_5_p" joint="r_arm_5" noise="5e-3"/>
+    <jointpos name="r_arm_6_p" joint="r_arm_6" noise="5e-3"/>
+    <jointpos name="r_arm_7_p" joint="r_arm_7" noise="5e-3"/>
+    <jointpos name="neck_1_p" joint="neck_1" noise="5e-3"/>
+    <jointpos name="neck_2_p" joint="neck_2" noise="5e-3"/>
+    <jointpos name="neck_3_p" joint="neck_3" noise="5e-3"/>
+    <jointvel name="l_leg_1_v" joint="l_leg_1" noise="2e-2"/>
+    <jointvel name="l_leg_2_v" joint="l_leg_2" noise="2e-2"/>
+    <jointvel name="l_leg_3_v" joint="l_leg_3" noise="2e-2"/>
+    <jointvel name="l_leg_4_v" joint="l_leg_4" noise="2e-2"/>
+    <jointvel name="l_leg_5_v" joint="l_leg_5" noise="2e-2"/>
+    <jointvel name="l_leg_6_v" joint="l_leg_6" noise="2e-2"/>
+    <jointvel name="r_leg_1_v" joint="r_leg_1" noise="2e-2"/>
+    <jointvel name="r_leg_2_v" joint="r_leg_2" noise="2e-2"/>
+    <jointvel name="r_leg_3_v" joint="r_leg_3" noise="2e-2"/>
+    <jointvel name="r_leg_4_v" joint="r_leg_4" noise="2e-2"/>
+    <jointvel name="r_leg_5_v" joint="r_leg_5" noise="2e-2"/>
+    <jointvel name="r_leg_6_v" joint="r_leg_6" noise="2e-2"/>
+    <jointvel name="torso_1_v" joint="torso_1" noise="2e-2"/>
+    <jointvel name="torso_2_v" joint="torso_2" noise="2e-2"/>
+    <jointvel name="torso_3_v" joint="torso_3" noise="2e-2"/>
+    <jointvel name="l_arm_1_v" joint="l_arm_1" noise="2e-2"/>
+    <jointvel name="l_arm_2_v" joint="l_arm_2" noise="2e-2"/>
+    <jointvel name="l_arm_3_v" joint="l_arm_3" noise="2e-2"/>
+    <jointvel name="l_arm_4_v" joint="l_arm_4" noise="2e-2"/>
+    <jointvel name="l_arm_5_v" joint="l_arm_5" noise="2e-2"/>
+    <jointvel name="l_arm_6_v" joint="l_arm_6" noise="2e-2"/>
+    <jointvel name="l_arm_7_v" joint="l_arm_7" noise="2e-2"/>
+    <jointvel name="r_arm_1_v" joint="r_arm_1" noise="2e-2"/>
+    <jointvel name="r_arm_2_v" joint="r_arm_2" noise="2e-2"/>
+    <jointvel name="r_arm_3_v" joint="r_arm_3" noise="2e-2"/>
+    <jointvel name="r_arm_4_v" joint="r_arm_4" noise="2e-2"/>
+    <jointvel name="r_arm_5_v" joint="r_arm_5" noise="2e-2"/>
+    <jointvel name="r_arm_6_v" joint="r_arm_6" noise="2e-2"/>
+    <jointvel name="r_arm_7_v" joint="r_arm_7" noise="2e-2"/>
+    <jointvel name="neck_1_v" joint="neck_1" noise="2e-2"/>
+    <jointvel name="neck_2_v" joint="neck_2" noise="2e-2"/>
+    <jointvel name="neck_3_v" joint="neck_3" noise="2e-2"/>
+    <actuatorfrc name="l_leg_1_t" actuator="l_leg_1" noise="0.2"/>
+    <actuatorfrc name="l_leg_2_t" actuator="l_leg_2" noise="0.2"/>
+    <actuatorfrc name="l_leg_3_t" actuator="l_leg_3" noise="0.2"/>
+    <actuatorfrc name="l_leg_4_t" actuator="l_leg_4" noise="0.2"/>
+    <actuatorfrc name="l_leg_5_t" actuator="l_leg_5" noise="0.2"/>
+    <actuatorfrc name="l_leg_6_t" actuator="l_leg_6" noise="0.2"/>
+    <actuatorfrc name="r_leg_1_t" actuator="r_leg_1" noise="0.2"/>
+    <actuatorfrc name="r_leg_2_t" actuator="r_leg_2" noise="0.2"/>
+    <actuatorfrc name="r_leg_3_t" actuator="r_leg_3" noise="0.2"/>
+    <actuatorfrc name="r_leg_4_t" actuator="r_leg_4" noise="0.2"/>
+    <actuatorfrc name="r_leg_5_t" actuator="r_leg_5" noise="0.2"/>
+    <actuatorfrc name="r_leg_6_t" actuator="r_leg_6" noise="0.2"/>
+    <actuatorfrc name="torso_1_t" actuator="torso_1" noise="0.5"/>
+    <actuatorfrc name="torso_2_t" actuator="torso_2" noise="0.5"/>
+    <actuatorfrc name="torso_3_t" actuator="torso_3" noise="0.5"/>
+    <actuatorfrc name="l_arm_1_t" actuator="l_arm_1" noise="0.2"/>
+    <actuatorfrc name="l_arm_2_t" actuator="l_arm_2" noise="0.2"/>
+    <actuatorfrc name="l_arm_3_t" actuator="l_arm_3" noise="0.2"/>
+    <actuatorfrc name="l_arm_4_t" actuator="l_arm_4" noise="0.2"/>
+    <actuatorfrc name="l_arm_5_t" actuator="l_arm_5" noise="0.2"/>
+    <actuatorfrc name="l_arm_6_t" actuator="l_arm_6" noise="0.2"/>
+    <actuatorfrc name="l_arm_7_t" actuator="l_arm_7" noise="0.2"/>
+    <actuatorfrc name="r_arm_1_t" actuator="r_arm_1" noise="0.2"/>
+    <actuatorfrc name="r_arm_2_t" actuator="r_arm_2" noise="0.2"/>
+    <actuatorfrc name="r_arm_3_t" actuator="r_arm_3" noise="0.2"/>
+    <actuatorfrc name="r_arm_4_t" actuator="r_arm_4" noise="0.2"/>
+    <actuatorfrc name="r_arm_5_t" actuator="r_arm_5" noise="0.2"/>
+    <actuatorfrc name="r_arm_6_t" actuator="r_arm_6" noise="0.2"/>
+    <actuatorfrc name="r_arm_7_t" actuator="r_arm_7" noise="0.2"/>
+    <actuatorfrc name="neck_1_t" actuator="neck_1" noise="0.2"/>
+    <actuatorfrc name="neck_2_t" actuator="neck_2" noise="0.2"/>
+    <actuatorfrc name="neck_3_t" actuator="neck_3" noise="0.2"/>
+    <framequat name="orientation" objtype="site" noise="0.0002" objname="imu_1"/>
+    <framepos name="position" objtype="site" noise="0.0002" objname="imu_1"/>
+    <gyro name="angular-velocity" site="imu_1" noise="0.001" cutoff="34.9"/>
+    <velocimeter name="linear-velocity" site="imu_1" noise="0.0001" cutoff="30"/>
+    <accelerometer name="linear-acceleration" site="imu_1" noise="0.03" cutoff="157"/>
+    <!-- <framequat     name='orientation_2' objtype='site' noise='0.0001' objname='imu_2'/>
+    <framepos      name='position_2' objtype='site' noise='0.0001' objname='imu_2'/>
+    <gyro          name='angular-velocity_2'    site='imu_2' noise='0.0005' cutoff='34.9'/>
+    <velocimeter   name='linear-velocity_2'     site='imu_2' noise='0.0001' cutoff='30'/>
+    <accelerometer name='linear-acceleration_2' site='imu_2' noise='0.0005' cutoff='157'/>
+    <magnetometer  name='magnetometer_2'        site='imu_2'/> -->
+  </sensor>
+  </mujoco>

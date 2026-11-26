@@ -1,0 +1,28 @@
+<mujocoinclude>
+      <!-- Original 640x480 camera intrinsics, D2C off.
+           Runtime preprocessing crops 10% per edge and samples to 64x36.
+           Nominal K: front/back Gemini 335LE (81x65 deg IR); left/right 336 (372 px).
+           Centred principal point assumed; not per-device measured calibration. -->
+  <!-- Copyright 2026 EIR. Apache-2.0. Four-camera preview calibration;
+       EQR11W policy deployment is not enabled by these camera declarations. -->
+  <camera name="gemini_front" pos="0.42493 0 -0.097878"
+    quat="0.640851017171 0.298844670671 -0.298845768391 -0.640853371152"
+    resolution="640 480" sensorsize="1 1"
+    focalpixel="374.67186115601254 376.72453850819767"
+    principalpixel="320 240"/>
+  <camera name="gemini_back" pos="-0.42506 0 -0.097878"
+    quat="0.677711524855 0.201755427379 0.201756168469 0.677714014233"
+    resolution="640 480" sensorsize="1 1"
+    focalpixel="374.67186115601254 376.72453850819767"
+    principalpixel="320 240"/>
+  <camera name="gemini_left" pos="-0.091070 0.15201 -0.0051119"
+    quat="0.866026628184 0.499997879273 0 0"
+    resolution="640 480" sensorsize="1 1"
+    focalpixel="372 372"
+    principalpixel="320 240"/>
+  <camera name="gemini_right" pos="-0.094066 -0.15201 -0.0051119"
+    quat="-0.00000318109343028 -0.00000183659476181 0.499997879269 0.866026628178"
+    resolution="640 480" sensorsize="1 1"
+    focalpixel="372 372"
+    principalpixel="320 240"/>
+</mujocoinclude>

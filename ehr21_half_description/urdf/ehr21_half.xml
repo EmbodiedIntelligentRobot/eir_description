@@ -1,0 +1,614 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="ehr21_half">
+  <compiler angle="radian" meshdir="../meshes/" />
+  <option timestep="0.0005" iterations="200" tolerance="1e-10" solver="Newton" gravity="0 0 -9.81" />
+  <size njmax="500" nconmax="100" />
+  <visual>
+    <quality shadowsize="4096" />
+    <map znear="0.05" />
+    <global offwidth="3840" offheight="3840" />
+  </visual>
+  <default>
+    <joint limited="true" damping="0.01" frictionloss="0.01" armature="0.01" />
+    <motor ctrllimited="true" />
+    <geom condim="3" contype="1" conaffinity="15" solref="0.001 2" friction="0.9 0.2 0.2" />
+    <equality solref="0.0005 2" solimp="0.9999 0.9999 0.001 0.5 2" />
+    <default class="visualgeom">
+      <geom material="visualgeom" condim="3" contype="0" conaffinity="0" />
+    </default>
+    <default class="fake_joint_param">
+      <joint damping="0.1" frictionloss="0.01" armature="0.0" />
+    </default>
+    <default class="4315-P2-36_torso-1">
+      <joint damping="0.15" frictionloss="0.30" armature="0.0324" />
+    </default>
+    <default class="4315-P2-36_torso-2">
+      <joint damping="0.15" frictionloss="0.30" armature="0.0324" />
+    </default>
+    <default class="4315-P2-36_torso-3">
+      <joint damping="0.15" frictionloss="0.30" armature="0.0324" />
+    </default>
+    <default class="6408-P2-30.25H_arm-1">
+      <joint damping="0.15" frictionloss="0.25" armature="0.0576489" />
+    </default>
+    <default class="4310-P2-36H_arm-2">
+      <joint damping="0.1" frictionloss="0.15" armature="0.023328" />
+    </default>
+    <default class="4310-P2-36H_arm-3">
+      <joint damping="0.1" frictionloss="0.15" armature="0.023328" />
+    </default>
+    <default class="4310-P2-36H_arm-4">
+      <joint damping="0.1" frictionloss="0.15" armature="0.023328" />
+    </default>
+    <default class="4310-P2-36H_arm-5">
+      <joint damping="0.1" frictionloss="0.15" armature="0.023328" />
+    </default>
+    <default class="2806-P2-36_arm-6">
+      <joint damping="0.05" frictionloss="0.03" armature="0.00552" />
+    </default>
+    <default class="2806-P2-36_arm-7">
+      <joint damping="0.05" frictionloss="0.03" armature="0.00552" />
+    </default>
+    <default class="2806-P2-36_neck-1">
+      <joint damping="0.05" frictionloss="0.03" armature="0.00552" />
+    </default>
+    <default class="2806-P2-36_neck-2">
+      <joint damping="0.05" frictionloss="0.03" armature="0.00552" />
+    </default>
+  </default>
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="512" />
+    <texture name="texplane" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2" width="512" height="512" mark="cross" markrgb=".8 .8 .8" />
+    <material name="matplane" reflectance="0" texture="texplane" texrepeat="1 1" texuniform="true" />
+    <material name="ehr_silver" rgba="0.48 0.51 0.54 1" specular="0.40" shininess="0.45" reflectance="0.04" />
+    <material name="ehr_gunmetal" rgba="0.24 0.27 0.30 1" specular="0.32" shininess="0.38" reflectance="0.03" />
+    <material name="ehr_dark" rgba="0.12 0.13 0.15 1" specular="0.18" shininess="0.22" />
+    <material name="ehr_black" rgba="0.10 0.11 0.13 1" specular="0.22" shininess="0.26" reflectance="0.01" />
+    <material name="ehr_visor" rgba="0.05 0.06 0.08 0.96" specular="0.85" shininess="0.88" reflectance="0.16" />
+    <material name="ehr_red" rgba="0.70 0.10 0.10 1" specular="0.30" shininess="0.35" reflectance="0.01" />
+    <mesh content_type="model/stl" name="L_base_link_vis_dark" file="L_base_link_vis_dark.STL" />
+    <mesh content_type="model/stl" name="L_base_link_vis_silver" file="L_base_link_vis_silver.STL" />
+    <mesh content_type="model/stl" name="R_base_link_vis_dark" file="R_base_link_vis_dark.STL" />
+    <mesh content_type="model/stl" name="R_base_link_vis_silver" file="R_base_link_vis_silver.STL" />
+    <mesh content_type="model/stl" name="base_link_simplified" file="base_link_simplified.STL" />
+    <mesh content_type="model/stl" name="base_link_vis_dark" file="base_link_vis_dark.STL" />
+    <mesh content_type="model/stl" name="gemini305_l1_simplified" file="gemini305_l1_simplified.STL" />
+    <mesh content_type="model/stl" name="gemini305_l2_simplified" file="gemini305_l2_simplified.STL" />
+    <mesh content_type="model/stl" name="gemini336l_l1_simplified" file="gemini336l_l1_simplified.STL" />
+    <mesh content_type="model/stl" name="l_arm_l1_simplified" file="l_arm_l1_simplified.STL" />
+    <mesh content_type="model/stl" name="l_arm_l2_vis_dark" file="l_arm_l2_vis_dark.STL" />
+    <mesh content_type="model/stl" name="l_arm_l2_vis_silver" file="l_arm_l2_vis_silver.STL" />
+    <mesh content_type="model/stl" name="l_arm_l3_vis_dark" file="l_arm_l3_vis_dark.STL" />
+    <mesh content_type="model/stl" name="l_arm_l3_vis_silver" file="l_arm_l3_vis_silver.STL" />
+    <mesh content_type="model/stl" name="l_arm_l4_simplified" file="l_arm_l4_simplified.STL" />
+    <mesh content_type="model/stl" name="l_arm_l51_simplified" file="l_arm_l51_simplified.STL" />
+    <mesh content_type="model/stl" name="l_arm_l52_simplified" file="l_arm_l52_simplified.STL" />
+    <mesh content_type="model/stl" name="l_arm_l5_vis_dark" file="l_arm_l5_vis_dark.STL" />
+    <mesh content_type="model/stl" name="l_arm_l5_vis_silver" file="l_arm_l5_vis_silver.STL" />
+    <mesh content_type="model/stl" name="l_arm_l6_vis_dark" file="l_arm_l6_vis_dark.STL" />
+    <mesh content_type="model/stl" name="l_arm_l6_vis_silver" file="l_arm_l6_vis_silver.STL" />
+    <mesh content_type="model/stl" name="l_arm_l7_vis_dark" file="l_arm_l7_vis_dark.STL" />
+    <mesh content_type="model/stl" name="l_arm_l7_vis_silver" file="l_arm_l7_vis_silver.STL" />
+    <mesh content_type="model/stl" name="left_index_1" file="left_index_1.STL" />
+    <mesh content_type="model/stl" name="left_index_2" file="left_index_2.STL" />
+    <mesh content_type="model/stl" name="left_little_1" file="left_little_1.STL" />
+    <mesh content_type="model/stl" name="left_little_2" file="left_little_2.STL" />
+    <mesh content_type="model/stl" name="left_middle_1" file="left_middle_1.STL" />
+    <mesh content_type="model/stl" name="left_middle_2" file="left_middle_2.STL" />
+    <mesh content_type="model/stl" name="left_ring_1" file="left_ring_1.STL" />
+    <mesh content_type="model/stl" name="left_ring_2" file="left_ring_2.STL" />
+    <mesh content_type="model/stl" name="left_thumb_1" file="left_thumb_1.STL" />
+    <mesh content_type="model/stl" name="left_thumb_2" file="left_thumb_2.STL" />
+    <mesh content_type="model/stl" name="left_thumb_3" file="left_thumb_3.STL" />
+    <mesh content_type="model/stl" name="left_thumb_4" file="left_thumb_4.STL" />
+    <mesh content_type="model/stl" name="neck_l1_simplified" file="neck_l1_simplified.STL" />
+    <mesh content_type="model/stl" name="neck_l2_vis_black" file="neck_l2_vis_black.STL" />
+    <mesh content_type="model/stl" name="neck_l2_vis_visor" file="neck_l2_vis_visor.STL" />
+    <mesh content_type="model/stl" name="r_arm_l1_simplified" file="r_arm_l1_simplified.STL" />
+    <mesh content_type="model/stl" name="r_arm_l2_vis_dark" file="r_arm_l2_vis_dark.STL" />
+    <mesh content_type="model/stl" name="r_arm_l2_vis_silver" file="r_arm_l2_vis_silver.STL" />
+    <mesh content_type="model/stl" name="r_arm_l3_vis_dark" file="r_arm_l3_vis_dark.STL" />
+    <mesh content_type="model/stl" name="r_arm_l3_vis_silver" file="r_arm_l3_vis_silver.STL" />
+    <mesh content_type="model/stl" name="r_arm_l4_simplified" file="r_arm_l4_simplified.STL" />
+    <mesh content_type="model/stl" name="r_arm_l51_simplified" file="r_arm_l51_simplified.STL" />
+    <mesh content_type="model/stl" name="r_arm_l52_simplified" file="r_arm_l52_simplified.STL" />
+    <mesh content_type="model/stl" name="r_arm_l5_vis_dark" file="r_arm_l5_vis_dark.STL" />
+    <mesh content_type="model/stl" name="r_arm_l5_vis_silver" file="r_arm_l5_vis_silver.STL" />
+    <mesh content_type="model/stl" name="r_arm_l6_vis_dark" file="r_arm_l6_vis_dark.STL" />
+    <mesh content_type="model/stl" name="r_arm_l6_vis_silver" file="r_arm_l6_vis_silver.STL" />
+    <mesh content_type="model/stl" name="r_arm_l7_vis_dark" file="r_arm_l7_vis_dark.STL" />
+    <mesh content_type="model/stl" name="r_arm_l7_vis_silver" file="r_arm_l7_vis_silver.STL" />
+    <mesh content_type="model/stl" name="right_index_1" file="right_index_1.STL" />
+    <mesh content_type="model/stl" name="right_index_2" file="right_index_2.STL" />
+    <mesh content_type="model/stl" name="right_little_1" file="right_little_1.STL" />
+    <mesh content_type="model/stl" name="right_little_2" file="right_little_2.STL" />
+    <mesh content_type="model/stl" name="right_middle_1" file="right_middle_1.STL" />
+    <mesh content_type="model/stl" name="right_middle_2" file="right_middle_2.STL" />
+    <mesh content_type="model/stl" name="right_ring_1" file="right_ring_1.STL" />
+    <mesh content_type="model/stl" name="right_ring_2" file="right_ring_2.STL" />
+    <mesh content_type="model/stl" name="right_thumb_1" file="right_thumb_1.STL" />
+    <mesh content_type="model/stl" name="right_thumb_2" file="right_thumb_2.STL" />
+    <mesh content_type="model/stl" name="right_thumb_3" file="right_thumb_3.STL" />
+    <mesh content_type="model/stl" name="right_thumb_4" file="right_thumb_4.STL" />
+    <mesh content_type="model/stl" name="torso_l1_simplified" file="torso_l1_simplified.STL" />
+    <mesh content_type="model/stl" name="torso_l2_simplified" file="torso_l2_simplified.STL" />
+    <mesh content_type="model/stl" name="torso_l31_simplified" file="torso_l31_simplified.STL" />
+    <mesh content_type="model/stl" name="torso_l32_simplified" file="torso_l32_simplified.STL" />
+    <mesh content_type="model/stl" name="torso_l33_simplified" file="torso_l33_simplified.STL" />
+    <mesh content_type="model/stl" name="torso_l34_simplified" file="torso_l34_simplified.STL" />
+    <mesh content_type="model/stl" name="torso_l3_vis_dark" file="torso_l3_vis_dark.STL" />
+    <mesh content_type="model/stl" name="torso_l3_vis_gunmetal" file="torso_l3_vis_gunmetal.STL" />
+    <mesh content_type="model/stl" name="torso_l3_vis_red" file="torso_l3_vis_red.STL" />
+    <mesh content_type="model/stl" name="torso_l3_vis_silver" file="torso_l3_vis_silver.STL" />
+  </asset>
+  <worldbody>
+    <light directional="true" diffuse=".4 .4 .4" specular=".1 .1 .1" pos="0 0 5" dir="0 0 -1" castshadow="false" />
+    <light directional="true" diffuse=".6 .6 .6" specular=".2 .2 .2" pos="0 0 4" dir="0 0 -1" />
+    <geom name="ground" type="plane" size="0 0 1" pos="0.001 0 0" material="matplane" condim="1" conaffinity="15" />
+    <body name="base_link" pos="0 0 0.588729">
+      <!-- <joint name="floating_base_joint" type="free"/> -->
+      <joint name="floating_base_joint_x" type="slide" axis="1 0 0" limited="false" damping="0.0" frictionloss="0.0" armature="0.0" />
+      <joint name="floating_base_joint_y" type="slide" axis="0 1 0" limited="false" damping="0.0" frictionloss="0.0" armature="0.0" />
+      <joint name="floating_base_joint_z" type="slide" axis="0 0 1" limited="false" damping="0.0" frictionloss="0.0" armature="0.0" />
+      <joint name="floating_base_joint_ball" type="ball" limited="false" damping="0.0" frictionloss="0.0" armature="0.0" />
+      <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="base_link_simplified" material="ehr_silver" />
+      <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="base_link_vis_dark" material="ehr_dark" />
+      <geom type="box" pos="0.145 0 -0.455" euler="0 0 0" size="0.3 0.35 0.03" rgba="0.75294 0.75294 0.75294 0" />
+      <geom type="box" pos="0.000 0 -0.2135" euler="0 0 0" size="0.05 0.05 0.2045" rgba="0.75294 0.75294 0.75294 0" />
+      <geom type="box" pos="-0.030 0 -0.018" euler="0 0 0" size="0.105 0.075 0.05" rgba="0.75294 0.75294 0.75294 0" />
+      <geom type="sphere" pos="-0.14853 -0.29678 -0.55725" size="0.0315" rgba="0.75294 0.75294 0.75294 0" />
+      <geom type="sphere" pos="-0.10203 0.34327 -0.55725" size="0.0315" rgba="0.75294 0.75294 0.75294 0" />
+      <geom type="sphere" pos="0.39153 -0.34327 -0.55725" size="0.0315" rgba="0.75294 0.75294 0.75294 0" />
+      <geom type="sphere" pos="0.43803 0.29678 -0.55725" size="0.0315" rgba="0.75294 0.75294 0.75294 0" />
+      <inertial pos="0.10983 2.2425e-07 -0.39765" quat="0.500032663647 0.500032663647 -0.499967334219 0.499967334219" mass="29.574" diaginertia="0.811870002392 0.671779997608 0.25047" />
+      <site name="imu_1" size="0.01" pos="0.0255 0 0" />
+      <body name="torso_l1" pos="0 0 0.035">
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="torso_l1_simplified" material="ehr_silver" />
+        <inertial pos="0.0116072100473 -0.000729410986984 0.0164075177456" quat="0.00549803988679 0.857592459983 -0.0033471289594 0.514289549636" mass="0.165914491812" diaginertia="7.76647613485e-05 5.26179256006e-05 5.16203646916e-05" />
+        <joint name="torso_1" pos="0 0 0" axis="0 0 1" range="-2.007 2.007" actuatorfrcrange="-75 75" class="4315-P2-36_torso-1" />
+        <body name="torso_l2" pos="0 0 0.037">
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="torso_l2_simplified" material="ehr_silver" />
+          <inertial pos="-0.0014333143287 0.000859836457708 1.173774411e-10" quat="0.499690453335 0.500309355145 -0.499690453335 0.500309355145" mass="0.0798308108893" diaginertia="1.06792419036e-05 9.86222576901e-06 6.96040394238e-06" />
+          <joint name="torso_2" pos="0 0 0" axis="1 0 0" range="-0.297 0.297" actuatorfrcrange="-75 75" class="fake_joint_param" />
+          <body name="torso_l3">
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="torso_l3_vis_silver" material="ehr_silver" />
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="torso_l3_vis_gunmetal" material="ehr_gunmetal" />
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="torso_l3_vis_dark" material="ehr_dark" />
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="torso_l3_vis_red" material="ehr_red" />
+            <geom type="box" pos="0 0 0.245" size="0.115 0.130 0.175" rgba="0.75294 0.75294 0.75294 0" />
+            <!-- <geom type="box" pos="-0.133 0 0.327" euler="0 0.25 0" size="0.0075 0.06 0.0075" rgba="0.75294 0.75294 0.75294 0" /> -->
+            <inertial pos="-0.00233175198939 -0.00864447960929 0.235870072004" quat="0.775847342428 0.630918682452 -0.00146323514886 0.000613451364835" mass="11.6874781199" diaginertia="0.0829223682318 0.0520163886365 0.0475521056056" />
+            <joint name="torso_3" pos="0 0 0" axis="0 1 0" range="-0.244 0.506" actuatorfrcrange="-75 75" class="fake_joint_param" />
+            <body name="neck_l1" pos="0.00011888 0 0.47625" quat="1 0 0 0">
+              <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="neck_l1_simplified" material="ehr_dark" />
+              <inertial pos="4.02821775736e-06 0.00854869214998 0.0413575834635" quat="0.685645741267 -0.176730577568 0.175723229863 0.683942663475" mass="0.193164516153" diaginertia="7.5265800492e-05 7.10816864196e-05 6.06177947264e-05" />
+              <joint name="neck_1" pos="0 0 0" axis="0 0 1" range="-1.571 1.571" actuatorfrcrange="-20 20" class="2806-P2-36_neck-1" />
+              <body name="neck_l2" pos="0 0.022 0.048">
+                <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="neck_l2_vis_black" material="ehr_black" />
+                <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="neck_l2_vis_visor" material="ehr_visor" />
+                <geom type="sphere" pos="0.006 -0.022 0.090" size="0.100" rgba="0.86667 0.9098 1 0" />
+                <inertial pos="0.0317724297523 -0.0199288967249 0.068988530797" quat="0.461629585818 0.552599920382 0.51678899628 0.463098895287" mass="0.802962321353" diaginertia="0.00352377225706 0.00307766594594 0.00285731897461" />
+                <joint name="neck_2" pos="0 0 0" axis="0 1 0" range="-0.436 0.436" actuatorfrcrange="-20 20" class="2806-P2-36_neck-2" />
+                <body name="gemini336l_l1" pos="0.115635 0.0255 0.102948" quat="0.40558 -0.579228 0.579228 -0.40558">
+                  <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="gemini336l_l1_simplified" material="ehr_dark" />
+                  <site name="gemini336l_l1_site" size="0.01" pos="0 0 0" />
+                </body>
+              </body>
+            </body>
+            <body name="l_arm_l1" pos="0 0.1449 0.3613" quat="0.984807 0.17365 0 0">
+              <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l1_simplified" material="ehr_dark" />
+              <geom type="cylinder" pos="0 0.055 0" euler="-1.570796 -1.570796 -1.570796" size="0.040 0.037" rgba="0.86667 0.9098 1 0" />
+              <inertial pos="0.0017370391679 0.0484880668987 0.000541519237631" quat="0.70493745838 -0.0130135488369 -0.0166887572828 0.708953674579" mass="0.416261709018" diaginertia="0.000386740634791 0.00030263724548 0.000260456492884" />
+              <joint name="l_arm_1" pos="0 0 0" axis="0 1 0" range="-3.142 1.883" actuatorfrcrange="-100 100" class="6408-P2-30.25H_arm-1" />
+              <body name="l_arm_l2" pos="0 0.06 0" quat="0.984807392725 -0.173650220946 0 0">
+                <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l2_vis_silver" material="ehr_silver" />
+                <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l2_vis_dark" material="ehr_dark" />
+                <geom type="cylinder" pos="0 0.013 -0.092" euler="0 0 0" size="0.033 0.04" rgba="0.75294 0.75294 0.75294 0" />
+                <inertial pos="0.00134095017471 0.0100947620314 -0.0793030776797" quat="0.997567189191 0.0680792923895 0.0121138620006 -0.00884122985565" mass="0.726353282876" diaginertia="0.000904979161333 0.000847223979905 0.000415650531086" />
+                <joint name="l_arm_2" pos="0 0 0" axis="1 0 0" range="-0.087 2.88" actuatorfrcrange="-75 75" class="4310-P2-36H_arm-2" />
+                <body name="l_arm_l3" pos="0.00049896 0.012 -0.1218" quat="1 0 0 0">
+                  <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l3_vis_silver" material="ehr_silver" />
+                  <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l3_vis_dark" material="ehr_dark" />
+                  <geom type="cylinder" pos="0.0115 0 -0.1442" euler="1.5708 0 0" size="0.039 0.03" rgba="0.52941 0.72549 1 0" />
+                  <inertial pos="0.00913945550523 0.00262775744052 -0.125103076117" quat="0.998488676135 -4.1085075274e-05 -0.0548635261826 0.00321798639702" mass="0.688639987752" diaginertia="0.000982877436984 0.000940609382069 0.00035539598248" />
+                  <joint name="l_arm_3" pos="0 0 0" axis="0 0 1" range="-2.304 2.304" actuatorfrcrange="-36 36" class="4310-P2-36H_arm-3" />
+                  <body name="l_arm_l4" pos="0.0115 0 -0.1442">
+                    <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l4_simplified" material="ehr_silver" />
+                    <geom type="cylinder" pos="-0.01 0 -0.087" euler="0 0 0" size="0.039 0.024" rgba="0.79216 0.81961 0.93333 0" />
+                    <inertial pos="-0.0109198472867 0.00375416268389 -0.073912389128" quat="0.701894553414 -0.0131699367579 0.120511601143 0.70188855429" mass="0.60075393318" diaginertia="0.000476643680285 0.000419342746248 0.000341952049853" />
+                    <joint name="l_arm_4" pos="0 0 0" axis="0 1 0" range="-2.356 0.175" actuatorfrcrange="-36 36" class="4310-P2-36H_arm-4" />
+                    <body name="l_arm_l5" pos="-0.0115 0 -0.1068">
+                      <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l5_vis_silver" material="ehr_silver" />
+                      <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l5_vis_dark" material="ehr_dark" />
+                      <geom type="cylinder" pos="0 0 -0.038" euler="0 0 0" size="0.035 0.0175" rgba="1 0.86667 0.27843 0" />
+                      <inertial pos="0.000277258573877 0.000501139975156 -0.0465381620857" quat="0.705658487223 -0.00941858087774 -0.00741105741534 0.708450750562" mass="0.288996184253" diaginertia="0.000338429384336 0.000263795363476 0.000164806646607" />
+                      <joint name="l_arm_5" pos="0 0 0" axis="0 0 1" range="-2.269 2.269" actuatorfrcrange="-36 36" class="4310-P2-36H_arm-5" />
+                      <body name="l_arm_l51" pos="0 0.0144 -0.0667" quat="1 0 0 0">
+                        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l51_simplified" material="ehr_silver" />
+                        <inertial pos="-0.000190387775211 0.00200571721718 -2.22044604925e-16" quat="0.503271451784 0.503271451784 0.496707001983 0.496707001983" mass="0.00464101579135" diaginertia="6.84801327786e-07 4.69147846156e-07 2.29348825646e-07" />
+                        <joint name="l_arm_51" pos="0 0 0" axis="0 1 0" range="-0.785 0.785" actuatorfrcrange="-36 36" />
+                        <body name="l_arm_l52" pos="-0.015 0.008 0">
+                          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l52_simplified" material="ehr_silver" />
+                          <inertial pos="4.4408920985e-16 0.00130652519397 -0.0274997497207" quat="0.706796976099 0.0209292755929 -0.0209292755929 0.706796976099" mass="0.00741026715279" diaginertia="3.65851585994e-06 3.61466181927e-06 7.79256132025e-08" />
+                          <joint name="l_arm_52" pos="0 0 0" axis="0 1 0" range="-0.785 0.785" actuatorfrcrange="-36 36" />
+                        </body>
+                      </body>
+                      <body name="l_arm_l6" pos="0 -0.0001 -0.1217">
+                        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l6_vis_silver" material="ehr_silver" />
+                        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l6_vis_dark" material="ehr_dark" />
+                        <geom type="cylinder" pos="0 0 0" euler="0 1.57 0" size="0.023 0.0225" rgba="0.79216 0.81961 0.93333 0" />
+                        <inertial pos="-0.00151782022797 -0.000266288160077 -0.000213081048197" quat="0.700153449525 0.712889923181 0.0185110179867 -0.0350777245272" mass="0.0539477644305" diaginertia="2.02741511076e-05 1.89566329983e-05 1.52567084505e-05" />
+                        <joint name="l_arm_6" pos="0 0 0" axis="0 1 0" range="-0.785 0.785" actuatorfrcrange="-36 36" class="2806-P2-36_arm-6" />
+                        <body name="l_arm_l7">
+                          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l7_vis_silver" material="ehr_silver" />
+                          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="l_arm_l7_vis_dark" material="ehr_dark" />
+                          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="L_base_link_vis_dark" pos="0 0 -0.0655" quat="0 -0.707107 0.707107 0" material="ehr_dark" />
+                          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="L_base_link_vis_silver" pos="0 0 -0.0655" quat="0 -0.707107 0.707107 0" material="ehr_silver" />
+                          <geom type="cylinder" pos="0 0 -0.040" euler="0 0 0" size="0.023 0.0125" rgba="0.86667 0.9098 1 0" />
+                          <geom type="box" pos="0.074 -0.019 -0.0575" euler="0 0 0" size="0.05 0.004 0.004" rgba="0.86667 0.9098 1 0" />
+                          <geom type="box" pos="0.074 0.019 -0.0575" euler="0 0 0" size="0.05 0.004 0.004" rgba="0.86667 0.9098 1 0" />
+                          <geom type="box" pos="0.152 -0.021 -0.104" euler="0 1.03 0" size="0.05 0.0035 0.004" rgba="0.86667 0.9098 1 0" />
+                          <geom type="box" pos="0.152 0.021 -0.104" euler="0 1.03 0" size="0.05 0.0035 0.004" rgba="0.86667 0.9098 1 0" />
+                          <geom type="box" pos="0.123 -0.021 -0.086" euler="0 0.95 0" size="0.0315 0.0035 0.004" rgba="0.86667 0.9098 1 0" />
+                          <geom type="box" pos="0.123 0.021 -0.086" euler="0 0.95 0" size="0.0315 0.0035 0.004" rgba="0.86667 0.9098 1 0" />
+                          <geom type="box" pos="0.16355 0.02508 -0.14053" quat="0.429618 0.046040 0.607943 -0.666119" size="0.0105 0.019 0.019" rgba="0.86667 0.9098 1 0" />
+                          <geom type="box" pos="-0.002 0 -0.1725" size="0.0275 0.041 0.107" rgba="0.69804 0.69804 0.69804 0" quat="0 -0.707107 0.707107 0" />
+                          <geom type="box" pos="0.06154369 -0.02817805 -0.15503824" size="0.0095 0.017 0.06" rgba="0.69804 0.69804 0.69804 0" quat="0.71845117 -0.31466214 -0.24096511 0.57162179" />
+                          <inertial pos="0.0193527781912 0.000304324123698 -0.000774266603402" quat="0.918829634029 -0.0214369365496 -0.31844704555 0.232129361698" mass="0.948828997998" diaginertia="0.00387871038085 0.00384537165509 0.000554541638241" />
+                          <joint name="l_arm_7" pos="0 0 0" axis="1 0 0" range="-1.047 1.047" actuatorfrcrange="-36 36" class="2806-P2-36_arm-7" />
+                          <body name="gemini305_l2" pos="0.15219104 0.0267885279082 -0.14955144256" quat="0.438464770168 0.733682780376 -0.503547486759 -0.126087872853">
+                            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="gemini305_l2_simplified" material="ehr_dark" />
+                            <site name="gemini305_l2_site" size="0.01" pos="0 0 0" />
+                          </body>
+                          <body name="left_thumb_1" pos="0.02045 -0.01696 -0.13185">
+                            <geom type="mesh" quat="0 0.70710678 -0.70710678 0" contype="0" conaffinity="0" group="1" density="0" mesh="left_thumb_1" material="ehr_silver" />
+                            <inertial pos="0.00482216 -0.000853472 0.00482" quat="0.38705188 -0.34933269 0.66472212 -0.53507197" mass="0.00483" diaginertia="2.13881e-07 1.68735e-07 1.24674e-07" />
+                            <joint name="left_thumb_1_joint" pos="0 0 0" axis="0 0 -1" range="0 1.24616" actuatorfrcrange="-50 50" />
+                            <body name="left_thumb_2" pos="0.0090002 -0.010735 0.0065" quat="0.99121466 -1.9999993e-06 0 -0.13226296">
+                              <geom type="mesh" quat="0 0 0.70710678 -0.70710678" contype="0" conaffinity="0" group="1" density="0" mesh="left_thumb_2" material="ehr_silver" />
+                              <inertial pos="0.0194666 0.00803847 -0.0163039" quat="0.66534611 0.23840896 -0.238503 -0.66602706" mass="0.05759" diaginertia="1.70013e-05 1.42937e-05 5.29607e-06" />
+                              <joint name="left_thumb_2_joint" pos="0 0 0" axis="0 -1 0" range="-0.48 0" actuatorfrcrange="-50 50" />
+                              <body name="left_thumb_3" pos="0.037617 0.0008 -0.041486">
+                                <geom type="mesh" quat="0 0 0.70710678 -0.70710678" contype="0" conaffinity="0" group="1" density="0" mesh="left_thumb_3" material="ehr_silver" />
+                                <inertial pos="0.00946662 0.00719989 -0.00207562" quat="0.70447415 0.059984569 -0.059942143 -0.70464527" mass="0.00985" diaginertia="1.28966e-06 1.22915e-06 5.82719e-07" />
+                                <joint name="left_thumb_3_joint" pos="0 0 0" axis="0 -1 0" range="-0.3578 0" actuatorfrcrange="-50 50" />
+                                <body name="left_thumb_4" pos="0.014957 0.0012 -0.017012">
+                                  <geom type="mesh" quat="0 0 0.70710678 -0.70710678" contype="0" conaffinity="0" group="1" density="0" mesh="left_thumb_4" material="ehr_silver" />
+                                  <inertial pos="0.00604904 0.00600331 -0.00861521" quat="0.70588487 0.078780177 -0.080796139 -0.69927979" mass="0.00552" diaginertia="3.37472e-07 3.27117e-07 1.19552e-07" />
+                                  <joint name="left_thumb_4_joint" pos="0 0 0" axis="0 -1 0" range="-0.2775 0" actuatorfrcrange="-50 50" />
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                          <body name="left_index_1" pos="0.020275 0.00028533 -0.20245" quat="0.99984772 0 -0.017451013 0">
+                            <geom type="mesh" quat="0.5 -0.5 0.5 -0.5" contype="0" conaffinity="0" group="1" density="0" mesh="left_index_1" material="ehr_silver" />
+                            <inertial pos="0.00599989 -0.000852716 -0.0119736" quat="0.99854922 0.053699485 0.0013354996 -0.003746499" mass="0.01229" diaginertia="2.05873e-06 1.95619e-06 5.46223e-07" />
+                            <joint name="left_index_1_joint" pos="0 0 0" axis="1 0 0" range="-1.333 0" actuatorfrcrange="-50 50" />
+                            <body name="left_index_2" pos="0.001 -0.0080993 -0.031095">
+                              <geom type="mesh" quat="0.5 -0.5 0.5 -0.5" contype="0" conaffinity="0" group="1" density="0" mesh="left_index_2" material="ehr_silver" />
+                              <inertial pos="0.00500003 -0.00408345 -0.0192602" quat="0.97631773 0.21633794 0.00028899992 -0.0012229997" mass="0.00633" diaginertia="1.14024e-06 1.12462e-06 1.08348e-07" />
+                              <joint name="left_index_2_joint" pos="0 0 0" axis="1 0 0" range="-1.527 0" actuatorfrcrange="-50 50" />
+                            </body>
+                          </body>
+                          <body name="left_middle_1" pos="0.00095 0.00028533 -0.2026" quat="1 0 -2e-06 0">
+                            <geom type="mesh" quat="0.5 -0.5 0.5 -0.5" contype="0" conaffinity="0" group="1" density="0" mesh="left_middle_1" material="ehr_silver" />
+                            <inertial pos="0.00599989 -0.000852878 -0.0119736" quat="0.99852865 0.053692508 0.0020075003 -0.0073225011" mass="0.01229" diaginertia="2.05876e-06 1.9562e-06 5.46243e-07" />
+                            <joint name="left_middle_1_joint" pos="0 0 0" axis="1 0 0" range="-1.333 0" actuatorfrcrange="-50 50" />
+                            <body name="left_middle_2" pos="0.001 -0.0080996 -0.031095">
+                              <geom type="mesh" quat="0.5 -0.5 0.5 -0.5" contype="0" conaffinity="0" group="1" density="0" mesh="left_middle_2" material="ehr_silver" />
+                              <inertial pos="0.00500014 -0.00471132 -0.0203464" quat="0.97571786 0.21903119 0 0" mass="0.00681" diaginertia="1.43878e-06 1.42175e-06 1.17529e-07" />
+                              <joint name="left_middle_2_joint" pos="0 0 0" axis="1 0 0" range="-1.527 0" actuatorfrcrange="-50 50" />
+                            </body>
+                          </body>
+                          <body name="left_ring_1" pos="-0.018271 0.00028533 -0.20178" quat="0.99965685 0 0.026194996 0">
+                            <geom type="mesh" quat="0.5 -0.5 0.5 -0.5" contype="0" conaffinity="0" group="1" density="0" mesh="left_ring_1" material="ehr_silver" />
+                            <inertial pos="0.00599988 -0.000852611 -0.0119737" quat="0.99854769 0.053689983 0.0013689996 -0.0042449987" mass="0.01229" diaginertia="2.05874e-06 1.95619e-06 5.46218e-07" />
+                            <joint name="left_ring_1_joint" pos="0 0 0" axis="1 0 0" range="-1.333 0" actuatorfrcrange="-50 50" />
+                            <body name="left_ring_2" pos="0.001 -0.0080989 -0.031095">
+                              <geom type="mesh" quat="0.5 -0.5 0.5 -0.5" contype="0" conaffinity="0" group="1" density="0" mesh="left_ring_2" material="ehr_silver" />
+                              <inertial pos="0.005 -0.004083 -0.0192603" quat="0.97614215 -0.21713242 -4.4499984e-05 -0.00014349995" mass="0.00633" diaginertia="1.08251e-06 1.06968e-06 1.17019e-07" />
+                              <joint name="left_ring_2_joint" pos="0 0 0" axis="1 0 0" range="-1.527 0" actuatorfrcrange="-50 50" />
+                            </body>
+                          </body>
+                          <body name="left_little_1" pos="-0.037422 0.00028533 -0.19996" quat="0.99863016 0 0.052324008 0">
+                            <geom type="mesh" quat="0.5 -0.5 0.5 -0.5" contype="0" conaffinity="0" group="1" density="0" mesh="left_little_1" material="ehr_silver" />
+                            <inertial pos="0.00599989 -0.000851753 -0.0119737" quat="0.99855405 0.05365653 0.0012005007 -0.0030565017" mass="0.01229" diaginertia="2.05873e-06 1.95619e-06 5.46221e-07" />
+                            <joint name="left_little_1_joint" pos="0 0 0" axis="1 0 0" range="-1.333 0" actuatorfrcrange="-50 50" />
+                            <body name="left_little_2" pos="0.001 -0.0080966 -0.031096">
+                              <geom type="mesh" quat="0.5 -0.5 0.5 -0.5" contype="0" conaffinity="0" group="1" density="0" mesh="left_little_2" material="ehr_silver" />
+                              <inertial pos="0.00500586 -0.00273891 -0.0161633" quat="0.97677336 0.21427508 0 0" mass="0.00525" diaginertia="6.6906e-07 6.5812e-07 8.59895e-08" />
+                              <joint name="left_little_2_joint" pos="0 0 0" axis="1 0 0" range="-1.527 0" actuatorfrcrange="-50 50" />
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+            <body name="r_arm_l1" pos="0 -0.1449 0.3613" quat="0.984807 -0.17365 0 0">
+              <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l1_simplified" material="ehr_dark" />
+              <geom type="cylinder" pos="0 -0.055 0" euler="-1.570796 -1.570796 -1.570796" size="0.040 0.037" rgba="0.86667 0.9098 1 0" />
+              <inertial pos="0.00151485551262 -0.0486762988245 0.000806730792844" quat="0.709105252475 0.0151673449625 0.00850386854607 0.704888201617" mass="0.422624980088" diaginertia="0.000386806446798 0.000302667410761 0.000260552147048" />
+              <joint name="r_arm_1" pos="0 0 0" axis="0 1 0" range="-3.142 1.883" actuatorfrcrange="-100 100" class="6408-P2-30.25H_arm-1" />
+              <body name="r_arm_l2" pos="0 -0.06 0" quat="0.984807392725 0.173650220946 0 0">
+                <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l2_vis_silver" material="ehr_silver" />
+                <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l2_vis_dark" material="ehr_dark" />
+                <geom type="cylinder" pos="0 -0.013 -0.092" euler="0 0 0" size="0.033 0.04" rgba="0.77647 0.75686 0.73725 0" />
+                <inertial pos="0.0012905784945 -0.0100953335489 -0.0793027087501" quat="0.99758346008 -0.0680866844149 0.0113388492197 0.00792931770567" mass="0.726360341995" diaginertia="0.000904944626848 0.000847220903782 0.000415676596072" />
+                <joint name="r_arm_2" pos="0 0 0" axis="1 0 0" range="-2.88 0.087" actuatorfrcrange="-75 75" class="4310-P2-36H_arm-2" />
+                <body name="r_arm_l3" pos="0.00050105 -0.012 -0.1218" quat="1 0 0 0">
+                  <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l3_vis_silver" material="ehr_silver" />
+                  <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l3_vis_dark" material="ehr_dark" />
+                  <geom type="cylinder" pos="0.0115 0 -0.1442" euler="1.5708 0 0" size="0.039 0.03" rgba="0.52941 0.72549 1 0" />
+                  <inertial pos="0.00910424072973 -0.00262889296772 -0.125114435831" quat="0.998487037419 -0.000294387898022 -0.0548535093907 0.00382647991872" mass="0.688640085391" diaginertia="0.000982883608203 0.000940608735819 0.000355390750902" />
+                  <joint name="r_arm_3" pos="0 0 0" axis="0 0 1" range="-2.304 2.304" actuatorfrcrange="-36 36" class="4310-P2-36H_arm-3" />
+                  <body name="r_arm_l4" pos="0.0115 0 -0.1442">
+                    <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l4_simplified" material="ehr_silver" />
+                    <geom type="cylinder" pos="-0.01 0 -0.087" euler="0 0 0" size="0.039 0.024" rgba="0.86667 0.9098 1 0" />
+                    <inertial pos="-0.0106140821614 -0.00377997558621 -0.073870560771" quat="0.7008656969 0.123099838909 -0.0105509031482 0.702511482477" mass="0.60094584742" diaginertia="0.00047664096562 0.00041953147752 0.000341762045566" />
+                    <joint name="r_arm_4" pos="0 0 0" axis="0 1 0" range="-2.356 0.175" actuatorfrcrange="-36 36" class="4310-P2-36H_arm-4" />
+                    <body name="r_arm_l5" pos="-0.0115 0.0058709 -0.1068" quat="1 0 0 0">
+                      <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l5_vis_silver" material="ehr_silver" />
+                      <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l5_vis_dark" material="ehr_dark" />
+                      <geom type="cylinder" pos="0 -0.0058709 -0.038" euler="0 0 0" size="0.035 0.0175" rgba="0.81569 1 0.81176 0" />
+                      <inertial pos="0.00028084521911 -0.00536202852345 -0.0455658601583" quat="0.705658110327 -0.00941869795203 -0.0074109380847 0.708451125664" mass="0.285305441239" diaginertia="0.000338365132347 0.000263751110538 0.000164762393847" />
+                      <joint name="r_arm_5" pos="0 0 0" axis="0 0 1" range="-2.269 2.269" actuatorfrcrange="-36 36" class="4310-P2-36H_arm-5" />
+                      <body name="r_arm_l51" pos="0 0.0144 -0.0667" quat="1 0 0 0">
+                        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l51_simplified" material="ehr_silver" />
+                        <inertial pos="-0.000190387775211 -0.00386522769849 5.55111512313e-17" quat="0.503271451784 0.503271451784 0.496707001983 0.496707001983" mass="0.00464101579135" diaginertia="6.84801327786e-07 4.69147846156e-07 2.29348825646e-07" />
+                        <joint name="r_arm_51" pos="0 0 0" axis="0 1 0" range="-0.785 0.785" actuatorfrcrange="-36 36" />
+                        <body name="r_arm_l52" pos="-0.015 0.0021291 0" quat="1 0 0 0">
+                          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l52_simplified" material="ehr_silver" />
+                          <inertial pos="4.4408920985e-16 0.00130652519397 -0.0274997497207" quat="0.706796976099 0.0209292755929 -0.0209292755929 0.706796976099" mass="0.00741026715279" diaginertia="3.65851585994e-06 3.61466181927e-06 7.79256132025e-08" />
+                          <joint name="r_arm_52" pos="0 0 0" axis="0 1 0" range="-0.785 0.785" actuatorfrcrange="-36 36" />
+                        </body>
+                      </body>
+                      <body name="r_arm_l6" pos="0 -0.0001 -0.1217">
+                        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l6_vis_silver" material="ehr_silver" />
+                        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l6_vis_dark" material="ehr_dark" />
+                        <geom type="cylinder" pos="0 -0.0058709 0" euler="0 1.57 0" size="0.023 0.0225" rgba="0.86667 0.9098 1 0" />
+                        <inertial pos="-0.00144431055471 -0.0062625676384 -0.000214242842395" quat="0.700146779561 0.712896362318 0.0185042756896 -0.0350835494922" mass="0.053655216969" diaginertia="2.02698085132e-05 1.89522898023e-05 1.52561230849e-05" />
+                        <joint name="r_arm_6" pos="0 0 0" axis="0 1 0" range="-0.785 0.785" actuatorfrcrange="-36 36" class="2806-P2-36_arm-6" />
+                        <body name="r_arm_l7">
+                          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l7_vis_silver" material="ehr_silver" />
+                          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="r_arm_l7_vis_dark" material="ehr_dark" />
+                          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="R_base_link_vis_dark" pos="0 -0.0058709 -0.0655" quat="0 0.707107 0.707107 0" material="ehr_dark" />
+                          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="R_base_link_vis_silver" pos="0 -0.0058709 -0.0655" quat="0 0.707107 0.707107 0" material="ehr_silver" />
+                          <geom type="cylinder" pos="0 -0.0058709 -0.040" euler="0 0 0" size="0.023 0.0125" rgba="0.86667 0.9098 1 0" />
+                          <geom type="box" pos="0.074 -0.0248709 -0.0575" euler="0 0 0" size="0.05 0.004 0.004" rgba="0.86667 0.9098 1 0" />
+                          <geom type="box" pos="0.074 0.0131291 -0.0575" euler="0 0 0" size="0.05 0.004 0.004" rgba="0.86667 0.9098 1 0" />
+                          <geom type="box" pos="0.152 -0.0268709 -0.104" euler="0 1.03 0" size="0.05 0.0035 0.004" rgba="0.86667 0.9098 1 0" />
+                          <geom type="box" pos="0.152 0.0151291 -0.104" euler="0 1.03 0" size="0.05 0.0035 0.004" rgba="0.86667 0.9098 1 0" />
+                          <geom type="box" pos="0.123 -0.0268709 -0.086" euler="0 0.95 0" size="0.0315 0.0035 0.004" rgba="0.86667 0.9098 1 0" />
+                          <geom type="box" pos="0.123 0.0151291 -0.086" euler="0 0.95 0" size="0.0315 0.0035 0.004" rgba="0.86667 0.9098 1 0" />
+                          <geom type="box" pos="0.16357 -0.0309509 -0.14055" quat="0.045417 0.429684 0.665238 -0.608907" size="0.0105 0.019 0.019" rgba="0.86667 0.9098 1 0" />
+                          <geom type="box" pos="-0.002 -0.0058709 -0.1725" size="0.0275 0.041 0.107" rgba="0.69804 0.69804 0.69804 0" quat="0 0.707107 0.707107 0" />
+                          <geom type="box" pos="0.06154521 0.0223011 -0.15503662" size="0.0095 0.017 0.06" rgba="0.69804 0.69804 0.69804 0" quat="0.24022830 0.57237061 0.71787482 0.31517930" />
+                          <inertial pos="0.019586662974 -0.00629301190792 0.000238862706295" quat="0.709524340106 -0.228913699749 -0.178366358412 0.642151984386" mass="0.946251552806" diaginertia="0.00429246236178 0.00418519952391 0.000675252791782" />
+                          <joint name="r_arm_7" pos="0 0 0" axis="1 0 0" range="-1.047 1.047" actuatorfrcrange="-36 36" class="2806-P2-36_arm-7" />
+                          <body name="gemini305_l1" pos="0.15218895 -0.0326594279082 -0.14955144256" quat="0.438464770168 -0.733682780376 -0.503547486759 0.126087872853">
+                            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="gemini305_l1_simplified" material="ehr_dark" />
+                            <site name="gemini305_l1_site" size="0.01" pos="0 0 0" />
+                          </body>
+                          <body name="right_thumb_1" pos="0.02045 0.0110891 -0.13185">
+                            <geom type="mesh" quat="0 0.70710678 0.70710678 0" contype="0" conaffinity="0" group="1" density="0" mesh="right_thumb_1" material="ehr_silver" />
+                            <inertial pos="0.00482217 0.000853491 0.00482" quat="0.39674224 -0.33971617 -0.5408443 0.65929959" mass="0.00483" diaginertia="2.12995e-07 1.70477e-07 1.23818e-07" />
+                            <joint name="right_thumb_1_joint" pos="0 0 0" axis="0 0 -1" range="-1.24616 0" actuatorfrcrange="-50 50" />
+                            <body name="right_thumb_2" pos="0.00900018 0.0107353 0.0065" quat="0.9912156 0 0 0.13225595">
+                              <geom type="mesh" quat="0.70710678 -0.70710678 0 0" contype="0" conaffinity="0" group="1" density="0" mesh="right_thumb_2" material="ehr_silver" />
+                              <inertial pos="0.0194641 -0.00803857 -0.016298" quat="0.66498238 -0.23866766 -0.2382441 0.66639023" mass="0.05759" diaginertia="1.70013e-05 1.42937e-05 5.29607e-06" />
+                              <joint name="right_thumb_2_joint" pos="0 0 0" axis="0 1 0" range="0 0.48" actuatorfrcrange="-50 50" />
+                              <body name="right_thumb_3" pos="0.0376168 -0.0008 -0.0414855">
+                                <geom type="mesh" quat="0.70710678 -0.70710678 0 0" contype="0" conaffinity="0" group="1" density="0" mesh="right_thumb_3" material="ehr_silver" />
+                                <inertial pos="0.00946652 -0.00720001 -0.00207631" quat="0.7045304 -0.059949954 -0.059976117 0.70458909" mass="0.00985" diaginertia="1.28966e-06 1.22915e-06 5.82719e-07" />
+                                <joint name="right_thumb_3_joint" pos="0 0 0" axis="0 1 0" range="0 0.3578" actuatorfrcrange="-50 50" />
+                                <body name="right_thumb_4" pos="0.0149571 -0.0012 -0.0170124">
+                                  <geom type="mesh" quat="0.70710678 -0.70710678 0 0" contype="0" conaffinity="0" group="1" density="0" mesh="right_thumb_4" material="ehr_silver" />
+                                  <inertial pos="0.00604905 -0.00600329 -0.00861523" quat="0.69994405 -0.080728997 -0.078849507 0.70522614" mass="0.00552" diaginertia="3.37471e-07 3.27117e-07 1.19552e-07" />
+                                  <joint name="right_thumb_4_joint" pos="0 0 0" axis="0 1 0" range="0 0.2775" actuatorfrcrange="-50 50" />
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                          <body name="right_index_1" pos="0.020275 -0.006156233 -0.202446" quat="0.9998477 0 -0.017451995 0">
+                            <geom type="mesh" quat="0.5 -0.5 -0.5 0.5" contype="0" conaffinity="0" group="1" density="0" mesh="right_index_1" material="ehr_silver" />
+                            <inertial pos="0.00599987 0.000852715 -0.0119736" quat="0.00022500005 -0.0011510002 0.053704011 -0.99855621" mass="0.01229" diaginertia="2.05873e-06 1.9562e-06 5.46223e-07" />
+                            <joint name="right_index_1_joint" pos="0 0 0" axis="-1 0 0" range="-1.333 0" actuatorfrcrange="-50 50" />
+                            <body name="right_index_2" pos="0.001 0.00809927 -0.0310949">
+                              <geom type="mesh" quat="0.5 -0.5 -0.5 0.5" contype="0" conaffinity="0" group="1" density="0" mesh="right_index_2" material="ehr_silver" />
+                              <inertial pos="0.005 0.00408343 -0.0192601" quat="8.7499993e-05 4.6499996e-05 -0.21633848 0.97631842" mass="0.00633" diaginertia="1.14024e-06 1.12462e-06 1.08348e-07" />
+                              <joint name="right_index_2_joint" pos="0 0 0" axis="-1 0 0" range="-1.527 0" actuatorfrcrange="-50 50" />
+                            </body>
+                          </body>
+                          <body name="right_middle_1" pos="0.00295 -0.006156233 -0.2026">
+                            <geom type="mesh" quat="0.5 -0.5 -0.5 0.5" contype="0" conaffinity="0" group="1" density="0" mesh="right_middle_1" material="ehr_silver" />
+                            <inertial pos="0.00399985 0.000852856 -0.0119736" quat="0.0022665006 -0.0015625004 0.053710514 -0.99855275" mass="0.01229" diaginertia="2.05874e-06 1.95622e-06 5.46242e-07" />
+                            <joint name="right_middle_1_joint" pos="0 0 0" axis="-1 0 0" range="-1.333 0" actuatorfrcrange="-50 50" />
+                            <body name="right_middle_2" pos="-0.001 0.0080996 -0.0310948">
+                              <geom type="mesh" quat="0.5 -0.5 -0.5 0.5" contype="0" conaffinity="0" group="1" density="0" mesh="right_middle_2" material="ehr_silver" />
+                              <inertial pos="0.00500003 0.00471135 -0.0203466" quat="0 0 0.21903119 -0.97571786" mass="0.00681" diaginertia="1.43878e-06 1.42175e-06 1.17529e-07" />
+                              <joint name="right_middle_2_joint" pos="0 0 0" axis="-1 0 0" range="-1.527 0" actuatorfrcrange="-50 50" />
+                            </body>
+                          </body>
+                          <body name="right_ring_1" pos="-0.0182707 -0.006156233 -0.201782" quat="0.99965732 0 0.026177008 0">
+                            <geom type="mesh" quat="0.5 -0.5 -0.5 0.5" contype="0" conaffinity="0" group="1" density="0" mesh="right_ring_1" material="ehr_silver" />
+                            <inertial pos="0.00599989 0.000852458 -0.0119735" quat="0.00069400027 -0.0011390004 0.053697021 -0.99855638" mass="0.01229" diaginertia="2.05873e-06 1.95619e-06 5.46217e-07" />
+                            <joint name="right_ring_1_joint" pos="0 0 0" axis="-1 0 0" range="-1.333 0" actuatorfrcrange="-50 50" />
+                            <body name="right_ring_2" pos="0.001 0.00809886 -0.031095">
+                              <geom type="mesh" quat="0.5 -0.5 -0.5 0.5" contype="0" conaffinity="0" group="1" density="0" mesh="right_ring_2" material="ehr_silver" />
+                              <inertial pos="0.00499998 0.00408287 -0.01926" quat="0 0 0 1" mass="0.00633" diaginertia="1.13377e-06 9.4329e-07 2.9615e-07" />
+                              <joint name="right_ring_2_joint" pos="0 0 0" axis="-1 0 0" range="-1.527 0" actuatorfrcrange="-50 50" />
+                            </body>
+                          </body>
+                          <body name="right_little_1" pos="-0.0374223 -0.006156233 -0.19996" quat="0.99862953 0 0.052335976 0">
+                            <geom type="mesh" quat="0.5 -0.5 -0.5 0.5" contype="0" conaffinity="0" group="1" density="0" mesh="right_little_1" material="ehr_silver" />
+                            <inertial pos="0.00599989 0.000851611 -0.0119735" quat="0.00015050002 0.0010655002 -0.053660508 0.99855866" mass="0.01229" diaginertia="2.05873e-06 1.95619e-06 5.4622e-07" />
+                            <joint name="right_little_1_joint" pos="0 0 0" axis="-1 0 0" range="-1.333 0" actuatorfrcrange="-50 50" />
+                            <body name="right_little_2" pos="0.001 0.0080966 -0.031096">
+                              <geom type="mesh" quat="0.5 -0.5 -0.5 0.5" contype="0" conaffinity="0" group="1" density="0" mesh="right_little_2" material="ehr_silver" />
+                              <inertial pos="0.00499668 0.0027393 -0.01616" quat="0 0 -0.21427508 0.97677336" mass="0.00525" diaginertia="6.6906e-07 6.5812e-07 8.59895e-08" />
+                              <joint name="right_little_2_joint" pos="0 0 0" axis="-1 0 0" range="-1.527 0" actuatorfrcrange="-50 50" />
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+            <body name="torso_l31" pos="0.021 0.0295 0.058">
+              <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="torso_l31_simplified" material="ehr_silver" />
+              <inertial pos="0.00901727193159 -0.0113148385589 -0.00245414732341" quat="0.635126871205 0.770608981415 0.0426654310337 0.0309081903439" mass="0.0224588514827" diaginertia="2.48547406432e-06 2.22537122735e-06 1.64591951459e-06" />
+              <joint name="torso_31" pos="0 0 0" axis="1 0 0" range="-0.244 0.506" actuatorfrcrange="-75 75" class="4315-P2-36_torso-2" />
+              <body name="torso_l32" pos="0.01575 -0.018531 -0.0041945" quat="0.999518 0.0310575 0 0">
+                <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="torso_l32_simplified" material="ehr_gunmetal" />
+                <inertial pos="-0.00156122434038 -6.13617809331e-05 -0.0324636116164" quat="0.939774109316 -0.00899045192426 0.0193141068138 -0.341131588265" mass="0.0203787627746" diaginertia="1.03318041019e-05 1.03316842892e-05 3.91282274187e-07" />
+                <joint name="torso_32" type="ball" pos="0 0 0" limited="false" class="fake_joint_param" />
+              </body>
+            </body>
+            <body name="torso_l33" pos="0.021 -0.0295 0.058">
+              <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="torso_l33_simplified" material="ehr_silver" />
+              <inertial pos="0.00901727181285 0.0112687783236 -0.0026576380835" quat="0.789579639828 0.611382316421 -0.0484361897048 -0.0207265786953" mass="0.0224588523951" diaginertia="2.485474071e-06 2.22537123587e-06 1.64591952488e-06" />
+              <joint name="torso_33" pos="0 0 0" axis="1 0 0" range="-0.244 0.506" actuatorfrcrange="-75 75" class="4315-P2-36_torso-3" />
+              <body name="torso_l34" pos="0.01575 0.018531 -0.0041945" quat="0.999518 -0.0310575 0 0">
+                <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="torso_l34_simplified" material="ehr_gunmetal" />
+                <inertial pos="-0.00156122956648 -6.13146989623e-05 -0.0324636210578" quat="0.940264871192 -0.00896143050241 0.019327511797 -0.339776561953" mass="0.020378744839" diaginertia="1.03318017937e-05 1.03316814757e-05 3.91284481514e-07" />
+                <joint name="torso_34" type="ball" pos="0 0 0" limited="false" class="fake_joint_param" />
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <keyframe>
+    <key name="home" />
+  </keyframe>
+  <equality>
+    <connect name="left-wrist" body1="l_arm_l52" body2="l_arm_l6" anchor="0.001 0.0015 -0.055" />
+    <connect name="right-wrist" body1="r_arm_l52" body2="r_arm_l6" anchor="0.001 -0.0015 -0.055" />
+    <connect name="waist-1" body1="torso_l32" body2="torso_l1" anchor="-0.003 0 -0.065" />
+    <connect name="waist-2" body1="torso_l34" body2="torso_l1" anchor="-0.003 0 -0.065" />
+    <joint name="left-thumb-3-mimic" joint1="left_thumb_3_joint" joint2="left_thumb_2_joint" polycoef="0 1.1425 0 0 0" />
+    <joint name="left-thumb-4-mimic" joint1="left_thumb_4_joint" joint2="left_thumb_3_joint" polycoef="0 0.7508 0 0 0" />
+    <joint name="left-index-2-mimic" joint1="left_index_2_joint" joint2="left_index_1_joint" polycoef="0 1.1169 0 0 0" />
+    <joint name="left-middle-2-mimic" joint1="left_middle_2_joint" joint2="left_middle_1_joint" polycoef="0 1.1169 0 0 0" />
+    <joint name="left-ring-2-mimic" joint1="left_ring_2_joint" joint2="left_ring_1_joint" polycoef="0 1.1169 0 0 0" />
+    <joint name="left-little-2-mimic" joint1="left_little_2_joint" joint2="left_little_1_joint" polycoef="0 1.1169 0 0 0" />
+    <joint name="right-thumb-3-mimic" joint1="right_thumb_3_joint" joint2="right_thumb_2_joint" polycoef="0 1.1425 0 0 0" />
+    <joint name="right-thumb-4-mimic" joint1="right_thumb_4_joint" joint2="right_thumb_3_joint" polycoef="0 0.7508 0 0 0" />
+    <joint name="right-index-2-mimic" joint1="right_index_2_joint" joint2="right_index_1_joint" polycoef="0 1.1169 0 0 0" />
+    <joint name="right-middle-2-mimic" joint1="right_middle_2_joint" joint2="right_middle_1_joint" polycoef="0 1.1169 0 0 0" />
+    <joint name="right-ring-2-mimic" joint1="right_ring_2_joint" joint2="right_ring_1_joint" polycoef="0 1.1169 0 0 0" />
+    <joint name="right-little-2-mimic" joint1="right_little_2_joint" joint2="right_little_1_joint" polycoef="0 1.1169 0 0 0" />
+  </equality>
+  <actuator>
+    <motor name="torso_1" joint="torso_1" gear="47.88" ctrllimited="true" ctrlrange="-1.5664158 1.5664158" />
+    <motor name="torso_31" joint="torso_31" gear="36" ctrllimited="true" ctrlrange="-2.083333 2.083333" />
+    <motor name="torso_33" joint="torso_33" gear="36" ctrllimited="true" ctrlrange="-2.083333 2.083333" />
+    <motor name="neck_1" joint="neck_1" gear="36" ctrllimited="true" ctrlrange="-0.333333 0.333333" />
+    <motor name="neck_2" joint="neck_2" gear="36" ctrllimited="true" ctrlrange="-0.333333 0.333333" />
+    <motor name="l_arm_1" joint="l_arm_1" gear="30.25" ctrllimited="true" ctrlrange="-2.314050 2.314050" />
+    <motor name="l_arm_2" joint="l_arm_2" gear="36" ctrllimited="true" ctrlrange="-1 1" />
+    <motor name="l_arm_3" joint="l_arm_3" gear="36" ctrllimited="true" ctrlrange="-1 1" />
+    <motor name="l_arm_4" joint="l_arm_4" gear="36" ctrllimited="true" ctrlrange="-1 1" />
+    <motor name="l_arm_5" joint="l_arm_5" gear="36" ctrllimited="true" ctrlrange="-1 1" />
+    <motor name="l_arm_51" joint="l_arm_51" gear="36" ctrllimited="true" ctrlrange="-0.333333 0.333333" />
+    <motor name="l_arm_7" joint="l_arm_7" gear="36" ctrllimited="true" ctrlrange="-0.333333 0.333333" />
+    <motor name="r_arm_1" joint="r_arm_1" gear="30.25" ctrllimited="true" ctrlrange="-2.314050 2.314050" />
+    <motor name="r_arm_2" joint="r_arm_2" gear="36" ctrllimited="true" ctrlrange="-1 1" />
+    <motor name="r_arm_3" joint="r_arm_3" gear="36" ctrllimited="true" ctrlrange="-1 1" />
+    <motor name="r_arm_4" joint="r_arm_4" gear="36" ctrllimited="true" ctrlrange="-1 1" />
+    <motor name="r_arm_5" joint="r_arm_5" gear="36" ctrllimited="true" ctrlrange="-1 1" />
+    <motor name="r_arm_51" joint="r_arm_51" gear="36" ctrllimited="true" ctrlrange="-0.333333 0.333333" />
+    <motor name="r_arm_7" joint="r_arm_7" gear="36" ctrllimited="true" ctrlrange="-0.333333 0.333333" />
+    <!-- 手指由桥接层计算 PD 力矩；1 Nm 为仿真限值。 -->
+    <motor name="left_thumb_1_joint" joint="left_thumb_1_joint" gear="1" ctrllimited="true" ctrlrange="-1 1" />
+    <motor name="left_thumb_2_joint" joint="left_thumb_2_joint" gear="1" ctrllimited="true" ctrlrange="-1 1" />
+    <motor name="left_index_1_joint" joint="left_index_1_joint" gear="1" ctrllimited="true" ctrlrange="-1 1" />
+    <motor name="left_middle_1_joint" joint="left_middle_1_joint" gear="1" ctrllimited="true" ctrlrange="-1 1" />
+    <motor name="left_ring_1_joint" joint="left_ring_1_joint" gear="1" ctrllimited="true" ctrlrange="-1 1" />
+    <motor name="left_little_1_joint" joint="left_little_1_joint" gear="1" ctrllimited="true" ctrlrange="-1 1" />
+    <motor name="right_thumb_1_joint" joint="right_thumb_1_joint" gear="1" ctrllimited="true" ctrlrange="-1 1" />
+    <motor name="right_thumb_2_joint" joint="right_thumb_2_joint" gear="1" ctrllimited="true" ctrlrange="-1 1" />
+    <motor name="right_index_1_joint" joint="right_index_1_joint" gear="1" ctrllimited="true" ctrlrange="-1 1" />
+    <motor name="right_middle_1_joint" joint="right_middle_1_joint" gear="1" ctrllimited="true" ctrlrange="-1 1" />
+    <motor name="right_ring_1_joint" joint="right_ring_1_joint" gear="1" ctrllimited="true" ctrlrange="-1 1" />
+    <motor name="right_little_1_joint" joint="right_little_1_joint" gear="1" ctrllimited="true" ctrlrange="-1 1" />
+  </actuator>
+  <sensor>
+    <jointpos name="torso_1_p" joint="torso_1" noise="5e-3" />
+    <jointpos name="torso_2_p" joint="torso_2" noise="5e-3" />
+    <jointpos name="torso_3_p" joint="torso_3" noise="5e-3" />
+    <jointpos name="torso_31_p" joint="torso_31" noise="5e-3" />
+    <jointpos name="torso_33_p" joint="torso_33" noise="5e-3" />
+    <jointpos name="neck_1_p" joint="neck_1" noise="5e-3" />
+    <jointpos name="neck_2_p" joint="neck_2" noise="5e-3" />
+    <jointpos name="l_arm_1_p" joint="l_arm_1" noise="5e-3" />
+    <jointpos name="l_arm_2_p" joint="l_arm_2" noise="5e-3" />
+    <jointpos name="l_arm_3_p" joint="l_arm_3" noise="5e-3" />
+    <jointpos name="l_arm_4_p" joint="l_arm_4" noise="5e-3" />
+    <jointpos name="l_arm_5_p" joint="l_arm_5" noise="5e-3" />
+    <jointpos name="l_arm_51_p" joint="l_arm_51" noise="5e-3" />
+    <jointpos name="l_arm_6_p" joint="l_arm_6" noise="5e-3" />
+    <jointpos name="l_arm_7_p" joint="l_arm_7" noise="5e-3" />
+    <jointpos name="r_arm_1_p" joint="r_arm_1" noise="5e-3" />
+    <jointpos name="r_arm_2_p" joint="r_arm_2" noise="5e-3" />
+    <jointpos name="r_arm_3_p" joint="r_arm_3" noise="5e-3" />
+    <jointpos name="r_arm_4_p" joint="r_arm_4" noise="5e-3" />
+    <jointpos name="r_arm_5_p" joint="r_arm_5" noise="5e-3" />
+    <jointpos name="r_arm_51_p" joint="r_arm_51" noise="5e-3" />
+    <jointpos name="r_arm_6_p" joint="r_arm_6" noise="5e-3" />
+    <jointpos name="r_arm_7_p" joint="r_arm_7" noise="5e-3" />
+    <jointvel name="torso_1_v" joint="torso_1" noise="2e-2" />
+    <jointvel name="torso_2_v" joint="torso_2" noise="2e-2" />
+    <jointvel name="torso_3_v" joint="torso_3" noise="2e-2" />
+    <jointvel name="torso_31_v" joint="torso_31" noise="2e-2" />
+    <jointvel name="torso_33_v" joint="torso_33" noise="2e-2" />
+    <jointvel name="neck_1_v" joint="neck_1" noise="2e-2" />
+    <jointvel name="neck_2_v" joint="neck_2" noise="2e-2" />
+    <jointvel name="l_arm_1_v" joint="l_arm_1" noise="2e-2" />
+    <jointvel name="l_arm_2_v" joint="l_arm_2" noise="2e-2" />
+    <jointvel name="l_arm_3_v" joint="l_arm_3" noise="2e-2" />
+    <jointvel name="l_arm_4_v" joint="l_arm_4" noise="2e-2" />
+    <jointvel name="l_arm_5_v" joint="l_arm_5" noise="2e-2" />
+    <jointvel name="l_arm_51_v" joint="l_arm_51" noise="2e-2" />
+    <jointvel name="l_arm_6_v" joint="l_arm_6" noise="2e-2" />
+    <jointvel name="l_arm_7_v" joint="l_arm_7" noise="2e-2" />
+    <jointvel name="r_arm_1_v" joint="r_arm_1" noise="2e-2" />
+    <jointvel name="r_arm_2_v" joint="r_arm_2" noise="2e-2" />
+    <jointvel name="r_arm_3_v" joint="r_arm_3" noise="2e-2" />
+    <jointvel name="r_arm_4_v" joint="r_arm_4" noise="2e-2" />
+    <jointvel name="r_arm_5_v" joint="r_arm_5" noise="2e-2" />
+    <jointvel name="r_arm_51_v" joint="r_arm_51" noise="2e-2" />
+    <jointvel name="r_arm_6_v" joint="r_arm_6" noise="2e-2" />
+    <jointvel name="r_arm_7_v" joint="r_arm_7" noise="2e-2" />
+    <actuatorfrc name="torso_1_t" actuator="torso_1" noise="0.5" />
+    <actuatorfrc name="torso_31_t" actuator="torso_31" noise="0.5" />
+    <actuatorfrc name="torso_33_t" actuator="torso_33" noise="0.5" />
+    <actuatorfrc name="neck_1_t" actuator="neck_1" noise="0.2" />
+    <actuatorfrc name="neck_2_t" actuator="neck_2" noise="0.2" />
+    <actuatorfrc name="l_arm_1_t" actuator="l_arm_1" noise="0.2" />
+    <actuatorfrc name="l_arm_2_t" actuator="l_arm_2" noise="0.2" />
+    <actuatorfrc name="l_arm_3_t" actuator="l_arm_3" noise="0.2" />
+    <actuatorfrc name="l_arm_4_t" actuator="l_arm_4" noise="0.2" />
+    <actuatorfrc name="l_arm_5_t" actuator="l_arm_5" noise="0.2" />
+    <actuatorfrc name="l_arm_51_t" actuator="l_arm_51" noise="0.2" />
+    <actuatorfrc name="l_arm_7_t" actuator="l_arm_7" noise="0.2" />
+    <actuatorfrc name="r_arm_1_t" actuator="r_arm_1" noise="0.2" />
+    <actuatorfrc name="r_arm_2_t" actuator="r_arm_2" noise="0.2" />
+    <actuatorfrc name="r_arm_3_t" actuator="r_arm_3" noise="0.2" />
+    <actuatorfrc name="r_arm_4_t" actuator="r_arm_4" noise="0.2" />
+    <actuatorfrc name="r_arm_5_t" actuator="r_arm_5" noise="0.2" />
+    <actuatorfrc name="r_arm_51_t" actuator="r_arm_51" noise="0.2" />
+    <actuatorfrc name="r_arm_7_t" actuator="r_arm_7" noise="0.2" />
+    <framequat name="orientation" objtype="site" noise="0.0002" objname="imu_1" />
+    <framepos name="position" objtype="site" noise="0.0002" objname="imu_1" />
+    <gyro name="angular-velocity" site="imu_1" noise="0.001" cutoff="34.9" />
+    <velocimeter name="linear-velocity" site="imu_1" noise="0.0001" cutoff="30" />
+    <accelerometer name="linear-acceleration" site="imu_1" noise="0.03" cutoff="157" />
+  </sensor>
+</mujoco>

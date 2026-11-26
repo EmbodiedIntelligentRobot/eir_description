@@ -1,0 +1,394 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="eqr11">
+  <compiler angle="radian" meshdir="../meshes/" />
+
+  <option timestep="0.0005" iterations="50" solver="PGS" gravity="0 0 -9.81">
+    <flag frictionloss="enable" />
+  </option>
+  <size njmax="500" nconmax="100" />
+
+  <visual>
+    <quality shadowsize="4096" />
+    <map znear="0.05" />
+  <global azimuth="135" elevation="-25" /></visual>
+
+  <default>
+    <joint limited="true" damping="0.5" frictionloss="0.15" armature="0.1" />
+    <motor ctrllimited="true" />
+    <geom condim="3" contype="1" conaffinity="15" solref="0.001 2" friction="0.9 0.2 0.2" />
+    <equality solref="0.0005 2" />
+    <default class="visualgeom">
+      <geom material="visualgeom" condim="3" contype="0" conaffinity="0" />
+    </default>
+    <default class="obstacle">
+      <geom material="obstacle" condim="3" contype="1" conaffinity="15" />
+    </default>
+
+    <default class="EC-A8116-P1-18">
+
+
+      <joint damping="0.23" frictionloss="0.45" armature="0.061236" />
+    </default>
+    <default class="EC-A10020-P1-12">
+
+
+      <joint damping="0.14" frictionloss="0.42" armature="0.06984" />
+    </default>
+
+
+    <default class="EC-A10020-P1-12-Knee">
+      <joint damping="0.5" frictionloss="0.7" armature="0.186013" />
+    </default>
+
+
+  </default>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="512" />
+    <texture name="texplane" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2" width="512" height="512" mark="cross" markrgb=".8 .8 .8" />
+    <texture name="texplane2" type="2d" builtin="checker" rgb1="1 0.3137 0.1843" rgb2="0.0 0.30196 0.38039" width="512" height="512" mark="cross" markrgb=".8 .8 .8" />
+    <material name="matplane" reflectance="0." texture="texplane" texrepeat="1 1" texuniform="true" />
+    <material name="matplane2" reflectance="0.1" texture="texplane2" texrepeat="1 1" texuniform="true" />
+    <material name="link_body" rgba="0.36 0.91 0.66 0.95" />
+    <material name="link_body2" rgba="0.517 0.53 0.90 0.95" />
+    <material name="obstacle" rgba="0.9 0.6 0.2 1" />
+    <material name="visualgeom" rgba="0.5 0.9 0.2 0.9" />
+    <material name="eqr_shell" rgba="0.68 0.71 0.75 1" specular=".25" shininess=".28" />
+    <material name="eqr_dark" rgba="0.055 0.062 0.07 1" specular=".25" shininess=".28" />
+    <material name="eqr_motor" rgba="0.16 0.17 0.19 1" specular=".65" shininess=".5" />
+    <material name="eqr_rubber" rgba="0.035 0.038 0.042 1" specular=".25" shininess=".28" />
+    <material name="eqr_panel" rgba="0.36 0.39 0.36 1" specular=".25" shininess=".28" />
+    <material name="eqr_glass" rgba="0.012 0.019 0.025 1" specular=".65" shininess=".5" />
+    <material name="eqr_silver" rgba="0.73 0.75 0.77 1" specular=".65" shininess=".5" />
+    <material name="eqr_white" rgba="0.96 0.96 0.95 1" specular=".25" shininess=".28" />
+    <material name="eqr_red" rgba="0.82 0.025 0.018 1" specular=".25" shininess=".28" />
+    <mesh name="base_link_vis_dark" file="base_link_vis_dark.STL" />
+    <mesh name="base_link_vis_glass" file="base_link_vis_glass.STL" />
+    <mesh name="base_link_vis_motor" file="base_link_vis_motor.STL" />
+    <mesh name="base_link_vis_panel" file="base_link_vis_panel.STL" />
+    <mesh name="base_link_vis_red" file="base_link_vis_red.STL" />
+    <mesh name="base_link_vis_shell" file="base_link_vis_shell.STL" />
+    <mesh name="base_link_vis_silver" file="base_link_vis_silver.STL" />
+    <mesh name="base_link_vis_white" file="base_link_vis_white.STL" />
+    <mesh name="fl_leg_l1_vis_motor" file="fl_leg_l1_vis_motor.STL" />
+    <mesh name="fl_leg_l2_vis_motor" file="fl_leg_l2_vis_motor.STL" />
+    <mesh name="fl_leg_l2_vis_shell" file="fl_leg_l2_vis_shell.STL" />
+    <mesh name="fl_leg_l3_vis_dark" file="fl_leg_l3_vis_dark.STL" />
+    <mesh name="fl_leg_lee_vis_rubber" file="fl_leg_lee_vis_rubber.STL" />
+    <mesh name="fr_leg_l1_vis_motor" file="fr_leg_l1_vis_motor.STL" />
+    <mesh name="fr_leg_l2_vis_motor" file="fr_leg_l2_vis_motor.STL" />
+    <mesh name="fr_leg_l2_vis_shell" file="fr_leg_l2_vis_shell.STL" />
+    <mesh name="fr_leg_l3_vis_dark" file="fr_leg_l3_vis_dark.STL" />
+    <mesh name="fr_leg_lee_vis_rubber" file="fr_leg_lee_vis_rubber.STL" />
+    <mesh name="hl_leg_l1_vis_motor" file="hl_leg_l1_vis_motor.STL" />
+    <mesh name="hl_leg_l2_vis_motor" file="hl_leg_l2_vis_motor.STL" />
+    <mesh name="hl_leg_l2_vis_shell" file="hl_leg_l2_vis_shell.STL" />
+    <mesh name="hl_leg_l3_vis_dark" file="hl_leg_l3_vis_dark.STL" />
+    <mesh name="hl_leg_lee_vis_rubber" file="hl_leg_lee_vis_rubber.STL" />
+    <mesh name="hr_leg_l1_vis_motor" file="hr_leg_l1_vis_motor.STL" />
+    <mesh name="hr_leg_l2_vis_motor" file="hr_leg_l2_vis_motor.STL" />
+    <mesh name="hr_leg_l2_vis_shell" file="hr_leg_l2_vis_shell.STL" />
+    <mesh name="hr_leg_l3_vis_dark" file="hr_leg_l3_vis_dark.STL" />
+    <mesh name="hr_leg_lee_vis_rubber" file="hr_leg_lee_vis_rubber.STL" />
+    <mesh name="lidar_l1_vis_dark" file="lidar_l1_vis_dark.STL" />
+    <mesh name="lidar_l2_vis_dark" file="lidar_l2_vis_dark.STL" />
+    <mesh name="gemini_335le_l1_vis_panel" file="gemini_335le_l1_vis_panel.STL" />
+    <mesh name="gemini_335le_l2_vis_panel" file="gemini_335le_l2_vis_panel.STL" />
+    <mesh name="gemini_336_l1_vis_panel" file="gemini_336_l1_vis_panel.STL" />
+    <mesh name="gemini_336_l2_vis_panel" file="gemini_336_l2_vis_panel.STL" />
+    <mesh name="base_link_collision_simple_base_rear_roof_extension" file="base_link_collision_simple_base_rear_roof_extension.STL"/>
+    <mesh name="base_link_collision_simple_base_front_roof_extension" file="base_link_collision_simple_base_front_roof_extension.STL"/>
+    <mesh name="base_link_collision_simple_base_rear_nose_extension" file="base_link_collision_simple_base_rear_nose_extension.STL"/>
+    <mesh name="base_link_collision_simple_base_front_nose_extension" file="base_link_collision_simple_base_front_nose_extension.STL"/>
+  </asset>
+
+  <worldbody>
+    <light directional="true" diffuse=".4 .4 .4" specular="0.1 0.1 0.1" pos="0 0 5.0" dir="0 0 -1" castshadow="false" />
+    <light directional="true" diffuse=".6 .6 .6" specular="0.2 0.2 0.2" pos="0 0 4" dir="0 0 -1" />
+    <geom name="ground" type="plane" size="0 0 1" pos="0 0 -0.001" quat="1 0 0 0" material="matplane" condim="1" conaffinity="15" group="2" />
+
+
+
+    <geom name="center1" type="box" pos="20 0 1" size="1 2 1" condim="1" conaffinity="15" group="2" />
+    <geom name="slope_up" type="box" pos="14.17 0 0.71" size="5 2 0.3" euler="0 -0.2 0" condim="1" conaffinity="15" group="2" />
+    <geom name="slope_down" type="box" pos="25.84 0 0.71" size="5 2 0.3" euler="0 0.2 0" condim="1" conaffinity="15" group="2" />
+
+    <geom name="stair1" type="box" pos="10 10 0.10" size="0.2 2 0.10" euler="0 0 0" condim="1" conaffinity="15" group="2" />
+    <geom name="stair2" type="box" pos="10.4 10 0.20" size="0.2 2 0.20" euler="0 0 0" condim="1" conaffinity="15" group="2" />
+    <geom name="stair3" type="box" pos="10.8 10 0.30" size="0.2 2 0.30" euler="0 0 0" condim="1" conaffinity="15" group="2" />
+    <geom name="stair4" type="box" pos="11.2 10 0.40" size="0.2 2 0.40" euler="0 0 0" condim="1" conaffinity="15" group="2" />
+    <geom name="stair5" type="box" pos="11.6 10 0.50" size="0.2 2 0.50" euler="0 0 0" condim="1" conaffinity="15" group="2" />
+    <geom name="center2" type="box" pos="13.8 10 0.50" size="2 2 0.50" euler="0 0 0" condim="1" conaffinity="15" group="2" />
+    <geom name="stair6" type="box" pos="16 10 0.50" size="0.2 2 0.50" euler="0 0 0" condim="1" conaffinity="15" group="2" />
+    <geom name="stair7" type="box" pos="16.4 10 0.40" size="0.2 2 0.40" euler="0 0 0" condim="1" conaffinity="15" group="2" />
+    <geom name="stair8" type="box" pos="16.8 10 0.30" size="0.2 2 0.30" euler="0 0 0" condim="1" conaffinity="15" group="2" />
+    <geom name="stair9" type="box" pos="17.2 10 0.20" size="0.2 2 0.20" euler="0 0 0" condim="1" conaffinity="15" group="2" />
+    <geom name="stair10" type="box" pos="17.6 10 0.10" size="0.2 2 0.10" euler="0 0 0" condim="1" conaffinity="15" group="2" />
+
+    <body name="base_link" pos="0 0 0.54">
+      <geom name="base_link_vis_dark_visual" type="mesh" mesh="base_link_vis_dark" material="eqr_dark" contype="0" conaffinity="0" density="0" group="1" />
+      <geom name="base_link_vis_glass_visual" type="mesh" mesh="base_link_vis_glass" material="eqr_glass" contype="0" conaffinity="0" density="0" group="1" />
+      <geom name="base_link_vis_motor_visual" type="mesh" mesh="base_link_vis_motor" material="eqr_motor" contype="0" conaffinity="0" density="0" group="1" />
+      <geom name="base_link_vis_panel_visual" type="mesh" mesh="base_link_vis_panel" material="eqr_panel" contype="0" conaffinity="0" density="0" group="1" />
+      <geom name="base_link_vis_red_visual" type="mesh" mesh="base_link_vis_red" material="eqr_red" contype="0" conaffinity="0" density="0" group="1" />
+      <geom name="base_link_vis_shell_visual" type="mesh" mesh="base_link_vis_shell" material="eqr_shell" contype="0" conaffinity="0" density="0" group="1" />
+      <geom name="base_link_vis_silver_visual" type="mesh" mesh="base_link_vis_silver" material="eqr_silver" contype="0" conaffinity="0" density="0" group="1" />
+      <geom name="base_link_vis_white_visual" type="mesh" mesh="base_link_vis_white" material="eqr_white" contype="0" conaffinity="0" density="0" group="1" />
+
+      <include file="eqr11_policy_cameras.xml" />
+      <inertial pos="0.00209249751658264 0.00649458122376617 -0.0557900598376228" mass="24.8577902427686" fullinertia="0.212802461343 0.645705004737 0.738140310111 -0.000962274239 -0.002887972269 0.002961727600" />
+      <joint type="slide" axis="1 0 0" limited="false" damping="0.0" frictionloss="0.0" armature="0.0" />
+      <joint type="slide" axis="0 1 0" limited="false" damping="0.0" frictionloss="0.0" armature="0.0" />
+      <joint type="slide" axis="0 0 1" limited="false" damping="0.0" frictionloss="0.0" armature="0.0" />
+      <joint type="ball" limited="false" damping="0.0" frictionloss="0.0" armature="0.0" />
+      <site name="imu" size="0.01" pos="0.0 0 0.0" />
+
+
+      <body name="lidar_l1" pos="-0.3612 0 -0.026671" quat="-3.45168e-06 0.342019 -1.25631e-06 -0.939693">
+        <geom name="lidar_l1_vis_dark_visual" type="mesh" mesh="lidar_l1_vis_dark" material="eqr_dark" contype="0" conaffinity="0" density="0" group="1" />
+        <site name="lidar_l1_site" size="0.01" pos="0 0 0" />
+      </body>
+      <body name="lidar_l2" pos="0.36107 0 -0.026671" quat="0.939693 0 0.342019 0">
+        <geom name="lidar_l2_vis_dark_visual" type="mesh" mesh="lidar_l2_vis_dark" material="eqr_dark" contype="0" conaffinity="0" density="0" group="1" />
+        <site name="lidar_l2_site" size="0.01" pos="0 0 0" />
+      </body>
+      <body name="gemini_335le_l1" pos="0.42493 0.0475 -0.097878" quat="0.298845 -0.640851 0.640853 -0.298846">
+        <geom name="gemini_335le_l1_vis_panel_visual" type="mesh" mesh="gemini_335le_l1_vis_panel" material="eqr_panel" contype="0" conaffinity="0" density="0" group="1" />
+        <site name="gemini_335le_l1_rgb_camera_link" size="0.003" pos="0.02375 0 0" />
+        <site name="gemini_335le_l1_depth_camera_link" size="0.003" pos="0 0 0" />
+        <site name="gemini_335le_l1_laser_emitter_link" size="0.003" pos="0.0475 0 0" />
+      </body>
+      <body name="gemini_335le_l2" pos="-0.42506 -0.0475 -0.097878" quat="0.201755 -0.677712 -0.677714 0.201756">
+        <geom name="gemini_335le_l2_vis_panel_visual" type="mesh" mesh="gemini_335le_l2_vis_panel" material="eqr_panel" contype="0" conaffinity="0" density="0" group="1" />
+        <site name="gemini_335le_l2_rgb_camera_link" size="0.003" pos="0.02375 0 0" />
+        <site name="gemini_335le_l2_depth_camera_link" size="0.003" pos="0 0 0" />
+        <site name="gemini_335le_l2_laser_emitter_link" size="0.003" pos="0.0475 0 0" />
+      </body>
+      <body name="gemini_336_l1" pos="-0.081566 -0.15201 -0.0051119" quat="-1.83659e-06 3.18109e-06 -0.866027 0.499998">
+        <geom name="gemini_336_l1_vis_panel_visual" type="mesh" mesh="gemini_336_l1_vis_panel" material="eqr_panel" contype="0" conaffinity="0" density="0" group="1" />
+        <site name="gemini_336_l1_rgb_camera_link" size="0.003" pos="0.02375 0 0" />
+        <site name="gemini_336_l1_depth_camera_link" size="0.003" pos="0 0 0" />
+        <site name="gemini_336_l1_laser_emitter_link" size="0.003" pos="0.0475 0 0" />
+      </body>
+      <body name="gemini_336_l2" pos="-0.10357 0.15201 -0.0051119" quat="0.499998 -0.866027 0 0">
+        <geom name="gemini_336_l2_vis_panel_visual" type="mesh" mesh="gemini_336_l2_vis_panel" material="eqr_panel" contype="0" conaffinity="0" density="0" group="1" />
+        <site name="gemini_336_l2_rgb_camera_link" size="0.003" pos="0.02375 0 0" />
+        <site name="gemini_336_l2_depth_camera_link" size="0.003" pos="0 0 0" />
+        <site name="gemini_336_l2_laser_emitter_link" size="0.003" pos="0.0475 0 0" />
+      </body>
+
+
+
+
+
+      <camera name="d435i_cam_1" pos="0.46788 0.032488 -0.028575" quat="0.579235 0.405568 -0.405570 -0.579237" fovy="69.4" mode="fixed" />
+
+
+      <camera name="d435i_cam_2" pos="0.031988 0.1236 0.025418" quat="-0.793355 -0.608760 -0.000002 -0.000003" fovy="69.4" mode="fixed" />
+
+
+      <camera name="d435i_cam_3" pos="-0.032988 -0.1236 0.025418" quat="-0.000000 0.000000 0.608760 0.793355" fovy="69.4" mode="fixed" />
+
+
+      <camera name="d435i_cam_4" pos="-0.46888 -0.032488 -0.028575" quat="0.579235 0.405568 0.405570 0.579237" fovy="69.4" mode="fixed" />
+
+      <body name="fl_leg_l1" pos="0.21443 0.086 -0.061">
+        <inertial pos="0.0714391859236292 0.00878197462237518 0.000578016767515899" mass="1.56073591653108" fullinertia="0.001935830258 0.003350254182 0.002145212964 -0.000033375763 -0.000025551812 -0.000027381793" />
+        <joint name="fl_leg_1" pos="0 0 0" axis="1 0 0" range="-0.785 0.785" actuatorfrcrange="-130 130" class="EC-A8116-P1-18" />
+        <geom name="fl_leg_l1_vis_motor_visual" type="mesh" mesh="fl_leg_l1_vis_motor" material="eqr_motor" contype="0" conaffinity="0" density="0" group="1" />
+        <body name="fl_leg_l2" pos="0.0765 0 0">
+          <inertial pos="-0.043538 0.11179 0.0098558" mass="3.708" fullinertia="0.007728873958 0.026045210511 0.026419770614 0.004352335022 0.002727450492 -0.001014554208" />
+          <joint name="fl_leg_2" pos="0 0 0" axis="0 1 0" range="-3.988 1.457" actuatorfrcrange="-150 150" class="EC-A10020-P1-12" />
+          <geom name="fl_leg_l2_vis_motor_visual" type="mesh" mesh="fl_leg_l2_vis_motor" material="eqr_motor" contype="0" conaffinity="0" density="0" group="1" />
+      <geom name="fl_leg_l2_vis_shell_visual" type="mesh" mesh="fl_leg_l2_vis_shell" material="eqr_shell" contype="0" conaffinity="0" density="0" group="1" />
+
+          <body name="fl_leg_l3" pos="-0.25 0.1365 0">
+            <inertial pos="0.125088 -9.70486e-05 -0.0525052" mass="0.588381" fullinertia="0.00159543864482096 0.00845299368329323 0.00694968530722299 1.12285600084029e-05 0.00302452176376028 -7.59095218709207e-06" />
+            <joint name="fl_leg_3" pos="0 0 0" axis="0 1 0" range="0 1.745" actuatorfrcrange="-245 245" class="EC-A10020-P1-12-Knee" />
+            <geom name="fl_leg_l3_vis_dark_visual" type="mesh" mesh="fl_leg_l3_vis_dark" material="eqr_dark" contype="0" conaffinity="0" density="0" group="1" />
+            <body name="fl_foot" pos="0.24424 0 -0.11649" quat="1 0 0 0">
+              <geom name="fl_leg_lee_vis_rubber_visual" type="mesh" mesh="fl_leg_lee_vis_rubber" material="eqr_rubber" contype="0" conaffinity="0" density="0" group="1" />
+            </body>
+            <geom size="0.04 0.01 0.0125" pos="0.1 0 -0.02" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+            <geom size="0.04 0.01 0.0125" pos="0.18 0 -0.05" quat="0.939373 0 0.342898 0" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+            <geom size="0.0315 0.0125 0.0125" pos="0.025 0 -0.01" quat="0.991562 0 0.129634 0" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+            <geom size="0.02 0.01 0.0125" pos="-0.025 0 0.02" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+            <geom size="0.035" type="sphere" pos="0.24424 0 -0.11649" rgba="0.75294 0.75294 0.75294 0"/>
+          </body>
+          <geom size="0.065 0.06" pos="0 0.09 0" quat="0.707105 0.707108 0 0" type="cylinder" rgba="0.75294 0.75294 0.75294 0"/>
+          <geom size="0.055 0.025 0.025" pos="-0.13 0.14 0.03" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+        </body>
+        <geom size="0.065 0.0225" pos="0.072 0.005 0" quat="0.707105 0.707108 0 0" type="cylinder" rgba="0.75294 0.75294 0.75294 0"/>
+      </body>
+      <body name="fr_leg_l1" pos="0.21443 -0.086 -0.061">
+        <inertial pos="0.0713730045244633 -0.00881293421058748 0.000548058879707103" mass="1.56240701146175" fullinertia="0.001937378815 0.003358179927 0.002154481139 0.000029800503 -0.000026148748 0.000028112254" />
+        <joint name="fr_leg_1" pos="0 0 0" axis="1 0 0" range="-0.785 0.785" actuatorfrcrange="-130 130" class="EC-A8116-P1-18" />
+        <geom name="fr_leg_l1_vis_motor_visual" type="mesh" mesh="fr_leg_l1_vis_motor" material="eqr_motor" contype="0" conaffinity="0" density="0" group="1" />
+        <body name="fr_leg_l2" pos="0.0765 0 0">
+          <inertial pos="-0.039522 -0.1113 0.01012" mass="3.6588" fullinertia="0.007782502463 0.023082868682 0.023413460872 -0.004012222235 0.002818400275 0.001035861163" />
+          <joint name="fr_leg_2" pos="0 0 0" axis="0 1 0" range="-3.988 1.457" actuatorfrcrange="-150 150" class="EC-A10020-P1-12" />
+          <geom name="fr_leg_l2_vis_motor_visual" type="mesh" mesh="fr_leg_l2_vis_motor" material="eqr_motor" contype="0" conaffinity="0" density="0" group="1" />
+      <geom name="fr_leg_l2_vis_shell_visual" type="mesh" mesh="fr_leg_l2_vis_shell" material="eqr_shell" contype="0" conaffinity="0" density="0" group="1" />
+
+          <body name="fr_leg_l3" pos="-0.25 -0.1365 0">
+            <inertial pos="0.125088 -9.70486e-05 -0.0525052" mass="0.588381" fullinertia="0.00159543864482096 0.00845299368329323 0.00694968530722299 1.12285600084029e-05 0.00302452176376028 -7.59095218709207e-06" />
+            <joint name="fr_leg_3" pos="0 0 0" axis="0 1 0" range="0 1.745" actuatorfrcrange="-245 245" class="EC-A10020-P1-12-Knee" />
+            <geom name="fr_leg_l3_vis_dark_visual" type="mesh" mesh="fr_leg_l3_vis_dark" material="eqr_dark" contype="0" conaffinity="0" density="0" group="1" />
+            <body name="fr_foot" pos="0.24424 0 -0.11649" quat="1 0 0 0">
+              <geom name="fr_leg_lee_vis_rubber_visual" type="mesh" mesh="fr_leg_lee_vis_rubber" material="eqr_rubber" contype="0" conaffinity="0" density="0" group="1" />
+            </body>
+            <geom size="0.04 0.01 0.0125" pos="0.1 0 -0.02" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+            <geom size="0.04 0.01 0.0125" pos="0.18 0 -0.05" quat="0.939373 0 0.342898 0" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+            <geom size="0.0315 0.0125 0.0125" pos="0.025 0 -0.01" quat="0.991562 0 0.129634 0" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+            <geom size="0.02 0.01 0.0125" pos="-0.025 0 0.02" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+            <geom size="0.035" type="sphere" pos="0.24424 0 -0.11649" rgba="0.75294 0.75294 0.75294 0"/>
+          </body>
+          <geom size="0.065 0.06" pos="0 -0.09 0" quat="0.707105 0.707108 0 0" type="cylinder" rgba="0.75294 0.75294 0.75294 0"/>
+          <geom size="0.055 0.025 0.025" pos="-0.13 -0.14 0.03" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+        </body>
+        <geom size="0.065 0.0225" pos="0.072 -0.005 0" quat="0.707105 0.707108 0 0" type="cylinder" rgba="0.75294 0.75294 0.75294 0"/>
+      </body>
+      <body name="hl_leg_l1" pos="-0.21457 0.086 -0.061">
+        <inertial pos="-0.0712264615708005 0.00884344600768683 0.000673356882207932" mass="1.56498485334129" fullinertia="0.001947065787 0.003356895475 0.002144966587 0.000025227234 0.000012850950 -0.000032538479" />
+        <joint name="hl_leg_1" pos="0 0 0" axis="1 0 0" range="-0.785 0.785" actuatorfrcrange="-130 130" class="EC-A8116-P1-18" />
+        <geom name="hl_leg_l1_vis_motor_visual" type="mesh" mesh="hl_leg_l1_vis_motor" material="eqr_motor" contype="0" conaffinity="0" density="0" group="1" />
+        <body name="hl_leg_l2" pos="-0.0765 0 0">
+          <inertial pos="-0.043538 0.11179 0.0098558" mass="3.708" fullinertia="0.007728873958 0.026045210511 0.026419770614 0.004352335022 0.002727450492 -0.001014554208" />
+          <joint name="hl_leg_2" pos="0 0 0" axis="0 1 0" range="-3.988 1.457" actuatorfrcrange="-150 150" class="EC-A10020-P1-12" />
+          <geom name="hl_leg_l2_vis_motor_visual" type="mesh" mesh="hl_leg_l2_vis_motor" material="eqr_motor" contype="0" conaffinity="0" density="0" group="1" />
+      <geom name="hl_leg_l2_vis_shell_visual" type="mesh" mesh="hl_leg_l2_vis_shell" material="eqr_shell" contype="0" conaffinity="0" density="0" group="1" />
+
+          <body name="hl_leg_l3" pos="-0.25 0.1365 0">
+            <inertial pos="0.125088 4.20976e-05 -0.0525052" mass="0.588381" fullinertia="0.00159534358858071 0.00845299368329323 0.00694959025098275 1.05392856401354e-06 0.00302452176376028 -1.42411377814568e-06" />
+            <joint name="hl_leg_3" pos="0 0 0" axis="0 1 0" range="0 1.745" actuatorfrcrange="-245 245" class="EC-A10020-P1-12-Knee" />
+            <geom name="hl_leg_l3_vis_dark_visual" type="mesh" mesh="hl_leg_l3_vis_dark" material="eqr_dark" contype="0" conaffinity="0" density="0" group="1" />
+            <body name="hl_foot" pos="0.24424 0 -0.11649" quat="1 0 0 0">
+              <geom name="hl_leg_lee_vis_rubber_visual" type="mesh" mesh="hl_leg_lee_vis_rubber" material="eqr_rubber" contype="0" conaffinity="0" density="0" group="1" />
+            </body>
+            <geom size="0.04 0.01 0.0125" pos="0.1 0 -0.02" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+            <geom size="0.04 0.01 0.0125" pos="0.18 0 -0.05" quat="0.939373 0 0.342898 0" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+            <geom size="0.0315 0.0125 0.0125" pos="0.025 0 -0.01" quat="0.991562 0 0.129634 0" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+            <geom size="0.02 0.01 0.0125" pos="-0.025 0 0.02" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+            <geom size="0.035" type="sphere" pos="0.24424 0 -0.11649" rgba="0.75294 0.75294 0.75294 0"/>
+          </body>
+          <geom size="0.065 0.06" pos="0 0.09 0" quat="0.707105 0.707108 0 0" type="cylinder" rgba="0.75294 0.75294 0.75294 0"/>
+          <geom size="0.055 0.025 0.025" pos="-0.13 0.14 0.03" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+        </body>
+        <geom size="0.065 0.0225" pos="-0.072 0.005 0" quat="0.707105 0.707108 0 0" type="cylinder" rgba="0.75294 0.75294 0.75294 0"/>
+      </body>
+      <body name="hr_leg_l1" pos="-0.21457 -0.086 -0.061">
+        <inertial pos="-0.0712264551566958 -0.00891311432088902 0.000880106265217728" mass="1.56498509967442" fullinertia="0.001940051089 0.003356392858 0.002138454506 -0.000030093307 0.000010854989 0.000023745689" />
+        <joint name="hr_leg_1" pos="0 0 0" axis="1 0 0" range="-0.785 0.785" actuatorfrcrange="-130 130" class="EC-A8116-P1-18" />
+        <geom name="hr_leg_l1_vis_motor_visual" type="mesh" mesh="hr_leg_l1_vis_motor" material="eqr_motor" contype="0" conaffinity="0" density="0" group="1" />
+        <body name="hr_leg_l2" pos="-0.0765 0 0">
+          <inertial pos="-0.039522 -0.1113 0.01012" mass="3.6588" fullinertia="0.007782502463 0.023082868682 0.023413460872 -0.004012222235 0.002818400275 0.001035861163" />
+          <joint name="hr_leg_2" pos="0 0 0" axis="0 1 0" range="-3.988 1.457" actuatorfrcrange="-150 150" class="EC-A10020-P1-12" />
+          <geom name="hr_leg_l2_vis_motor_visual" type="mesh" mesh="hr_leg_l2_vis_motor" material="eqr_motor" contype="0" conaffinity="0" density="0" group="1" />
+      <geom name="hr_leg_l2_vis_shell_visual" type="mesh" mesh="hr_leg_l2_vis_shell" material="eqr_shell" contype="0" conaffinity="0" density="0" group="1" />
+
+          <body name="hr_leg_l3" pos="-0.25 -0.1365 0">
+            <inertial pos="0.125088 4.20976e-05 -0.0525052" mass="0.588381" fullinertia="0.00159534358858071 0.00845299368329323 0.00694959025098275 1.05392856401354e-06 0.00302452176376028 -1.42411377814568e-06" />
+            <joint name="hr_leg_3" pos="0 0 0" axis="0 1 0" range="0 1.745" actuatorfrcrange="-245 245" class="EC-A10020-P1-12-Knee" />
+            <geom name="hr_leg_l3_vis_dark_visual" type="mesh" mesh="hr_leg_l3_vis_dark" material="eqr_dark" contype="0" conaffinity="0" density="0" group="1" />
+            <body name="hr_foot" pos="0.24424 0 -0.11649" quat="1 0 0 0">
+              <geom name="hr_leg_lee_vis_rubber_visual" type="mesh" mesh="hr_leg_lee_vis_rubber" material="eqr_rubber" contype="0" conaffinity="0" density="0" group="1" />
+            </body>
+            <geom size="0.04 0.01 0.0125" pos="0.1 0 -0.02" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+            <geom size="0.04 0.01 0.0125" pos="0.18 0 -0.05" quat="0.939373 0 0.342898 0" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+            <geom size="0.0315 0.0125 0.0125" pos="0.025 0 -0.01" quat="0.991562 0 0.129634 0" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+            <geom size="0.02 0.01 0.0125" pos="-0.025 0 0.02" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+            <geom size="0.035" type="sphere" pos="0.24424 0 -0.11649" rgba="0.75294 0.75294 0.75294 0"/>
+          </body>
+          <geom size="0.065 0.06" pos="0 -0.09 0" quat="0.707105 0.707108 0 0" type="cylinder" rgba="0.75294 0.75294 0.75294 0"/>
+          <geom size="0.055 0.025 0.025" pos="-0.13 -0.14 0.03" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+        </body>
+        <geom size="0.065 0.0225" pos="-0.072 -0.005 0" quat="0.707105 0.707108 0 0" type="cylinder" rgba="0.75294 0.75294 0.75294 0"/>
+      </body>
+      <geom size="0.125 0.14 0.08" pos="0 0 -0.05" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+      <geom size="0.01 0.005 0.0075" pos="0.13 0.075 -0.135" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+      <geom size="0.01 0.005 0.0075" pos="-0.13 0.075 -0.135" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+      <geom size="0.01 0.005 0.0075" pos="0.13 -0.075 -0.135" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+      <geom size="0.01 0.005 0.0075" pos="-0.13 -0.075 -0.135" type="box" rgba="0.75294 0.75294 0.75294 0"/>
+      <geom name="base_link_collision_simple_base_rear_roof_extension" type="mesh" mesh="base_link_collision_simple_base_rear_roof_extension" pos="-0.2225001 0 0.0318751" quat="1 0 0 0" contype="1" conaffinity="15" density="0" group="3" rgba="0.2 0.8 0.3 0.55"/>
+      <geom name="base_link_collision_simple_base_front_roof_extension" type="mesh" mesh="base_link_collision_simple_base_front_roof_extension" pos="0.2225001 0 0.0318751" quat="1 0 0 0" contype="1" conaffinity="15" density="0" group="3" rgba="0.2 0.8 0.3 0.55"/>
+      <geom name="base_link_collision_simple_base_rear_nose_extension" type="mesh" mesh="base_link_collision_simple_base_rear_nose_extension" pos="-0.39078295 7.255e-05 -0.0413072" quat="1 0 0 0" contype="1" conaffinity="15" density="0" group="3" rgba="0.2 0.8 0.3 0.55"/>
+      <geom name="base_link_collision_simple_base_front_nose_extension" type="mesh" mesh="base_link_collision_simple_base_front_nose_extension" pos="0.3907171 -7.255e-05 -0.0413072" quat="1 0 0 0" contype="1" conaffinity="15" density="0" group="3" rgba="0.2 0.8 0.3 0.55"/>
+    </body>
+  <geom name="perception_step_1" type="box" pos="2.7 0 0.25" size="1.2 1.5 0.25" rgba="0.85 0.55 0.2 1" condim="1" conaffinity="15" group="2" /></worldbody>
+
+  <actuator>
+    <motor name="fl_leg_1" joint="fl_leg_1" gear="18" ctrllimited="true" ctrlrange="-7.2 7.2" />
+    <motor name="fl_leg_2" joint="fl_leg_2" gear="12" ctrllimited="true" ctrlrange="-12.5 12.5" />
+    <motor name="fl_leg_3" joint="fl_leg_3" gear="19.584" ctrllimited="true" ctrlrange="-12.5 12.5" />
+
+    <motor name="fr_leg_1" joint="fr_leg_1" gear="18" ctrllimited="true" ctrlrange="-7.2 7.2" />
+    <motor name="fr_leg_2" joint="fr_leg_2" gear="12" ctrllimited="true" ctrlrange="-12.5 12.5" />
+    <motor name="fr_leg_3" joint="fr_leg_3" gear="19.584" ctrllimited="true" ctrlrange="-12.5 12.5" />
+
+    <motor name="hl_leg_1" joint="hl_leg_1" gear="18" ctrllimited="true" ctrlrange="-7.2 7.2" />
+    <motor name="hl_leg_2" joint="hl_leg_2" gear="12" ctrllimited="true" ctrlrange="-12.5 12.5" />
+    <motor name="hl_leg_3" joint="hl_leg_3" gear="19.584" ctrllimited="true" ctrlrange="-12.5 12.5" />
+
+    <motor name="hr_leg_1" joint="hr_leg_1" gear="18" ctrllimited="true" ctrlrange="-7.2 7.2" />
+    <motor name="hr_leg_2" joint="hr_leg_2" gear="12" ctrllimited="true" ctrlrange="-12.5 12.5" />
+    <motor name="hr_leg_3" joint="hr_leg_3" gear="19.584" ctrllimited="true" ctrlrange="-12.5 12.5" />
+  </actuator>
+
+  <sensor>
+    <jointpos name="fl_leg_1_p" joint="fl_leg_1" user="13" />
+    <jointpos name="fl_leg_2_p" joint="fl_leg_2" user="13" />
+    <jointpos name="fl_leg_3_p" joint="fl_leg_3" user="13" />
+
+    <jointpos name="fr_leg_1_p" joint="fr_leg_1" user="13" />
+    <jointpos name="fr_leg_2_p" joint="fr_leg_2" user="13" />
+    <jointpos name="fr_leg_3_p" joint="fr_leg_3" user="13" />
+
+    <jointpos name="hl_leg_1_p" joint="hl_leg_1" user="13" />
+    <jointpos name="hl_leg_2_p" joint="hl_leg_2" user="13" />
+    <jointpos name="hl_leg_3_p" joint="hl_leg_3" user="13" />
+
+    <jointpos name="hr_leg_1_p" joint="hr_leg_1" user="13" />
+    <jointpos name="hr_leg_2_p" joint="hr_leg_2" user="13" />
+    <jointpos name="hr_leg_3_p" joint="hr_leg_3" user="13" />
+
+    <jointvel name="fl_leg_1_v" joint="fl_leg_1" user="13" />
+    <jointvel name="fl_leg_2_v" joint="fl_leg_2" user="13" />
+    <jointvel name="fl_leg_3_v" joint="fl_leg_3" user="13" />
+
+    <jointvel name="fr_leg_1_v" joint="fr_leg_1" user="13" />
+    <jointvel name="fr_leg_2_v" joint="fr_leg_2" user="13" />
+    <jointvel name="fr_leg_3_v" joint="fr_leg_3" user="13" />
+
+    <jointvel name="hl_leg_1_v" joint="hl_leg_1" user="13" />
+    <jointvel name="hl_leg_2_v" joint="hl_leg_2" user="13" />
+    <jointvel name="hl_leg_3_v" joint="hl_leg_3" user="13" />
+
+    <jointvel name="hr_leg_1_v" joint="hr_leg_1" user="13" />
+    <jointvel name="hr_leg_2_v" joint="hr_leg_2" user="13" />
+    <jointvel name="hr_leg_3_v" joint="hr_leg_3" user="13" />
+
+    <actuatorfrc name="fl_leg_1_f" actuator="fl_leg_1" user="13" />
+    <actuatorfrc name="fl_leg_2_f" actuator="fl_leg_2" user="13" />
+    <actuatorfrc name="fl_leg_3_f" actuator="fl_leg_3" user="13" />
+
+    <actuatorfrc name="fr_leg_1_f" actuator="fr_leg_1" user="13" />
+    <actuatorfrc name="fr_leg_2_f" actuator="fr_leg_2" user="13" />
+    <actuatorfrc name="fr_leg_3_f" actuator="fr_leg_3" user="13" />
+
+    <actuatorfrc name="hl_leg_1_f" actuator="hl_leg_1" user="13" />
+    <actuatorfrc name="hl_leg_2_f" actuator="hl_leg_2" user="13" />
+    <actuatorfrc name="hl_leg_3_f" actuator="hl_leg_3" user="13" />
+
+    <actuatorfrc name="hr_leg_1_f" actuator="hr_leg_1" user="13" />
+    <actuatorfrc name="hr_leg_2_f" actuator="hr_leg_2" user="13" />
+    <actuatorfrc name="hr_leg_3_f" actuator="hr_leg_3" user="13" />
+
+    <framequat name="orientation" objtype="site" noise="0.0001" objname="imu" />
+    <framepos name="position" objtype="site" noise="0.0001" objname="imu" />
+    <gyro name="angular-velocity" site="imu" noise="0.0005" cutoff="34.9" />
+    <velocimeter name="linear-velocity" site="imu" noise="0.0001" cutoff="30" />
+    <accelerometer name="linear-acceleration" site="imu" noise="0.0005" cutoff="157" />
+    <magnetometer name="magnetometer" site="imu" />
+  </sensor>
+
+<statistic center="2 0 0.35" extent="4" /></mujoco>

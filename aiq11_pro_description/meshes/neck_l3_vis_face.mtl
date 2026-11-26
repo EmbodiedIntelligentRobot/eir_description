@@ -1,0 +1,5 @@
+newmtl aiq_face
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.12 0.12 0.12
+map_Kd neck_l3_vis_face.png
